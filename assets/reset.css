@@ -1,0 +1,62 @@
+html, body, h1, h2, h3, h4, h5, h6, p, ul, li, ol, button, select, input, pre, textarea{
+	padding: 0;
+	margin: 0;
+	font-family: 'Arial', Arial, sans-serif;
+	font-weight: normal;
+	font-size: var(--fs);
+	line-height: var(--lh);
+	letter-spacing: var(--ls);
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	list-style-type: none;
+}
+
+*::selection{
+	background-color: gray;
+}
+
+html, body{
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (min-width: 769px){
+	*[data-device=desktop]{
+			display: none !important;	
+	}
+}
+
+@media screen and (max-width: 768px){
+	*[data-device=mobile]{
+		display: none !important;	
+	}
+}
+
+figure{ margin: 0; }
+a{ text-decoration: none; color: inherit; }
+button, a, input, textarea{ outline: none; }
+a, button{ -webkit-tap-highlight-color: rgba(0,0,0,0); }
+button, input, fieldset{
+	border-radius: 0px;
+	padding: 0;
+	margin: 0;
+	background: transparent;
+	border: none;
+}
+
+button, input, select{
+	color: black;
+	-webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button, input[type=submit], .point{ cursor: pointer; }
+
+
+*.no-wrap, .no-wrap *{
+	white-space: nowrap !important;
+}
+
+
+a.block{ display: block; }

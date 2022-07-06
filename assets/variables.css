@@ -1,0 +1,13 @@
+:root{
+	--mobile_base: 18px;
+	--tablet_base: 16px;
+	--desktop_base: 16px;
+	--xl_base: 18px;
+
+
+	/* regular */
+	--fs: 1rem;
+	--lh: 1.3; /*leading*/
+	--lh_heading: 1.2; /*leading for titles (h1-h6) */
+	--ls: -0.02em; /*letter spacing*/
+}
