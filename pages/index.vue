@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'IndexPage',
-  async asyncData(){
+  async asyncData({ $axios, $ReqWVars, $Req }){
     
   }
 }

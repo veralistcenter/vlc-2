@@ -11,7 +11,7 @@ export const Events = `events {
   }
 }`
 
-export const Event = `event (id: "${slug}", idType: SLUG) {
+export const Event = slug => `event (id: "${slug}", idType: SLUG) {
 	edges {
 		node {
 			title
