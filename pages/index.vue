@@ -1,5 +1,7 @@
 <template>
   <main class="page">
+    <SiteMenuExpanded />
+
     <pre>{{globals}}</pre>    
   </main>
 </template>

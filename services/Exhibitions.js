@@ -11,4 +11,6 @@ export const Exhibitions = `exhibitions {
   }
 }`
 
+// divide into current, upcoming, past
+
 export const Exhibition = ``

@@ -1,0 +1,90 @@
+<template>
+	<header class="site_menu_expanded grid grid--sans">
+			<section class="col col--1_2 col--inset menu_col">
+				<nuxt-link class="menu_logo pt--1" to="/">
+					<img src="/tns-vlc-logo-2.svg" />
+				</nuxt-link>
+
+				<aside class="menu_info grid grid--sans fs--small">
+					<section class="col col--1_2" v-html="menu.address"></section>
+					<section class="col col--1_2 col--end">
+						<ul>
+							<li 
+								v-for="(social, i) in menu.menuSocialLinks"
+								:key="'social'+ i"
+							>
+								<a :href="social.link" v-html="social.text"></a>
+							</li>
+						</ul>
+					</section>
+				</aside>
+
+			</section>
+			<section class="col col--1_2 col--end col--inset menu_list menu_col grid genath title">
+				<ul class="col col--1_2 mt--1">
+					<li>Events</li>
+					<li>Exhibitions</li>
+				</ul>
+				<ul class="col col--1_2 mt--1 col--end">
+					<li>About</li>
+				</ul>
+			</section>
+			<footer class="banner col col--full pt--1 pb--1">
+				test
+			</footer>
+
+	</header>
+</template>
+
+<script>
+
+	import { mapGetters } from 'vuex'
+	
+	export default{
+		computed: {
+			menu(){ return this.settings.acfOptions.menu },
+			...mapGetters({
+				settings: 'getSettings'
+			})
+		}
+	}
+
+</script>
+
+<style>
+
+	.menu_info{
+		position: absolute;
+		bottom: var(--margin);
+	}
+
+	.menu_logo{
+		display: block;
+		height: 5rem;
+		background: red;
+		text-align: left;
+	}
+
+	.menu_logo img{
+		display: block;
+		height: 100%;
+	}
+
+	.menu_col{
+		min-height: 30rem;
+	}
+
+	.site_menu_expanded{
+		width: 100%;
+		border-bottom: var(--border);
+	}
+
+	.menu_list{
+		border-left: var(--border);
+	}
+
+	.banner{
+		border-top: var(--border);
+	}
+
+</style>

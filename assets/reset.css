@@ -1,7 +1,35 @@
+@font-face{
+    font-family: 'Jungka';
+    src:url("/fonts/Jungka/Jungka-Book.woff2") format("woff2"),url("/fonts/Jungka/Jungka-Book.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Jungka';
+    src:url("/fonts/Jungka/Jungka-BookItalic.woff2") format("woff2"),url("/fonts/Jungka/Jungka-BookItalic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face{
+    font-family: 'Genath';
+    src:url("/fonts/Optimo-Genath/genath.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Genath';
+    src:url("/fonts/Optimo-Genath/genath-italic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+}
+
 html, body, h1, h2, h3, h4, h5, h6, p, ul, li, ol, button, select, input, pre, textarea{
 	padding: 0;
 	margin: 0;
-	font-family: 'Arial', Arial, sans-serif;
+	font-family: var(--sans);
 	font-weight: normal;
 	font-size: var(--fs);
 	line-height: var(--lh);
@@ -12,7 +40,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, li, ol, button, select, input, pre, t
 }
 
 *::selection{
-	background-color: gray;
+	background-color: red;
 }
 
 html, body{
@@ -60,3 +88,22 @@ button, input[type=submit], .point{ cursor: pointer; }
 
 
 a.block{ display: block; }
+
+
+.fs--small, .fs--small *{
+	font-family: var(--sans);
+	font-size: var(--fs-s);
+	line-height: var(--lh-s);
+	letter-spacing: var(--ls-s);
+}
+
+.genath, .genath *{
+	font-family: var(--serif);
+	font-size: var(--fs-g);
+	line-height: var(--lh-g);
+	letter-spacing: var(--ls-g);
+}
+
+.genath.title, .genath.title *{
+	line-height: var(--lh_heading-g);
+}
