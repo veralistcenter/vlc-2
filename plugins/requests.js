@@ -1,7 +1,7 @@
 export default (context, inject) => {
 	/* plugin to keep all request formats centralized */
 
-	var testUrl = 'http://localhost:8888'
+	var testUrl = (process.env.WPURL !== null && process.env.WPURL !== undefined) ? process.env.WPURL : 'http://localhost:8888'
 
 
 	const req = (query) => {

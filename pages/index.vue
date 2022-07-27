@@ -1,9 +1,14 @@
 <template>
-  <Tutorial/>
+  <main class="page">
+    
+  </main>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  async asyncData(){
+    
+  }
 }
 </script>
