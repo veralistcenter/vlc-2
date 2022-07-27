@@ -1,5 +1,7 @@
 <template>
-	<main class="page"></main>
+	<main class="page">
+		
+	</main>
 </template>
 
 <script>
