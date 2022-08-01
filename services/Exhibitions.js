@@ -21,4 +21,9 @@ export const Exhibitions = `exhibitions(where: {orderby: {order: ASC, field: DAT
 
 // divide into current, upcoming, past
 
-export const Exhibition = ``
+export const Exhibition = slug => `exhibition (id: "${slug}", idType: SLUG) {
+  title
+  slug
+
+  ${ Body('Exhibition') }
+}`

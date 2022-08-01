@@ -1,6 +1,6 @@
 <template>
 	<section class="matrix_block section_inset">
-		<h1 class="fs--large mt--1 mb--1" v-if="$Check(block.title)" v-html="block.title"></h1>		
+		<h1 class="richtext fs--large mt--1 mb--1" v-if="$Check(block.title)" v-html="block.title"></h1>		
 		<section class="richtext fs--regular" v-html="block.text"></section>
 	</section>
 </template>

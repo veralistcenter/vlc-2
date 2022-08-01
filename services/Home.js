@@ -8,6 +8,8 @@ import {
   
 } from '@/services/Thumbs'
 
+import { Body } from '@/services/Matrix'
+
 
 export const RecentEvents = `recentEvents: events(
   first: 20
@@ -277,11 +279,7 @@ export const AllPages = `pages {
         introductionText
       }
 
-      bodyField{
-        body{
-          __typename
-        }
-      }
+      ${ Body('Page') }
       
       fellows {
         currentFellows {

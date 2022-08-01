@@ -1,3 +1,5 @@
+import { Body } from '@/services/Matrix'
+
 import { 
   EventQuery, 
   featImage
@@ -74,9 +76,8 @@ export const EventTabs = `eventTabs: eventsubs{
 }`
 
 export const Event = slug => `event (id: "${slug}", idType: SLUG) {
-	edges {
-		node {
-			title
-		}
-	}
+	title
+  slug
+
+  ${ Body('Event') }
 }`
