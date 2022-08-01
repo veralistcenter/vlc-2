@@ -1,28 +1,49 @@
 :root{
 	--mobile_base: 18px;
-	--tablet_base: 16px;
+	--tablet_base: 13px;
 	--desktop_base: 16px;
-	--xl_base: 18px;
+	--xl_base: 19px;
 
 
 	--sans: 'Jungka', 'Arial', Arial, sans-serif;
 	--serif: 'Genath', 'Times New Roman', Times, serif;
 
-	--border: solid 0.1rem black;
+	--border: solid 2px black;
+	--biennial_border: dashed 2px black;
 
+	--light_grey: #d6d6d6;
+	--lg_text: #9d9d9d;
+
+	--margin_quarter: .25rem;
 	--margin_half: .5rem;
 	--margin: 1rem;
+
+	--edge: 2rem;
+
 	--margin_x2: 2rem;
 	--margin_x3: 3rem;
 	--margin_x4: 4rem;
+	--margin_x6: 6rem;
 	--margin_x8: 8rem;
 	--margin_x16: 16rem;
 
-	/* regular */
+	/* default */
 	--fs: 1rem;
 	--lh: 1.3; /*leading*/
 	--lh_heading: 1.2; /*leading for titles (h1-h6) */
 	--ls: -0.02em; /*letter spacing*/
+
+
+	/* large */
+	--fs-l: 1.7rem;
+	--lh-l: 1.3; /*leading*/
+	--ls-l: 0.02em; /*letter spacing*/
+
+	/* regular */
+	--fs-r: 1.3rem;
+	--lh-r: 1.3; /*leading*/
+	--lh_heading: 1.2; /*leading for titles (h1-h6) */
+	--ls-r: -0.02em; /*letter spacing*/
 
 	/* small */
 	--fs-s: .85rem;

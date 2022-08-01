@@ -1,17 +1,259 @@
-export const Home = ``
+import { 
+  ExhibitionQuery,
+  AnnouncementQuery, 
+  EventQuery, 
+  EventThumb, 
+  ExhibitionThumb, 
+  featImage
+  
+} from '@/services/Thumbs'
 
-// get current modules
 
-// get upcoming events
-// get upcoming exhibitions
-// get recent events/announcements/books
-// get themes
-// get network
+export const RecentEvents = `recentEvents: events(
+  first: 20
+  where: {orderby: {order: ASC, field: DATE}}
+){
+  edges {
+    node {
+      ${EventQuery}
+    }
+  }
+}`
+
+
+export const RecentExhibitions = `recentExhibitions: exhibitions(
+  first: 20 
+  where: {orderby: {order: ASC, field: DATE}}
+){
+  edges {
+    node {
+      ${ExhibitionQuery}
+    }
+  }
+}`
+
+
+export const RecentAnnouncements = `recentAnnouncements: announcements(
+  first: 20 
+  where: {orderby: {order: ASC, field: DATE}}
+){
+  edges {
+    node {
+      ${AnnouncementQuery}
+    }
+  }
+}`
+
+export const Biennials = `biennials{
+    edges{
+      node{
+        title
+        slug
+        featImage{
+          featuredImage {
+            ... on MediaItem {
+              srcSet
+              sizes
+              sourceUrl
+              altText
+              title
+            }
+          }
+        }
+        biennialInfo{
+          biennialDescriptionPreview
+          dateRange{
+            startingYear
+            endingYear
+          }
+        }
+      }
+    }
+  }`
+
+export const Home = `
+${RecentEvents}
+${RecentExhibitions}
+${RecentAnnouncements}
+
+${Biennials}
+
+networks: networks(where: {orderby: {field: MODIFIED, order: ASC}}, first: 100) {
+  edges {
+    node {
+      title
+      slug
+      networkInformation{
+        type
+      }
+    }
+  }
+}
+
+acfOptions: acfOptions {
+
+  homepage {
+    previewSections{
+      __typename
+
+      ... on AcfOptions_Homepage_PreviewSections_HomepageGallery {
+        homepageGallery {
+          ${EventThumb}
+          ${ExhibitionThumb}
+        }
+      }
+      ... on AcfOptions_Homepage_PreviewSections_Recently {
+        cardSize
+        recently {
+          ... on AcfOptions_Homepage_PreviewSections_Recently_Recently {
+            __typename
+            title
+            displayOptions
+          }
+        }
+      }
+      ... on AcfOptions_Homepage_PreviewSections_Archive {
+        archive {
+          archiveTitle
+          displayAmount
+          displayMethod
+        }
+      }
+      ... on AcfOptions_Homepage_PreviewSections_Manual {
+        cardSize
+        manual {
+          ... on AcfOptions_Homepage_PreviewSections_Manual_Manual {
+            __typename
+            title
+            manualAddition {
+              ${EventThumb}
+              ${ExhibitionThumb}
+            }
+          }
+        }
+      }
+
+      ...on AcfOptions_Homepage_PreviewSections_NetworkPreview{
+       __typename
+        networkPreviewGroup{
+          title
+          show
+        }
+      }
+      
+      ...on AcfOptions_Homepage_PreviewSections_HomepageText{
+        text
+      }
+      
+      ...on AcfOptions_Homepage_PreviewSections_BiennialFocus{
+        biennialTitle          
+      }
+      
+      ... on AcfOptions_Homepage_PreviewSections_Current {
+        cardSize
+        current {
+          ... on AcfOptions_Homepage_PreviewSections_Current_Current {
+            __typename
+            title
+          }
+        }
+      }
+    }
+
+
+    gallery {
+      __typename
+      ${ExhibitionThumb}
+      ${EventThumb}
+    }
+
+  }
+
+}`
+
+/*
+
+[ ] get current modules
+
+[ ] get upcoming events
+[ ] get upcoming exhibitions
+[ ] get recent events/announcements/books
+[ ] get themes
+[ ] get network
+
+*/
+
+
 
 
 export const Global = `acfOptions {
   menu{
+    pLeftColumn{
+      text
+      link
+      internalLink{
+        ...on Page{
+          slug
+        }
+        ...on Post{
+          slug
+        }
+        ...on Event{
+          slug
+        }
+        ...on Publication{
+          slug
+        }
+        ...on Exhibition{
+          slug
+        }
+        ...on Biennial{
+          slug
+        }
+        ...on Network{
+          slug
+        }
+        ...on Announcement{
+          slug
+        }
+      }
+      linkToggle
+    }
+    
+    pRightColumn{
+      text
+      link
+      internalLink{
+        ...on Page{
+          slug
+        }
+        ...on Post{
+          slug
+        }
+        ...on Event{
+          slug
+        }
+        ...on Publication{
+          slug
+        }
+        ...on Exhibition{
+          slug
+        }
+        ...on Biennial{
+          slug
+        }
+        ...on Network{
+          slug
+        }
+        ...on Announcement{
+          slug
+        }
+      }
+      linkToggle
+    }
+
     address
+
     menuSocialLinks{
       text
       link
@@ -21,5 +263,66 @@ export const Global = `acfOptions {
     columnOne
     columnTwo
     columnThree
+  }
+}`
+
+
+export const AllPages = `pages {
+  edges {
+    node {
+      title
+      slug
+
+      pageIntroduction{
+        introductionText
+      }
+
+      bodyField{
+        body{
+          __typename
+        }
+      }
+      
+      fellows {
+        currentFellows {
+          title
+          titleSlug
+          cfellows {
+            ... on Network {
+              __typename
+              title
+              slug
+              networkTypes{
+                edges{
+                  node{
+                    name
+                  }
+                }
+              }
+              ${featImage}
+            }
+          }
+        }
+        pastFellows {
+          title
+          titleSlug
+          fellows {
+            ... on Network {
+              __typename
+              title
+              slug
+              networkTypes{
+                edges{
+                  node{
+                    name
+                  }
+                }
+              }
+              ${featImage}
+            }
+          }
+        }
+      }
+    }
   }
 }`

@@ -20,13 +20,20 @@
 				</aside>
 
 			</section>
-			<section class="col col--1_2 col--end col--inset menu_list menu_col grid genath title">
+			<section class="col col--1_2 col--end col--inset menu_list menu_col grid grid--sansr genath title">
 				<ul class="col col--1_2 mt--1">
-					<li>Events</li>
-					<li>Exhibitions</li>
+					
+					<li v-for="(r, i) in menu.pLeftColumn" :key="'left_' + i" class="menu_link">
+							<nuxt-link v-if="r.linkToggle" :to="calcLink(r.internalLink)" v-html="r.text"></nuxt-link>
+							<a v-else :href="r.link" target="_blank" v-html="r.text"></a>
+					</li>
 				</ul>
 				<ul class="col col--1_2 mt--1 col--end">
-					<li>About</li>
+					<li v-for="(r, i) in menu.pRightColumn" :key="'left_' + i" class="menu_link">
+							<nuxt-link v-if="r.linkToggle" :to="calcLink(r.internalLink)" v-html="r.text"></nuxt-link>
+							<a v-else :href="r.link" target="_blank" v-html="r.text"></a>
+					</li>
+
 				</ul>
 			</section>
 			<footer class="banner col col--full pt--1 pb--1">
@@ -43,6 +50,9 @@
 	export default{
 		computed: {
 			menu(){ return this.settings.acfOptions.menu },
+			calcLink: state => iL => {
+				return (state.$Check(iL) && state.$Check(iL.slug)) ? '/' + iL.slug : '/'
+			},
 			...mapGetters({
 				settings: 'getSettings'
 			})
@@ -61,7 +71,6 @@
 	.menu_logo{
 		display: block;
 		height: 5rem;
-		background: red;
 		text-align: left;
 	}
 
@@ -86,5 +95,17 @@
 	.banner{
 		border-top: var(--border);
 	}
+
+	@media screen and (any-hover: hover){
+		.menu_link a{
+			position: relative;
+			display: inline-block;
+			transition: transform .1s ease-in;
+		}
+		.menu_link a:hover{
+			transform: translateX(var(--margin));
+		}
+	}
+	
 
 </style>

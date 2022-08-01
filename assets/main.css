@@ -1,0 +1,51 @@
+/* page defaults */
+
+
+.border--top{ border-top: var(--border); }
+.border--btm{ border-bottom: var(--border); }
+
+
+
+/* transitions */
+
+.fade-enter-active { transition: opacity .2s ease-in; }
+.fade-leave-active { transition: opacity .1s ease-in; }
+.fade-enter, .fade-leave-active { opacity: 0; }
+
+
+.biennial_preview{
+	height: auto;
+	max-height: 0px;
+	overflow: hidden;
+	transition: all .8s ease-in-out;
+}
+
+.biennial_preview.open{
+	max-height: 1000px;
+}
+
+
+/* common UI */
+
+.btn--grey{
+	background-color: var(--light_grey);
+}
+
+.btn--full{
+	display: block;
+	width: 100%;
+	text-align: center;
+	margin-top: var(--margin);
+	margin-bottom: var(--margin);
+	padding-top: var(--margin_half);
+	padding-bottom: var(--margin_half);
+	border: var(--border);
+}
+
+@media screen and (any-hover: hover){
+	a.btn--full:hover,
+	button.btn--full:hover{
+		color: white;
+		background-color: black;
+	}
+}

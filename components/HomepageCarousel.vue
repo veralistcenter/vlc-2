@@ -1,0 +1,165 @@
+<template>
+	<section class="homepage_carousel" v-if="$CheckA(gallery)">
+
+		<vueper-slides 
+			ref="myVueperSlides"
+			class="no-shadow" 
+			:bullets="false" 
+			:arrows="false"
+			:touchable="false"
+			:transitionSpeed="300"
+			:fixedHeight="true"
+			@slide="changeActive"
+		>
+    	<vueper-slide 
+    		v-for="(s, i) in gallery" 
+    		:key="i"
+    	>
+    		<template #content>
+    			<div class="grid grid--sans">
+    				<section class="col col--3_5 carousel_image">
+    					<img 
+    						:src="s.featImage.featuredImage.sourceUrl"
+    						:alt="s.featImage.featuredImage.altText"
+    						:srcset="s.featImage.featuredImage.srcSet"
+    						sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"
+    					>
+    				</section>
+    				<section class="col col--2_5 col--end pt--4">
+    					<h1></h1>
+    					<h2 class="genath title" v-html="s.title"></h2>
+    					<h3 class="genath title" v-html="$Check(s.pageInfo.timeOverride) ? s.pageInfo.timeOverride : $Dated({start: s.pageInfo.date, end: s.pageInfo.endDate})"></h3>
+    				</section>
+    			</div>
+    		</template>
+    	</vueper-slide>
+    </vueper-slides>
+
+    <nav class="homepage_carousel_nav grid grid--sans">
+    	<aside class="col col--2_3">
+    		<button 
+    		v-for="(b, i) in gallery"
+    		:key="'dot_' + i"
+    		@click="$refs.myVueperSlides.goToSlide(i)"
+    		:class="{filled: i === activeIndex}"
+    		class="hc_nav_button_dots mr--1_2"></button>
+    	</aside>
+    	<section class="col col--1_3 col--end right">
+    		<p>
+    			<button 
+    				@click="$refs.myVueperSlides.previous()" 
+    				class="hc_nav_buttons mr--1_2"><img src="/previous-inline.svg" 
+    			/></button>
+    			<button 
+    				@click="$refs.myVueperSlides.next()" 
+    				class="hc_nav_buttons"><img src="/next-inline.svg" 
+    			/></button>	
+    		</p>
+    	</section>
+    	
+    </nav>
+
+	</section>
+</template>
+
+<script>
+
+	import { VueperSlides, VueperSlide } from 'vueperslides'
+	import 'vueperslides/dist/vueperslides.css'
+	
+	export default{
+		components: { VueperSlides, VueperSlide },
+
+		props: {
+			gallery: Array
+		},
+		data(){
+			return {
+				activeIndex: 0
+			}
+		},
+		methods:{
+			changeActive(e){
+				this.activeIndex = e.currentSlide.index
+			},
+		}
+	}
+
+</script>
+
+
+<style>
+
+	.homepage_carousel{
+		position: relative;
+		--slideshow_height: 46.875vw;
+		border-top: var(--border);
+		border-bottom: var(--border);
+	}
+
+	.homepage_carousel.primary_carousel{
+		border-top: 0px;
+	}
+
+	.hc_nav_button_dots{
+		--diameter:  calc(var(--margin) * 1.125);
+		width: var(--diameter);
+		height: var(--diameter);
+		margin-top: calc(var(--margin) * 0.4375);
+		box-sizing: border-box;
+		border: var(--border);
+		border-radius: 100%;
+	}
+
+	.hc_nav_button_dots.filled{
+		background: black;
+	}
+
+	.hc_nav_buttons{
+		height: calc(var(--margin) * 2);
+	}
+
+	.hc_nav_buttons img{
+		display: block;
+		height: 100%;
+	}
+
+	.homepage_carousel_nav{
+		position: absolute;
+		z-index: 10;
+		top: var(--margin);
+		right: var(--margin);
+		width: calc(40% - (var(--margin) * 2));
+		height: calc(var(--margin) * 2);
+	}
+	
+	.homepage_carousel .vueperslides, 
+	.homepage_carousel .vueperslide, 
+	.homepage_carousel .vueperslides__track, 
+	.homepage_carousel .vueperslides__track-inner{
+		height: var(--slideshow_height);
+	}
+	.homepage_carousel .vueperslides--fixed-height {
+		height: var(--slideshow_height);
+	}
+
+	.carousel_image{
+		position: relative;
+		overflow: hidden;
+		height: var(--slideshow_height);
+	}
+
+	.carousel_image img{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: block;
+		width: auto;
+		height: auto;
+		min-height: 100%;
+		min-width: 100%;
+	}
+
+
+</style>

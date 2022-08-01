@@ -40,7 +40,9 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/check.js',
+    '~/plugins/format.js',
     '~/plugins/requests.js',
+    { src: '~/plugins/scroll-to.js', mode: 'client' },
     { src: '~/plugins/scroll-lock.js', mode: 'client' },
   ],
 

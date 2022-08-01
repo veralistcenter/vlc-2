@@ -39,6 +39,12 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, li, ol, button, select, input, pre, t
 	list-style-type: none;
 }
 
+a:focus-visible, button:focus-visible, input:focus-visible{
+	background-color: black !important;
+	color: white !important;
+}
+
+
 *::selection{
 	background-color: red;
 }
@@ -46,6 +52,31 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, li, ol, button, select, input, pre, t
 html, body{
 	-webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (max-width: 1400px){
+	html, body{
+		font-size: var(--desktop_base);
+	}
+}
+
+@media screen and (max-width: 1220px){
+	html, body{
+		font-size: var(--tablet_base);
+	}
+}
+
+
+@media screen and (max-width: 768px){
+	html, body{
+		font-size: var(--mobile_base);
+	}
+}
+
+@media screen and (min-width: 1401px){
+	html, body{
+		font-size: var(--xl_base);
+	}
 }
 
 @media screen and (min-width: 769px){
@@ -87,7 +118,44 @@ button, input[type=submit], .point{ cursor: pointer; }
 }
 
 
-a.block{ display: block; }
+a.block, button.block{ display: block; }
+
+button.block{
+	width: 100%;
+	text-align: inherit;
+}
+
+.left{ text-align: left; }
+.right{ text-align: right; }
+.center{ text-align: center; }
+
+.caps{ text-transform: uppercase; letter-spacing: 0.03em !important; }
+
+ul.ul--inline li{
+	display: inline-block;
+}
+
+.grey_text{
+	color: var(--lg_text);
+}
+
+.fs--large, .fs--large *{
+	font-family: var(--sans);
+	font-size: var(--fs-l);
+	line-height: var(--lh-l);
+	letter-spacing: var(--ls-l);
+}
+
+.fs--regular, .fs--regular *{
+	font-family: var(--sans);
+	font-size: var(--fs-r);
+	line-height: var(--lh-r);
+	letter-spacing: var(--ls-r);
+}
+
+.fs--regular.caps, .fs--regular *.caps{
+	letter-spacing: 0.03em !important;
+}
 
 
 .fs--small, .fs--small *{
