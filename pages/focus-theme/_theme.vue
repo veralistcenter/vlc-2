@@ -33,7 +33,7 @@
 
 		</section>
 
-		<section class="section_inset mt--2 mb--2 pt--1 pb--1 border--top border--btm">
+		<section v-if="$CheckA(taxonomy.networks)" class="section_inset mt--2 mb--2 pt--1 pb--1 border--top border--btm">
 			<h2 class="fs--large">Network</h2>
 
 			<ul class="ul--inline fs--regular mt--1">

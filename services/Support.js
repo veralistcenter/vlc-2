@@ -1,3 +1,5 @@
+import { Body } from '@/services/Matrix'
+
 export const SupportPages = `supportPages: supports{
   edges{
     node{
@@ -5,14 +7,7 @@ export const SupportPages = `supportPages: supports{
       title
       slug
       
-      bodyField{
-        body{
-        	__typename
-          ...on Support_Bodyfield_Body_Footnotes{
-            text
-          }
-        }
-      }
+      ${ Body('Support') }
     }
   }
 }`

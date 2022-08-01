@@ -66,11 +66,7 @@ export const EventTabs = `eventTabs: eventsubs{
     node{
       title
       slug
-      bodyField{
-        body{
-          __typename
-        }
-      }
+      ${ Body('Eventsub') }
     }
   }
 }`

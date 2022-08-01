@@ -1,3 +1,5 @@
+import { Body } from '@/services/Matrix'
+
 export const AboutPages = `aboutPages: abouts{
   edges{
     node{
@@ -5,14 +7,7 @@ export const AboutPages = `aboutPages: abouts{
       title
       slug
       
-      bodyField{
-        body{
-        	__typename
-          ...on About_Bodyfield_Body_Footnotes{
-            text
-          }
-        }
-      }
+      ${ Body('About') }
     }
   }
 }`
