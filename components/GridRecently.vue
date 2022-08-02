@@ -19,7 +19,7 @@
 				const m = this.$moment()
 				const startDate = d => (m.isAfter(d)) ? true : false
 				const endDate = d => (m.isAfter(d)) ? true : false
-				return this.recentPosts.filter(e => startDate(e.pageInfo.date) && endDate(e.pageInfo.endDate))
+				return this.recentPosts.filter(e => startDate(e.pageInfo.date) && endDate(e.pageInfo.endDate)).slice(0,8)
 			}
 		}
 	}

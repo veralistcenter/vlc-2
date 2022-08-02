@@ -18,6 +18,7 @@
 
 		<component
 			v-for="(block, i) in matrix"
+			v-if="$Check(block)"
 			:id="'block_' + i"
 			:key="block.__typename + '__' + i"
 			:is="type(block.__typename)"
@@ -40,6 +41,7 @@
 		},
 		computed:{
 			type: state => t => {
+
 				if(t.includes('Body_Richtext')){
 					return 'MatrixRichtext'
 				}else if(t.includes('Fellowship_Bodyfield_Body_RelatedNetwork')){
