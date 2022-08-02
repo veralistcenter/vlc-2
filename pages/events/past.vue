@@ -71,8 +71,8 @@
 				try{
 					const res = await this.$axios(this.$Req(PastEventsNextQuery(cursor)))
 
-
-					this.additionalEvents = res.data.data.pastEvents.edges.map(e => e.node)
+					const newEvents = res.data.data.pastEvents.edges.map(e => e.node)
+					this.additionalEvents = [].concat(this.additionalEvents).concat(newEvents)
 
 					if(res.data.data.pastEvents.pageInfo.hasNextPage){
 						this.fetchMoreEvents(res.data.data.pastEvents.pageInfo.endCursor)
