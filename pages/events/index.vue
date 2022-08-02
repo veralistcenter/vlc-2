@@ -45,7 +45,7 @@
 
 					}else{
 						
-						return this.$moment().isAfter(this.$moment(e.pageInfo.date)) || this.$moment(e.pageInfo.date).isSame(this.$moment(), 'day') ? true : false
+						return this.$moment(e.pageInfo.date).isSame(this.$moment(), 'day') ? true : false
 					}
 				})
 			},

@@ -1,5 +1,5 @@
 <template>
-	<nuxt-link class="thumb announcement_thumb pt--1_2 pl--1 pr--1" :to="'/announcements' + announcement.slug">
+	<nuxt-link class="thumb announcement_thumb pt--1_2 pl--1 pr--1" :to="'/announcements/' + announcement.slug">
 		<h1 class="fs--small caps mb--1_2">Announcement</h1>
 		<h3 class="fs--regular mb--1_2" v-html="announcement.title"></h3>
 		<img
