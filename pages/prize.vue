@@ -2,6 +2,7 @@
 	<main class="page pt--8">
 		<SiteSubnav :pages="[]" />		
 		<MatrixBody v-if="$Check(prize) && $Check(prize.bodyField)" :matrix="prize.bodyField.body" />
+
 	</main>
 </template>
 
@@ -10,6 +11,11 @@
 	import { mapGetters } from 'vuex'
 	
 	export default{
+		mounted(){
+			this.$nextTick(() => {
+				console.log(this.settings)
+			})
+		},
 		computed:{
 			prize(){
 				return this.settings.pages.edges.map(e => e.node).filter(p => p.slug == 'prize')[0]
