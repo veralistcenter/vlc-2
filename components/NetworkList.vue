@@ -3,7 +3,11 @@
 		<h1 v-if="$Check(network.title)" class="genath title section_heading" v-html="network.title"></h1>
 		<h1 v-if="$Check(interiorTitle)" class="fs--large section_heading" v-html="interiorTitle"></h1>
 		<ul class="ul--inline fs--regular section_inset mt--1">
-			<li class="node_item mr--1_2 mb--1" v-for="(n, i) in networkMembers" :key="'network' + i">
+			<li 
+				class="node_item mr--1_2 mb--1" v-for="(n, i) in networkMembers" 
+				:key="'network' + i"
+				v-if="i < 20"
+			>
 				<nuxt-link 
 					:to="'/network/' + n.slug"
 					class="block caps pb--1_2 pt--1_2 pr--1 pl--1_2"

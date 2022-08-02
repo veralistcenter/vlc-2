@@ -16,10 +16,18 @@
 		},
 		computed: {
 			recentlyEvents(){
-				const m = this.$moment()
-				const startDate = d => (m.isAfter(d)) ? true : false
-				const endDate = d => (m.isAfter(d)) ? true : false
-				let posts = [].concat(this.recentPosts.filter(e => startDate(e.pageInfo.date) && endDate(e.pageInfo.endDate)))
+				
+				const isRecent = pageInfo => {
+					if(this.$Check(pageInfo.endDate)){
+						return (this.$moment().isAfter(this.$moment(pageInfo.endDate))) ? true : false
+					}else if(this.$Check(pageInfo.date)){
+						return (this.$moment().isAfter(this.$moment(pageInfo.date))) ? true : false
+					}else{
+						return false
+					}
+				}
+
+				let posts = [].concat(this.recentPosts.filter(e => isRecent(e.pageInfo)).sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date)))
 				if(posts.length > 8){
 					posts.length = 8
 				}
