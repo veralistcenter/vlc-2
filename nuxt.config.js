@@ -29,6 +29,10 @@ export default {
     ]
   },
 
+  publicRuntimeConfig: {
+    wpURL: process.env.WPURL || 'http://localhost:8888'
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/variables.css',

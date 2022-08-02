@@ -35,7 +35,7 @@
 				}else if(fellowships.includes(r)){
 					slug = 'fellowships'
 				}else if(focus.includes(r)){
-					slug = 'biennial-focus'
+					slug = 'focus-theme'
 				}else if(prize.includes(r)){
 					slug = 'prize'
 				}else if(about.includes(r)){
