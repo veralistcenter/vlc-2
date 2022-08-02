@@ -26,7 +26,7 @@
 					return 'col--1_2 mcol--full thumb_half'
 				}else if(this.size == 'Quarter'){
 					return 'col--1_4 mcol--1_2 thumb_quarter'
-				}else if(this.size == 'Sixth'){
+				}else if(this.size == 'Sixth' || this.size == 'Eighth'){
 					return 'col--1_6 mcol--1_2 thumb_sixth'
 				}
 			},
