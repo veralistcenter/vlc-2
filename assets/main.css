@@ -62,3 +62,19 @@
 		background-color: black;
 	}
 }
+
+
+/* profile */
+
+.header_image{
+		display: block;
+	}
+
+.header_image img{
+	display: block;
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: calc(100vh - var(--margin_x8) - var(--margin_x2));
+	margin-left: auto;
+}
