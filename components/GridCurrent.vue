@@ -30,7 +30,7 @@
 				// const startDate = d => (m.isAfter(d) || this.$moment(d).isSame(m, 'day')) ? true : false
 				// const endDate = d => (m.isBefore(d) || this.$moment(d).isSame(m, 'day')) ? true : false
 
-				return this.recentPosts.filter(e => isCurrent(pageInfo))
+				return this.recentPosts.filter(e => isCurrent(e.pageInfo))
 			}
 		}
 	}

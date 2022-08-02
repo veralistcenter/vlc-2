@@ -19,7 +19,11 @@
 				const m = this.$moment()
 				const startDate = d => (m.isAfter(d)) ? true : false
 				const endDate = d => (m.isAfter(d)) ? true : false
-				return this.recentPosts.filter(e => startDate(e.pageInfo.date) && endDate(e.pageInfo.endDate)).slice(0,8)
+				let posts = [].concat(this.recentPosts.filter(e => startDate(e.pageInfo.date) && endDate(e.pageInfo.endDate)))
+				if(posts.length > 8){
+					posts.length = 8
+				}
+				return posts
 			}
 		}
 	}
