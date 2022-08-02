@@ -56,6 +56,32 @@
 
 	}
 
+	@media screen and (any-hover){
+		.thumb img{
+			transition: filter 0.1s ease-in-out;
+		}
+		.thumb:hover img{
+			filter: grayscale(100%);
+		}
+
+		.thumb p,
+		.thumb h1,
+		.thumb h2,
+		.thumb h3,
+		.thumb h4{
+			transition: color 0.1s ease-in-out;
+		}
+
+		.thumb:hover p,
+		.thumb:hover h1,
+		.thumb:hover h2,
+		.thumb:hover h3,
+		.thumb:hover h4:not(.thumb_time){
+			color: var(--lg_text);
+		}
+
+	}
+
 	.thumb img{
 		display: block;
 		width: 100%;
