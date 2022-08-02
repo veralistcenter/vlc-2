@@ -1,7 +1,7 @@
 <template>
 	<main class="page pt--8">
 		<SiteSubnav :pages="[]" />		
-		<MatrixBody :matrix="prize.bodyField.body" />
+		<MatrixBody v-if="$Check(prize) && $Check(prize.bodyField)" :matrix="prize.bodyField.body" />
 	</main>
 </template>
 
