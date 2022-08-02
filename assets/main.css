@@ -31,6 +31,19 @@
 	background-color: var(--light_grey);
 }
 
+.btn--inline--grey{
+	display: inline-block;
+	text-align: center;
+	margin-bottom: var(--margin_half);
+	padding-top: .1rem;
+	padding-bottom: var(--margin_quarter);
+	padding-left: var(--margin_quarter);
+	padding-right: var(--margin_quarter);
+	border: var(--border);
+	border-color: var(--lg_text);
+	color: var(--lg_text);
+}
+
 .btn--full{
 	display: block;
 	width: 100%;

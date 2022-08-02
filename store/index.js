@@ -4,7 +4,19 @@ export const state = () => ({
 	settings: false,
   paths: [],
   showMenu: false,
-  contrast: false
+  contrast: false,
+  slugs: {
+    events: ['events', 'events-past', 'events-tab-type'],
+    exhibitions: ['exhibitions', 'exhibitions-past'],
+    networks: ['network', 'network-individuals', 'network-organizations'],
+    fellowships: ['fellowships', 'fellowships-past', 'fellowships-fellowship'],
+    focus: ['focus-theme'],
+    prize: ['prize'],
+    about: ['about', 'about-about'],
+    support: ['support', 'support-support'],
+    publications: ['publications', 'publications-publication'],
+    archive: ['archive']
+  }
 })
 
 
@@ -26,7 +38,8 @@ export const getters = {
   getSettings: state => state.settings,
   getPaths: state => state.paths,
   getMenuStatus: state => state.showMenu,
-  getContrast: state => state.contrast
+  getContrast: state => state.contrast,
+  getSlugs: state => state.slugs
 }
 
 export const actions = {

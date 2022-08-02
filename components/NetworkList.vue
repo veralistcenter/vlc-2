@@ -1,6 +1,7 @@
 <template>
 	<section class="section mt--2">
-		<h1 class="genath title section_heading" v-html="network.title"></h1>
+		<h1 v-if="$Check(network.title)" class="genath title section_heading" v-html="network.title"></h1>
+		<h1 v-if="$Check(interiorTitle)" class="fs--large section_heading" v-html="interiorTitle"></h1>
 		<ul class="ul--inline fs--regular section_inset mt--1">
 			<li class="node_item mr--1_2 mb--1" v-for="(n, i) in networkMembers" :key="'network' + i">
 				<nuxt-link 
@@ -25,6 +26,7 @@
 	export default{
 		props:{
 			network: Object,
+			interiorTitle: String,
 			networkNodes: Array
 		},
 		computed:{

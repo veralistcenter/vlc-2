@@ -1,5 +1,5 @@
 <template>
-	<nuxt-link class="thumb exhibition_thumb" :to="'/exhibitions' + exhibition.slug">
+	<nuxt-link class="thumb exhibition_thumb" :to="'/exhibitions/' + exhibition.slug">
 		<h1 class="fs--small caps mb--1_2">Exhibition</h1>
 
 		<img

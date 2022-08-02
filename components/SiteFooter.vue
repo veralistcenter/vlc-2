@@ -29,6 +29,7 @@
 <style>
 	
 	.site_footer{
+		position: relative;
 		border-top: var(--border);
 	}
 

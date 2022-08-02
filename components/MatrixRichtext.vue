@@ -27,4 +27,23 @@
 		margin-top: calc(var(--fs-r) * var(--lh-r));
 	}
 
+	.richtext figure{
+		width: 100%;
+		display: block;
+	}
+
+	.richtext figure img,
+	.richtext img{
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.richtext hr{
+		width: 100%;
+		border: 0px;
+		height: 0px;
+		border-bottom: var(--border);
+	}
+
 </style>

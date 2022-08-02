@@ -1,7 +1,9 @@
 import { Body } from '@/services/Matrix'
 
+
 import { 
   EventQuery, 
+  ExhibitionQuery,
   featImage
 } from '@/services/Thumbs'
 
@@ -74,6 +76,83 @@ export const EventTabs = `eventTabs: eventsubs{
 export const Event = slug => `event (id: "${slug}", idType: SLUG) {
 	title
   slug
+
+  eventTypes{
+    edges{
+      node{
+        name
+        slug
+      }
+    }
+  }
+
+  sitewideTags{
+    edges{
+      node{
+        name
+        slug
+      }
+    }
+  }
+
+  ${featImage}
+  
+  livestreamIframe{
+    displayLivestreamIframe
+    iframeCode
+  }
+  
+  related{
+    relatedPages{
+      __typename
+      ...on Event{
+        ${EventQuery}
+      }
+      ...on Exhibition{
+        ${ExhibitionQuery}
+      }
+      ... on Publication{
+        title
+        slug
+      }
+    }
+    relatedPagesSize
+    relatedPagesTitle
+  }
+  
+  networkRelation{
+    associatedNetwork{
+      ...on Network{
+        title
+        slug
+      }
+    }
+  }
+  
+  pageInfo{
+    date
+    endDate
+    timeStart
+    timeEnd
+    timeOverride
+    
+    previewInfo{
+      primaryDescription
+      secondaryDescription
+      button{
+        buttonLink
+        buttonName
+      }
+      
+      associatedBiennial{
+        ...on Biennial{
+          title
+          slug
+        }
+      }
+    }
+    
+  }
 
   ${ Body('Event') }
 }`

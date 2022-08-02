@@ -65,7 +65,6 @@
 		position: fixed;
 		z-index: 100;
 		width: 100%;
-		background: #ffffffee;
 		--menu_height: calc(var(--margin) * 3.5);
 	}
 

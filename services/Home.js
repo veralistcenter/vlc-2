@@ -8,6 +8,8 @@ import {
   
 } from '@/services/Thumbs'
 
+import { Network100 } from '@/services/Network'
+
 import { Body } from '@/services/Matrix'
 
 
@@ -77,20 +79,8 @@ export const Home = `
 ${RecentEvents}
 ${RecentExhibitions}
 ${RecentAnnouncements}
-
 ${Biennials}
-
-networks: networks(where: {orderby: {field: MODIFIED, order: ASC}}, first: 100) {
-  edges {
-    node {
-      title
-      slug
-      networkInformation{
-        type
-      }
-    }
-  }
-}
+${Network100}
 
 acfOptions: acfOptions {
 
@@ -277,6 +267,19 @@ export const AllPages = `pages {
 
       pageIntroduction{
         introductionText
+      }
+
+      gradient{
+        gradientPicker{
+          ...on Gradient{
+            name
+            slug
+            gradientPicker{
+              topColor
+              bottomColor
+            }
+          }
+        }
       }
 
       ${ Body('Page') }

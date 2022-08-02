@@ -1,10 +1,17 @@
 <template>
-	<main class="page pt--8">
-		<h1>event...</h1>
-
-		<details><pre>{{event}}</pre></details>
-
+	<main class="page pt--7">
+		<SingleHeader :post="event" />
 		<MatrixBody v-if='$CheckA(event.bodyField.body)' :matrix="event.bodyField.body" />
+
+		<section class="mt--4" v-if="$CheckA(event.related.relatedPages)">
+			<h2 class="fs--large section_heading" v-html="event.related.relatedPagesTitle"></h2>
+
+			<GridThumbs 
+				:size="event.related.relatedPagesSize" 
+				:posts="event.related.relatedPages" 
+			/>
+
+		</section>
 
 	</main>
 </template>
@@ -22,8 +29,17 @@
 			try{
 				const res = await $axios($Req(query))
 
+				const event = res.data.data.event
+
+				store.commit('updatePath', [
+        	{title: 'Home', route: '/'},
+        	{title: 'Events', route: '/events'},
+        	{title: event.title, route: '/events/' + params.event }
+        ])
+
+
 				return {
-					event: res.data.data.event
+					event
 				}
 			}catch(e){
 				return {error: e}

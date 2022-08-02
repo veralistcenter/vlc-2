@@ -30,16 +30,7 @@
 				let slug;
 				const r = this.$route.name
 
-				const events = ['events', 'events-past', 'events-tab-type'],
-							exhibitions = ['exhibitions', 'exhibitions-past'],
-							networks = ['network', 'network-individuals', 'network-organizations'],
-							fellowships = ['fellowships', 'fellowships-past', 'fellowships-fellowship'],
-							focus = ['focus-theme'],
-							prize = ['prize'],
-							about = ['about', 'about-about'],
-							support = ['support', 'support-support'],
-							publications = ['publications', 'publications-publication'],
-							archive = ['archive']
+				const { events, exhibitions, networks, fellowships, focus, prize, about, support, publications, archive } = this.slugs
 				
 
 				if(events.includes(r)){
@@ -76,7 +67,8 @@
 				return this.$Check(thispage.pageIntroduction.introductionText) ? thispage.pageIntroduction.introductionText : 'Vera List Center'
 			},
 			...mapGetters({
-				settings: 'getSettings'
+				settings: 'getSettings',
+				slugs: 'getSlugs'
 			})
 		}
 	}

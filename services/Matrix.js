@@ -21,6 +21,21 @@ export const Body = page => `bodyField{
       }
       buttonLink
     }
+
+    ...on ${page}_Bodyfield_Body_Accordian{
+      title
+      section{
+        sectionText
+        sectionImage{
+          sourceUrl
+          srcSet
+          altText
+          caption
+        }
+        sectionTitle
+        sectionSubtitle
+      }
+    }
     
     ...on ${page}_Bodyfield_Body_SingleImage{
       imageSize

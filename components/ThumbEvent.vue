@@ -13,7 +13,7 @@
 		<h4 
 			class="thumb_time pl--1 pr--1 pb--1_2 pt--1_2 mt--1 caps fs--small" 
 			:class="$IsCurrent({start: event.pageInfo.date, end: event.pageInfo.endDate }) ? 'current_event' : 'past_event'" 
-			v-html="$Check(event.pageInfo.timeOverride) ? event.pageInfo.timeOverride : $Dated({start: event.pageInfo.date, end: event.pageInfo.endDate })"
+			v-html="$Dated({start: event.pageInfo.date, end: event.pageInfo.endDate })"
 		></h4>
 	</nuxt-link>
 </template>
