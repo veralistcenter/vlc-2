@@ -10,7 +10,7 @@
 			<ul class="ul--inline">
 				<li v-for="(y, i) in allEvents" :key="'yearnav_' + y.year">
 					<button 
-						class="jump_to_link btn--grey mr--1_2 pr--1_2 pl--1_2 pb--1_8 pt--1_8" 
+						class="jump_to_link btn--grey mb--1_2 mr--1_2 pr--1_2 pl--1_2 pb--1_8 pt--1_8" 
 						@click="jumpTo('#year_' + y.year)" v-html="y.year"></button>
 				</li>
 			</ul>	
@@ -38,7 +38,7 @@
 		},
 		computed: {
 			allEvents(){
-				let events = [].concat(this.events).concat(this.additionalEvents).sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date))
+				let events = [].concat(this.events).concat(this.additionalEvents).sort((a, b) => b.pageInfo.date.valueOf() - a.pageInfo.date.valueOf())
 
 				let byYears = []
 
