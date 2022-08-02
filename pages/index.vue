@@ -69,6 +69,7 @@ export default {
 
   },
   mounted(){
+    this.$store.commit('toggleMenu', false)
     this.$nextTick(() => {
       this.scrolling()
     })
