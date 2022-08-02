@@ -14,7 +14,7 @@
 				<nuxt-link 
 					v-for="node in l.nodes" 
 					:key="l.letter + node.slug"
-					class="col col--1_4 mb--1_2"
+					class="col col--1_4 col--tile mb--1_2"
 					:to="'/network/' + node.slug">
 					<span class="node_indicator">⁕</span>
 					<span v-html="node.title"></span>
