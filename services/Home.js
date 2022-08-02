@@ -14,8 +14,8 @@ import { Body } from '@/services/Matrix'
 
 
 export const RecentEvents = `recentEvents: events(
-  first: 20
-  where: {orderby: {order: ASC, field: DATE}}
+  first: 30
+  where: {orderby: {order: DESC, field: DATE}}
 ){
   edges {
     node {
@@ -26,8 +26,8 @@ export const RecentEvents = `recentEvents: events(
 
 
 export const RecentExhibitions = `recentExhibitions: exhibitions(
-  first: 20 
-  where: {orderby: {order: ASC, field: DATE}}
+  first: 30
+  where: {orderby: {order: DESC, field: DATE}}
 ){
   edges {
     node {
@@ -38,8 +38,8 @@ export const RecentExhibitions = `recentExhibitions: exhibitions(
 
 
 export const RecentAnnouncements = `recentAnnouncements: announcements(
-  first: 20 
-  where: {orderby: {order: ASC, field: DATE}}
+  first: 30
+  where: {orderby: {order: DESC, field: DATE}}
 ){
   edges {
     node {

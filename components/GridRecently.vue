@@ -16,7 +16,6 @@
 		},
 		computed: {
 			recentlyEvents(){
-				
 				const isRecent = pageInfo => {
 					if(this.$Check(pageInfo.endDate)){
 						return (this.$moment().isAfter(this.$moment(pageInfo.endDate))) ? true : false
