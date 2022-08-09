@@ -1,6 +1,6 @@
 <template>
 	<header class="grid mb--1_2">		
-		<h1 class="col col--2_3 genath title" v-html="statement"></h1>
+		<h1 class="col col--2_3 mcol--full genath title" v-html="statement"></h1>
 		<nav class="col col--full">
 			<ul class="ul--inline fs--large mt--1">
 				<li class="subnav_item mr--1_2 mb--1" v-for="(p, i) in pages" :key="'page_' + i">

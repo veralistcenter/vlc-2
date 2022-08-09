@@ -12,13 +12,21 @@
 			@slide="changeActive"
 		>
     	<vueper-slide 
-    		v-for="(s, i) in gallery" 
+    		v-for="(s, i) in gallerySlides" 
     		:key="i"
     	>
     		<template #content>
     			<div class="grid grid--sans">
     				<section class="col col--3_5 carousel_image">
+    					<img
+    						v-if="$Check(s.featImage) && $Check(s.featImage.slideshowImage.sourceUrl)" 
+    						:src="s.featImage.slideshowImage.sourceUrl"
+    						:alt="s.featImage.slideshowImage.altText"
+    						:srcset="s.featImage.slideshowImage.srcSet"
+    						sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"
+    					>
     					<img 
+    						v-else-if="$Check(s.featImage) && $Check(s.featImage.featuredImage.sourceUrl)"
     						:src="s.featImage.featuredImage.sourceUrl"
     						:alt="s.featImage.featuredImage.altText"
     						:srcset="s.featImage.featuredImage.srcSet"
@@ -28,7 +36,7 @@
     				<section class="col col--2_5 col--end pt--4">
     					<h1></h1>
     					<h2 class="genath title" v-html="s.title"></h2>
-    					<h3 class="genath title" v-html="$Check(s.pageInfo.timeOverride) ? s.pageInfo.timeOverride : $Dated({start: s.pageInfo.date, end: s.pageInfo.endDate})"></h3>
+    					<h3 class="genath title" v-html="$Check(s.pageInfo) && $Check(s.pageInfo.timeOverride) ? s.pageInfo.timeOverride : $Dated({start: s.pageInfo.date, end: s.pageInfo.endDate})"></h3>
     				</section>
     			</div>
     		</template>
@@ -38,7 +46,7 @@
     <nav class="homepage_carousel_nav grid grid--sans">
     	<aside class="col col--2_3">
     		<button 
-    		v-for="(b, i) in gallery"
+    		v-for="(b, i) in gallerySlides"
     		:key="'dot_' + i"
     		@click="$refs.myVueperSlides.goToSlide(i)"
     		:class="{filled: i === activeIndex}"
@@ -73,6 +81,11 @@
 		props: {
 			gallery: Array
 		},
+		computed:{
+			gallerySlides(){
+				return [].concat(this.gallery.filter( g => this.$Check(g) && this.$Check(g.pageInfo)))
+			}
+		},
 		data(){
 			return {
 				activeIndex: 0
@@ -97,9 +110,13 @@
 		border-bottom: var(--border);
 	}
 
-	.homepage_carousel.primary_carousel{
+	#homepage_menu + .homepage_carousel,
+	.homepage_carousel.primary_carousel,
+	.matrix_block.site_marquee + .homepage_carousel{
 		border-top: 0px;
 	}
+
+
 
 	.hc_nav_button_dots{
 		--diameter:  calc(var(--margin) * 1.125);

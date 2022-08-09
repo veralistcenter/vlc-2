@@ -39,9 +39,14 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, li, ol, button, select, input, pre, t
 	list-style-type: none;
 }
 
-a:focus-visible, button:focus-visible, input:focus-visible{
+a:focus-visible, button:focus-visible{
 	background-color: black !important;
 	color: white !important;
+}
+
+
+input:focus-visible::placeholder{
+	color: black !important;
 }
 
 
@@ -68,6 +73,10 @@ html, body{
 
 
 @media screen and (max-width: 768px){
+	:root{
+		--edge: 1.5rem;
+	}
+
 	html, body{
 		font-size: var(--mobile_base);
 	}

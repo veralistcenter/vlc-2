@@ -8,6 +8,14 @@ export const featImage = `featImage {
       caption
     }
 
+    slideshowImage{
+      srcSet
+      sourceUrl
+      altText
+      title
+      caption 
+    }
+
     imageCaption
   }`
 
@@ -48,6 +56,15 @@ featImage {
       title
     }
   }
+  slideshowImage {
+    ... on MediaItem {
+      srcSet
+      sizes
+      sourceUrl
+      altText
+      title
+    }
+  }
 }`
 
 export const AnnouncementQuery = `__typename
@@ -74,6 +91,19 @@ featImage {
       title
     }
   }
+  slideshowImage {
+    ... on MediaItem {
+      srcSet
+      sizes
+      sourceUrl
+      altText
+      title
+    }
+  }
+}`
+
+export const AnnouncementThumb = `... on Announcement {
+  ${AnnouncementQuery}
 }`
 
 export const EventThumb = `... on Event {

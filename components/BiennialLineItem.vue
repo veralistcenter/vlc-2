@@ -10,7 +10,7 @@
 			</header>
 
 			<section class="biennial_preview grid grid--margin" :class="{open: showPreview}">
-				<figure class="col col--1_3 pb--1">
+				<figure class="col col--1_3 mcol--full pb--1">
 					<img
 						class="biennial_list_img"
 						v-if="$Check(b.featImage) && $Check(b.featImage.featuredImage)"
@@ -21,7 +21,7 @@
 						:title="b.featImage.featuredImage.title"
 					/>
 				</figure>
-				<aside class="col col--2_3 col--end pb--1">
+				<aside class="col col--2_3 mcol--full col--end pb--1">
 					<section class="fs--regular" v-html="b.biennialInfo.biennialDescriptionPreview"></section>
 
 					<nuxt-link 

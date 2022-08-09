@@ -121,7 +121,13 @@
 	.search_toggle img{
 		display: block;
 		margin: 0 auto;
-		transform: scale(0.9);
+		transform: scale(0.7);
+	}
+
+	@media screen and (max-width: 768px){
+		.search_toggle img{
+			transform: scale(0.6);
+		}
 	}
 
 	.contrast_toggle{

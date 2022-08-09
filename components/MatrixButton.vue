@@ -1,5 +1,5 @@
 <template>
-	<section class="matrix_block matrix_button">
+	<section class="matrix_block mt--4 mb--4 matrix_button">
 		<p class="fs--regular center caps">
 			<a 
 				class="btn--full" 
@@ -27,7 +27,7 @@
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
-		max-width: 800px;
+		max-width: 700px;
 	}
 
 </style>

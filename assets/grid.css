@@ -172,6 +172,11 @@
 	.grid .col.mcol--1_2{
 		width: calc(50% - var(--margin)/2);
 		flex-basis: calc(50% - var(--margin)/2);
+		margin-right: var(--margin) !important;
+	}
+
+	.grid .col.mcol--1_2.mcol--tile:nth-of-type(2n){
+		margin-right: 0 !important;
 	}
 
 	.grid .col.mcol--1_2:not(.col--end){
@@ -204,9 +209,12 @@
 }
 
 
+/* maximum sizes */
+
+.max--400{ max-width: 400px; }
+.max--500{ max-width: 500px; }
+
 /* standardized margins */
-
-
 
 
 .mt--return{ margin-top: var(--return); }
@@ -280,3 +288,10 @@
 .mb--16{ margin-bottom: var(--margin_x16); }
 .pt--16{ padding-top: var(--margin_x16); }
 .pb--16{ padding-bottom: var(--margin_x16); }
+
+@media screen and (max-width: 768px){
+	.mmt--1{ margin-top: var(--margin); }
+	.mmb--1{ margin-bottom: var(--margin); }
+	.mpt--1{ padding-top: var(--margin); }
+	.mpb--1{ padding-bottom: var(--margin); }	
+}

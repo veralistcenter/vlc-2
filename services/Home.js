@@ -1,6 +1,7 @@
 import { 
   ExhibitionQuery,
   AnnouncementQuery, 
+  AnnouncementThumb,
   EventQuery, 
   EventThumb, 
   ExhibitionThumb, 
@@ -88,10 +89,16 @@ acfOptions: acfOptions {
     previewSections{
       __typename
 
+      ...on AcfOptions_Homepage_PreviewSections_HomepageMarquee{
+        marqueeContent
+        homepageMarqueeSpeed
+      }
+
       ... on AcfOptions_Homepage_PreviewSections_HomepageGallery {
         homepageGallery {
           ${EventThumb}
           ${ExhibitionThumb}
+          ${AnnouncementThumb}
         }
       }
       ... on AcfOptions_Homepage_PreviewSections_Recently {
@@ -245,6 +252,12 @@ export const Global = `acfOptions {
     }
 
     address
+
+    marquee{
+      displayMarquee
+      speedOfMarquee
+      content
+    }
 
     menuSocialLinks{
       text

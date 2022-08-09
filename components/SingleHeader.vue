@@ -16,10 +16,15 @@
 				</figure>
 			</section>
 			<section class="col col--1_2 col--end">
-				<h1 class="fs--small caps" v-html="types"></h1>
+				<h1 class="fs--small caps" v-if="$Check(types)" v-html="types"></h1>
 				<h2 class="genath title" v-html="post.title"></h2>
 				<h3 class="genath title" v-html="$Check(post.pageInfo.timeOverride) ? post.pageInfo.timeOverride : $Dated({start: post.pageInfo.date, end: post.pageInfo.endDate })"></h3>
 				<h4 class="genath title" v-html="$Check(post.pageInfo.timeOverride) ? post.pageInfo.timeOverride : timeRange"></h4>
+
+				<p 
+					class="mt--1_2 max--500" 
+					v-if="$Check(post.pageInfo.previewInfo.description)" 
+					v-html="post.pageInfo.previewInfo.description"></p>
 				
 				<ul class="ul--inline mt--1" v-if="$CheckA(tags)">
 					<li 
@@ -33,6 +38,15 @@
 								v-html="tag.name"></nuxt-link>
 						</li>
 				</ul>
+
+				<section class="fs--regular" v-if="$Check(post.pageInfo.previewInfo.button)">
+					<a 
+						target="_blank" 
+						class="fs--regular btn--full" 
+						:href="post.pageInfo.previewInfo.button.buttonLink" 
+						v-html="post.pageInfo.previewInfo.button.buttonName"
+					></a>
+				</section>
 
 			</section>
 		</div>
@@ -54,14 +68,16 @@
 		},
 		computed:{
 			types(){
-				if(this.post.eventTypes){
+				if(this.$Check(this.post.eventTypes)){
 					return this.$CheckA(this.post.eventTypes.edges) ? this.post.eventTypes.edges.map(e => e.node.name).join(', ') : 'Event'
-				}else if(this.post.exhibitionTypes){
+				}else if(this.$Check(this.post.exhibitionTypes)){
 					return this.$CheckA(this.post.exhibitionTypes.edges) ? this.post.exhibitionTypes.edges.map(e => e.node.name).join(', ') : 'Exhibition'
+				}else if(this.post.__typename === 'Announcement'){
+					return 'Announcement'
 				}
 			},
 			tags(){
-				if(this.$CheckA(this.post.sitewideTags.edges)){
+				if(this.$Check(this.post.sitewideTags) && this.$CheckA(this.post.sitewideTags.edges)){
 					return this.post.sitewideTags.edges.map(e => e.node)
 				}
 			},

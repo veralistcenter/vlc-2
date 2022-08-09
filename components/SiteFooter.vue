@@ -1,13 +1,13 @@
 <template>
 	<footer class="site_footer grid mt--4 pb--8 pt--1">
-		<section class="col col--1_4">
+		<section class="col col--1_4 mcol--1_2 mcol--tile">
 			<nuxt-link class="menu_logo_small" to="/">
 				<img src="/tns-vlc-logo-2.svg" />
 			</nuxt-link>
 		</section>
-		<section class="col col--1_4 fs--small" v-html="footer.columnOne"></section>
-		<section class="col col--1_4 fs--small" v-html="footer.columnTwo"></section>
-		<section class="col col--1_4 col--end fs--small" v-html="footer.columnThree"></section>
+		<section class="col col--1_4 mcol--1_2 mcol--tile fs--small" v-html="footer.columnOne"></section>
+		<section class="col col--1_4 mcol--1_2 mcol--tile mmt--1 fs--small" v-html="footer.columnTwo"></section>
+		<section class="col col--1_4 mcol--1_2 mcol--tile mmt--1 col--end fs--small" v-html="footer.columnThree"></section>
 	</footer>
 </template>
 

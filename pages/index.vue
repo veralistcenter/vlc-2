@@ -4,6 +4,7 @@
     <HomepageCarousel class="primary_carousel" v-if="$CheckA(gallery)" :gallery="gallery" />
 
     <component
+      class="matrix_block"
       v-for="(block, i) in matrix"
       :is="blockType(block.__typename)"
       :size="block.cardSize"
@@ -16,6 +17,8 @@
       :networkNodes="networks"
       :biennialTitle="block.biennialTitle"
       :biennials="biennials"
+      :gallery="block.homepageGallery"
+      :marquee="block"
     />
 
   </main>
@@ -61,6 +64,8 @@ export default {
         return 'NetworkList'
       }else if(type == 'AcfOptions_Homepage_PreviewSections_BiennialFocus'){
         return 'HomepageBiennials'
+      }else if(type == 'AcfOptions_Homepage_PreviewSections_HomepageMarquee'){
+        return 'SiteMarquee'
       }else{
         return 'p'
       }

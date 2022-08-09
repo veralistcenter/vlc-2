@@ -1,4 +1,4 @@
-import { EventQuery, ExhibitionQuery } from '@/services/Thumbs'
+import { EventQuery, ExhibitionQuery, AnnouncementQuery } from '@/services/Thumbs'
 
 export const Body = page => `bodyField{
   body{
@@ -82,9 +82,9 @@ export const Body = page => `bodyField{
       relatedPagesSize
       relatedPagesTitle
       relatedAnnouncements{
+        __typename
         ...on Announcement{
-          title
-          slug
+          ${AnnouncementQuery}
         }
       }
     }
@@ -104,6 +104,7 @@ export const Body = page => `bodyField{
         ... on Publication{
           title
         }
+
       }
     }
     

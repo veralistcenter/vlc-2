@@ -4,6 +4,7 @@
 			class="col col--tile mb--2"
 			:class="colWidth"
 			v-for="(post, i) in posts"
+			v-if="$Check(post)"
 			:key="post.__typename + '__' + i"
 			:is="postType(post.__typename)"
 			:event="post"
@@ -25,9 +26,9 @@
 				if(this.size == 'Half'){
 					return 'col--1_2 mcol--full thumb_half'
 				}else if(this.size == 'Quarter'){
-					return 'col--1_4 mcol--1_2 thumb_quarter'
+					return 'col--1_4 mcol--1_2 mcol--tile thumb_quarter'
 				}else if(this.size == 'Sixth' || this.size == 'Eighth'){
-					return 'col--1_6 mcol--1_2 thumb_sixth'
+					return 'col--1_6 mcol--1_2 mcol--tile thumb_sixth'
 				}
 			},
 			postType: state => type => {

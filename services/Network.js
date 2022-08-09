@@ -42,7 +42,7 @@ export const Network = `networks(first: 200, where: {orderby: {order: ASC, field
 }`
 
 
-export const AdditionalNetwork = cursor => `moreNetwork: networks(first: 200, after: "${cursor}", where: {orderby: {order: ASC, field: DATE}}){
+export const AdditionalNetwork = cursor => `moreNetwork: networks(first: 200, after: "${cursor}", where: {orderby: {order: ASC, field: TITLE}}){
   pageInfo {
     hasNextPage
     endCursor

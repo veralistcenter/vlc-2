@@ -37,7 +37,8 @@
 				</ul>
 			</section>
 			<footer class="banner col col--full pt--1 pb--1">
-				test
+				<SiteMarquee v-if="menu.marquee.displayMarquee" :marquee="menu.marquee" />
+				<p v-else> </p>
 			</footer>
 
 	</header>

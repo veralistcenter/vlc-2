@@ -6,7 +6,7 @@
 			:pages="pages"
 		/>
 
-		<GridThumbs size="Half" :posts="fellowship.fellows.pastFellows.fellows"  />
+		<GridThumbs size="Quarter" :posts="fellowship.fellows.pastFellows.fellows"  />
 
 
 	</main>

@@ -20,7 +20,7 @@
 	.richtext{
 		margin-left: auto;
 		margin-right: auto;
-		max-width: 800px;
+		max-width: 700px;
 	}
 
 	.richtext p + p{

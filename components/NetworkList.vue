@@ -51,28 +51,3 @@
 	}
 
 </script>
-
-<style>
-	
-	.node_item{
-		border: var(--border);
-	}
-
-	.node_indicator{
-		display: inline-block;
-		transform: translateY(-.1em);
-		padding-right: var(--margin_quarter);
-	}
-
-	@media screen and (any-hover: hover){
-		.node_item:hover{
-			color: white;
-			background: black;
-		}
-
-		.node_item:hover .node_indicator{
-			transform: translateY(-.15em) scale(1.3);
-		}
-	}
-
-</style>

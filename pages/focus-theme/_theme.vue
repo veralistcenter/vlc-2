@@ -8,7 +8,7 @@
 
 		<section class="grid">
 				
-			<aside class="col col--1_4">
+			<aside class="col col--1_4 mcol--full">
 				<figure>
 					<img
 						class="biennial_img"
@@ -29,7 +29,7 @@
 
 				</figure>
 			</aside>
-			<section class="col col--1_2 fs--regular" v-html="b.biennialInfo.fullDescription"></section>
+			<section class="col col--1_2 mcol--full mmt--1 fs--regular" v-html="b.biennialInfo.fullDescription"></section>
 
 		</section>
 

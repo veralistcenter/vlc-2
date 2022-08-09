@@ -5,19 +5,18 @@
 
 		<NetworkNav :keyprefix="'all_'" :list="list" />
 
-		<section class="section_inset" v-for="l in byNames" :key="'letter_' + l.letter">
+		<section class="section_inset" v-for="(l, i) in byNames" :key="'letter_' + l.letter">
 			<h2 
 				:id="'node_' + l.letter"
 				class="caps fs--large mt--1 mb--1" v-html="l.letter"></h2>
 
 			<section class="grid grid--sans network_section pb--1">
 				<nuxt-link 
-					v-for="node in l.nodes" 
-					:key="l.letter + node.slug"
-					class="col col--1_4 col--tile mb--1_2"
+					v-for="(node, j) in l.nodes" 
+					:key="l.letter + i + node.slug + j"
+					class="col col--1_4 col--tile mcol--1_2 mcol--tile mb--1_2"
 					:to="'/network/' + node.slug">
-					<span class="node_indicator">⁕</span>
-					<span v-html="node.title"></span>
+					<span class="node_name" v-html="node.title"></span>
 				</nuxt-link>
 			</section>
 

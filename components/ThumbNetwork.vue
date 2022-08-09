@@ -1,7 +1,7 @@
 <template>
 	<nuxt-link class="thumb event_thumb pt--1 pl--1 pr--1 pb--1" :to="'/network/' + network.slug">
-		<h2 class="caps fs--small mb--1_2" v-html="type"></h2>
-		<h3 class="fs--regular mb--1" v-html="network.title"></h3>
+		<h2 class="caps fs--small mb--1_4" v-html="type"></h2>
+		<h3 class="fs--regular mb--1_2" v-html="network.title"></h3>
 		<img
 			v-if="$Check(network.featImage) && $Check(network.featImage.featuredImage)"
 			:src="network.featImage.featuredImage.sourceUrl"
