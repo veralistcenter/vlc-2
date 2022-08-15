@@ -16,6 +16,11 @@
 	import { EventTabs } from '@/services/Events.js'
 
 	export default{
+
+		head(){
+			return this.$metatags({title: this.type.title})
+		},
+
 		async asyncData({$axios, $Req, store, params, $CheckA}){
 
 			try{

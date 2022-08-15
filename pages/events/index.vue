@@ -36,6 +36,9 @@
 
 	
 	export default{
+		head(){
+			return this.$metatags({title: 'Events'})
+		},
 
 		computed: {
 			current(){

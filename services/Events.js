@@ -39,7 +39,7 @@ series: eventSeries{
 }`
 
 
-export const PastEvents = `pastEvents: events(first: 150, where: {orderby: {order: DESC, field: DATE}}){
+export const PastEvents = `pastEvents: events(first: 200, where: {orderby: {order: DESC, field: DATE}}){
   pageInfo {
     hasNextPage
     endCursor
@@ -51,7 +51,7 @@ export const PastEvents = `pastEvents: events(first: 150, where: {orderby: {orde
   }
 }`
 
-export const PastEventsNextQuery = cursor => `pastEvents: events(first: 200, after: "${cursor}", where: {orderby: {order: DESC, field: DATE}}){
+export const PastEventsNextQuery = cursor => `pastEvents: events(first: 250, after: "${cursor}", where: {orderby: {order: DESC, field: DATE}}){
   pageInfo {
     hasNextPage
     endCursor

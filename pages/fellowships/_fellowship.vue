@@ -16,6 +16,9 @@
 	import { FellowPages } from '@/services/Fellowships'
 	
 	export default{
+		head(){
+			return this.$metatags({title: this.page.title + ' | Fellowships'})
+		},
 		async asyncData({ $axios, $Req, $CheckA, store, params }){
 
 

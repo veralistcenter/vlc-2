@@ -5,7 +5,9 @@
 <script>
 	
 	export default{
-
+		head(){
+			return this.$metatags({title: 'Search'})
+		},
 	}
 
 </script>

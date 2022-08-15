@@ -69,6 +69,20 @@
 
 
 	export default{
+		head(){
+
+			const description = `${this.b.biennialInfo.dateRange.startingYear}–${this.b.biennialInfo.dateRange.endingYear}`
+
+			const image = (this.$Check(this.b.featImage) && this.$Check(this.b.featImage.featuredImage)) ? this.b.featImage.featuredImage.sourceUrl : undefined
+
+
+			return this.$metatags({
+				title: this.b.title,
+				description,
+				image
+			})
+		},
+
 		computed: {
 			relatedPosts(){
 				let posts = [].concat(this.taxonomy.events).concat(this.taxonomy.exhibitions).concat(this.taxonomy.announcements)

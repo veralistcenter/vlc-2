@@ -33,7 +33,10 @@
     						sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"
     					>
     				</section>
-    				<section class="col col--2_5 col--end pt--4">
+    				<section 
+    					class="col col--2_5 col--end"
+    					:class="{'pt--1': gallerySlides.length == 1, 'pt--4': gallerySlides.length > 1}"
+    				>
     					<h1></h1>
     					<h2 class="genath title" v-html="s.title"></h2>
     					<h3 class="genath title" v-html="$Check(s.pageInfo) && $Check(s.pageInfo.timeOverride) ? s.pageInfo.timeOverride : $Dated({start: s.pageInfo.date, end: s.pageInfo.endDate})"></h3>
@@ -43,7 +46,7 @@
     	</vueper-slide>
     </vueper-slides>
 
-    <nav class="homepage_carousel_nav grid grid--sans">
+    <nav v-if="$CheckA(gallerySlides) && gallerySlides.length > 1" class="homepage_carousel_nav grid grid--sans">
     	<aside class="col col--2_3">
     		<button 
     		v-for="(b, i) in gallerySlides"

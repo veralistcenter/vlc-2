@@ -12,7 +12,7 @@ export const RecentExhibitions = `recentExhibitions: exhibitions(
   }
 }`
 
-export const Exhibitions = `exhibitions(where: {orderby: {order: ASC, field: DATE}}){
+export const Exhibitions = `exhibitions(first: 150, where: {orderby: {order: ASC, field: DATE}}){
   edges {
     node {
       ${ExhibitionQuery}

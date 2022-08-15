@@ -36,6 +36,14 @@ eventTypes{
   }
 }
 
+sitewideTags{
+  edges{
+    node{
+      slug
+    }
+  }
+}
+
 ${featImage}`
 
 export const ExhibitionQuery = `__typename
@@ -65,7 +73,17 @@ featImage {
       title
     }
   }
-}`
+}
+
+sitewideTags{
+  edges{
+    node{
+      slug
+    }
+  }
+}
+
+`
 
 export const AnnouncementQuery = `__typename
 title
@@ -100,7 +118,34 @@ featImage {
       title
     }
   }
-}`
+}
+
+sitewideTags{
+  edges{
+    node{
+      slug
+    }
+  }
+}
+`
+
+export const PublicationQuery = `__typename
+title
+slug
+
+pageInfo: publicationInfo{
+  date
+}
+
+sitewideTags{
+  edges{
+    node{
+      slug
+    }
+  }
+}
+
+`
 
 export const AnnouncementThumb = `... on Announcement {
   ${AnnouncementQuery}
@@ -117,7 +162,5 @@ export const ExhibitionThumb = `... on Exhibition {
 
 
 export const PublicationThumb = `...on Publication{
-	title
-	slug
-
+  ${PublicationQuery}
 }`

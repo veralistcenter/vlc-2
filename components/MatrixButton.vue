@@ -27,7 +27,7 @@
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
-		max-width: 700px;
+		max-width: var(--max_width);
 	}
 
 </style>

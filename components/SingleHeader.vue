@@ -34,12 +34,12 @@
 					>
 							<nuxt-link 
 								class="btn--inline--grey caps"
-								:to="'/archive?tag=' +tag.slug" 
+								:to="'/archive?tags=' +tag.slug" 
 								v-html="tag.name"></nuxt-link>
 						</li>
 				</ul>
 
-				<section class="fs--regular" v-if="$Check(post.pageInfo.previewInfo.button)">
+				<section class="fs--regular" v-if="$Check(post.pageInfo.previewInfo.button) && $Check(post.pageInfo.previewInfo.button.buttonLink)">
 					<a 
 						target="_blank" 
 						class="fs--regular btn--full" 
@@ -63,6 +63,24 @@
 <script>
 	
 	export default{
+
+		head(){
+
+			let description = undefined
+
+			if(this.$Check(this.post.pageInfo.previewInfo.description)){
+				description = this.post.pageInfo.previewInfo.description
+			}else{
+				description = this.$Check(this.post.pageInfo.timeOverride) ? this.post.pageInfo.timeOverride : this.$Dated({start: this.post.pageInfo.date, end: this.post.pageInfo.endDate })
+			}
+
+			return this.$metatags({
+				title: this.post.title,
+				image: this.$Check(this.post.featImage.featuredImage) ? this.post.featImage.featuredImage.sourceUrl : undefined,
+				description: description
+			})
+		},
+
 		props: {
 			post: Object
 		},

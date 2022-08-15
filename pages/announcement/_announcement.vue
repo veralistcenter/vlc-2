@@ -44,6 +44,11 @@
 	import { Announcement } from '@/services/Announcements'
 	
 	export default{
+		head(){
+			return {
+				title: this.announcement.title
+			}
+		},
 
 		async asyncData({$axios, $Req, store, params}){
 

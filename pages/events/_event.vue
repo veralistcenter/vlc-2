@@ -21,7 +21,6 @@
 	import { Event } from '@/services/Events'
 	
 	export default{
-
 		async asyncData({$axios, $Req, store, params}){
 
 			const query = Event(params.event)

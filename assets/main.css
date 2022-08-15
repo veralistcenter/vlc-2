@@ -106,8 +106,13 @@ span.node_name{
 	height: 100%;
 }
 
+.node_item.active, .node_item.active *{
+	color: white;
+	background: black;
+}
+
 @media screen and (any-hover: hover){
-	.node_item:hover{
+	.node_item:hover, .node_item:hover *{
 		color: white;
 		background: black;
 	}

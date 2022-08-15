@@ -38,6 +38,21 @@
 <script>
 	
 	export default{
+		head(){
+
+			let description = undefined
+
+			if(this.$Check(this.single.networkPreview.subtitle)){
+				description = this.single.networkPreview.subtitle
+			}
+
+			return this.$metatags({
+				title: this.single.title,
+				image: this.$Check(this.single.featImage.featuredImage) ? this.single.featImage.featuredImage.sourceUrl : undefined,
+				description: description
+			})
+		},
+
 		props: {
 			single: Object
 		},

@@ -19,7 +19,7 @@
 	.footnotes{
 		margin-left: auto;
 		margin-right: auto;
-		max-width: 800px;
+		max-width: var(--max_width);
 	}
 
 	.footnotes ol{

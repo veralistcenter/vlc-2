@@ -17,6 +17,9 @@
 	import { mapGetters } from 'vuex'
 
 	export default{
+		head(){
+			return this.$metatags({title: 'Fellowships'})
+		},
 
 		computed: {
 			fellowship(){

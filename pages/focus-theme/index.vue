@@ -10,6 +10,9 @@
 	import { Biennials } from '@/services/Home'
 
 	export default{
+		head(){
+			return this.$metatags({title: 'Focus Theme'})
+		},
 		computed: {
 			biennials(){ return [].concat(this.focus.biennials.edges.map(e => e.node)) }
 		},

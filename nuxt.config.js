@@ -2,7 +2,10 @@ let meta = [
   { charset: 'utf-8' },
   { name: 'viewport', content: 'width=device-width, initial-scale=1' },
   { hid: 'description', name: 'description', content: '' },
-  { name: 'format-detection', content: 'telephone=no' }
+  { name: 'format-detection', content: 'telephone=no' },
+  { hid: 'image', itemprop: 'image', content: '/site_image.png' },
+  { hid: 'twitter-image', name: 'twitter:image', content: '/site_image.png' },
+  { hid: 'og-image', property: 'og:image', content: '/site_image.png' }
 ]
 
 if(process.env.ENVIRONMENT !== 'production'){
@@ -25,7 +28,7 @@ export default {
     },
     meta: meta,
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ]
   },
 
@@ -46,6 +49,8 @@ export default {
     '~/plugins/check.js',
     '~/plugins/format.js',
     '~/plugins/requests.js',
+    '~/plugins/meta.js',
+    { src: `~plugins/vimeo-player` },
     { src: '~/plugins/scroll-to.js', mode: 'client' },
     { src: '~/plugins/scroll-lock.js', mode: 'client' },
   ],
@@ -72,6 +77,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    vendor: [
+      'vue-vimeo-player'
+    ],
   },
   moment: {
     defaultTimezone: 'America/New_York'

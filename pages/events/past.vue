@@ -30,6 +30,9 @@
 
 	
 	export default{
+		head(){
+			return this.$metatags({title: 'Past Events'})
+		},
 
 		data(){
 			return {

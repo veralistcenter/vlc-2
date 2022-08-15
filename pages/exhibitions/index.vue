@@ -29,6 +29,9 @@
 	import { RecentExhibitions } from '@/services/Exhibitions.js'
 
 	export default{
+		head(){
+			return this.$metatags({title: 'Exhibitions'})
+		},
 
 		computed: {
 			current(){

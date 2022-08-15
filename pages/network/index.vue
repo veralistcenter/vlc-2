@@ -14,7 +14,7 @@
 				<nuxt-link 
 					v-for="(node, j) in l.nodes" 
 					:key="l.letter + i + node.slug + j"
-					class="col col--1_4 mcol--1_2 mcol--tile col--tile mb--1_2"
+					class="fs--regular col col--1_4 mcol--1_2 mcol--tile col--tile mb--1_2"
 					:to="'/network/' + node.slug">
 					<span class="node_name" v-html="node.title"></span>
 				</nuxt-link>
@@ -30,6 +30,9 @@
 	import { Network, AdditionalNetwork } from '@/services/Network'
 	
 	export default{
+		head(){
+			return this.$metatags({title: 'Network'})
+		},
 		data(){
 			return{
 				additional: [],

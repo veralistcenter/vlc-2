@@ -138,14 +138,18 @@ button.block{
 .right{ text-align: right; }
 .center{ text-align: center; }
 
-.caps{ text-transform: uppercase; letter-spacing: 0.03em !important; }
+.caps, .caps *{ text-transform: uppercase; letter-spacing: 0.03em !important; }
 
 ul.ul--inline li{
 	display: inline-block;
 }
 
-.grey_text{
+.grey_text, .grey_text button{
 	color: var(--lg_text);
+}
+
+.grey_text .active{
+	color: black;
 }
 
 .fs--large, .fs--large *{

@@ -12,6 +12,11 @@
 	import { SupportPages } from '@/services/Support'
 	
 	export default{
+
+		head(){
+			return this.$metatags({title: this.page.title})
+		},
+
 		async asyncData({$axios, $Req, store}){
 			
 			const query = SupportPages

@@ -31,6 +31,10 @@
 
 	export default{
 
+		head(){
+			return this.$metatags({title: 'Past Exhibitions'})
+		},
+
 		computed: {
 			allExhibitions(){
 				let exhibitions = [].concat(this.exhibitions)

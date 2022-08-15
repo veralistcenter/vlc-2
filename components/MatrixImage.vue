@@ -71,7 +71,7 @@
 
 	.matrix_image.img--small{
 		width: calc(100%  - (2* var(--edge)));
-		max-width: 800px;
+		max-width: var(--max_width);
 	}
 
 </style>

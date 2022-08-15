@@ -12,6 +12,9 @@
 	import { AboutPages } from '@/services/About'
 	
 	export default{
+		head(){
+			return this.$metatags({title: this.page.title})
+		},
 		async asyncData({$axios, $Req, store, params, $CheckA}){
 			
 			const query = AboutPages

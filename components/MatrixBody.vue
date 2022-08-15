@@ -8,7 +8,7 @@
 					v-if="b.title"
 				>
 					<button 
-						class="btn--grey mr--1_2 pr--1_2 pl--1_2 pb--1_8 pt--1_8"
+						class="btn--grey mr--1_2 pr--1_2 pl--1_2 pb--1_8 pt--1_8 mb--1_2"
 						@click="jumpTo('#block_' + i)" 
 						v-html="b.title"></button>
 				</li>
@@ -22,7 +22,7 @@
 			:id="'block_' + i"
 			:key="block.__typename + '__' + i"
 			:is="type(block.__typename)"
-			:block="block"	
+			:block="block" 
 		/>
 
 	</section>
@@ -58,6 +58,10 @@
 					return 'MatrixImage'
 				}else if(t.includes('Body_Gallery')){
 					return 'MatrixCarousel'
+				}else if(t.includes('Body_Accordian')){
+					return 'MatrixAccordian'
+				}else if(t.includes('Body_VideoPlayer')){
+					return 'MatrixVideo'
 				}else{
 					return 'MatrixPre'
 				}
