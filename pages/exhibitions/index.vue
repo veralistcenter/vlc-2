@@ -17,7 +17,7 @@
 		
 		<template v-if="$CheckA(recent)">
 			<h1 class="section_heading genath title mb--1">Recent</h1>
-			<GridThumbs :posts="recent" :size="'Quarter'" />
+			<GridThumbs :posts="recent" :size="($CheckA(upcoming) || $CheckA(current)) ? 'Quarter' : 'Half'" />
 		</template>
 
 	</main>
@@ -40,7 +40,7 @@
 
 					}else{
 						
-						return this.$moment().isAfter(this.$moment(e.pageInfo.date)) || this.$moment(e.pageInfo.date).isSame(this.$moment(), 'day') ? true : false
+						return this.$moment(e.pageInfo.date).isSame(this.$moment(), 'day') ? true : false
 					}
 				})
 			},

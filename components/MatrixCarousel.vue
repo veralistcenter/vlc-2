@@ -40,11 +40,11 @@
 		/></button>	
 
     <footer class="grid mt--1">
-    	<section class="col col--3_4">
+    	<section class="col col--3_4 mcol--full m_order--2">
     		<p class="mt--1_2 fs--small" v-html="block.slide[activeIndex].caption">
     		</p>
     	</section>
-    	<nav class="col col--1_4 right col--end">
+    	<nav class="col col--1_4 mcol--full m_order--1 right m_left col--end">
     		<button 
     		v-for="(b, i) in block.slide"
     		:key="'dot_' + i"

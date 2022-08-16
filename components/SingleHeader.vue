@@ -1,7 +1,7 @@
 <template>
 	<header class="single_header">
 		<div class="grid">
-			<section class="col col--1_2 pb--1">
+			<section class="col col--1_2 mcol--full pb--1">
 				<figure 
 					class="header_image"
 					v-if="$Check(post.featImage.featuredImage)"
@@ -15,18 +15,24 @@
 					<figcaption style="visibility: hidden; overflow: hidden; height: 0px;" class="mt--1_2 fs--small" v-html="post.featImage.featuredImage.caption"></figcaption>
 				</figure>
 			</section>
-			<section class="col col--1_2 col--end">
+			<section class="col col--1_2 mcol--full col--end">
 				<h1 class="fs--small caps" v-if="$Check(types)" v-html="types"></h1>
 				<h2 class="genath title" v-html="post.title"></h2>
 				<h3 class="genath title" v-html="$Check(post.pageInfo.timeOverride) ? post.pageInfo.timeOverride : $Dated({start: post.pageInfo.date, end: post.pageInfo.endDate })"></h3>
 				<h4 class="genath title" v-html="$Check(post.pageInfo.timeOverride) ? post.pageInfo.timeOverride : timeRange"></h4>
 
 				<p 
-					class="mt--1_2 max--500" 
+					class="mt--1 max--500 fs--small" 
 					v-if="$Check(post.pageInfo.previewInfo.description)" 
 					v-html="post.pageInfo.previewInfo.description"></p>
+
+				<p
+					class="mt--1 max--500 fs--small"
+					v-if="$Check(post.pageInfo.previewInfo.primaryDescription)"
+					v-html="post.pageInfo.previewInfo.primaryDescription"
+				></p>
 				
-				<ul class="ul--inline mt--1" v-if="$CheckA(tags)">
+				<ul class="ul--inline mt--1 mb--1" v-if="$CheckA(tags)">
 					<li 
 						v-for="(tag, i) in tags" 
 						:key="'tag_'+ i"
@@ -39,7 +45,7 @@
 						</li>
 				</ul>
 
-				<section class="fs--regular" v-if="$Check(post.pageInfo.previewInfo.button) && $Check(post.pageInfo.previewInfo.button.buttonLink)">
+				<section class="fs--regular mb--1" v-if="$Check(post.pageInfo.previewInfo.button) && $Check(post.pageInfo.previewInfo.button.buttonLink)">
 					<a 
 						target="_blank" 
 						class="fs--regular btn--full" 

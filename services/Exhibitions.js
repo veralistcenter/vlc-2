@@ -1,9 +1,9 @@
 import { Body } from '@/services/Matrix'
-import { ExhibitionQuery, EventQuery, featImage } from '@/services/Thumbs'
+import { ExhibitionQuery, EventQuery, featImage, PublicationQuery } from '@/services/Thumbs'
 
 export const RecentExhibitions = `recentExhibitions: exhibitions(
-  first: 40
-  where: {orderby: {order: ASC, field: DATE}}
+  first: 150
+  where: {orderby: {order: DESC, field: DATE}}
 ){
   edges {
     node {
@@ -12,7 +12,7 @@ export const RecentExhibitions = `recentExhibitions: exhibitions(
   }
 }`
 
-export const Exhibitions = `exhibitions(first: 150, where: {orderby: {order: ASC, field: DATE}}){
+export const Exhibitions = `exhibitions(first: 150, where: {orderby: {order: DESC, field: DATE}}){
   edges {
     node {
       ${ExhibitionQuery}
@@ -58,8 +58,7 @@ export const Exhibition = slug => `exhibition (id: "${slug}", idType: SLUG) {
         ${ExhibitionQuery}
       }
       ... on Publication{
-        title
-        slug
+        ${PublicationQuery}
       }
     }
     relatedPagesSize

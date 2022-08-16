@@ -71,6 +71,12 @@ html, body{
 	}
 }
 
+@media screen and (max-width: 1100px){
+	:root{
+		--max_width: 550px;
+	}
+}
+
 
 @media screen and (max-width: 768px){
 	:root{
@@ -137,6 +143,12 @@ button.block{
 .left{ text-align: left; }
 .right{ text-align: right; }
 .center{ text-align: center; }
+
+@media screen and (max-width: 768px){
+	.m_left{
+		text-align: left !important;
+	}
+}
 
 .caps, .caps *{ text-transform: uppercase; letter-spacing: 0.03em !important; }
 

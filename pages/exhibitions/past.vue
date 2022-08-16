@@ -54,6 +54,12 @@
 					}
 				})
 
+				byYears = [].concat(byYears).sort((a, b) => {
+					const bDate = (this.$Check(b) && b.year !== null) ? b.year : '1900'
+					const aDate = (this.$Check(a) && a.year !== null) ? a.year : '1900'
+					return bDate.valueOf() - aDate.valueOf()
+				})
+
 				return byYears
 			}
 		},

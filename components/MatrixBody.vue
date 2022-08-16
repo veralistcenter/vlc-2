@@ -62,6 +62,10 @@
 					return 'MatrixAccordian'
 				}else if(t.includes('Body_VideoPlayer')){
 					return 'MatrixVideo'
+				}else if(t.includes('Body_Pullquote')){
+					return 'MatrixQuote'
+				}else if(t.includes('Body_RelatedColumn')){
+					return 'MatrixColumn'
 				}else{
 					return 'MatrixPre'
 				}

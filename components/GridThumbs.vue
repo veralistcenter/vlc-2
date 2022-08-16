@@ -30,6 +30,8 @@
 					return 'col--1_4 mcol--1_2 mcol--tile thumb_quarter'
 				}else if(this.size == 'Sixth' || this.size == 'Eighth'){
 					return 'col--1_6 mcol--1_2 mcol--tile thumb_sixth'
+				}else if(this.size == 'Full'){
+					return 'col--full mcol--1_2 mcol--tile'
 				}
 			},
 			postType: state => type => {

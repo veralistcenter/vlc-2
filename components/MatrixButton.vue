@@ -27,7 +27,14 @@
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
+		width: 100%;
 		max-width: var(--max_width);
+	}
+
+	@media screen and (max-width: 768px){
+		.matrix_button{
+			width: calc(100% - var(--margin_x2));
+		}
 	}
 
 </style>

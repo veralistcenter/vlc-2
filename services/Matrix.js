@@ -1,4 +1,4 @@
-import { EventQuery, ExhibitionQuery, AnnouncementQuery } from '@/services/Thumbs'
+import { EventQuery, ExhibitionQuery, PublicationQuery, AnnouncementQuery } from '@/services/Thumbs'
 
 export const Body = page => `bodyField{
   body{
@@ -7,6 +7,29 @@ export const Body = page => `bodyField{
     ...on ${page}_Bodyfield_Body_Richtext{
       text
       title
+    }
+
+    ...on ${page}_Bodyfield_Body_RelatedColumn{
+      title
+      columnSide
+      relatedPages{
+        __typename
+        ... on Event{
+          ${EventQuery}
+        }
+        ... on Exhibition{
+          ${ExhibitionQuery}
+        }
+        ... on Publication{
+          ${PublicationQuery}
+        }
+      }
+    }
+    
+    ... on ${page}_Bodyfield_Body_Pullquote{
+      quoteTitle
+      quoteText
+      quotePosition
     }
     
     ...on ${page}_Bodyfield_Body_Footnotes{
@@ -102,7 +125,7 @@ export const Body = page => `bodyField{
           ${ExhibitionQuery}
         }
         ... on Publication{
-          title
+          ${PublicationQuery}
         }
 
       }
