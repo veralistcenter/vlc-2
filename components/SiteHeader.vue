@@ -15,7 +15,8 @@
 			<SearchInput />
 			<transition name="fade">
 				<nuxt-link v-if="!showMenu" to="/" class="site_header_home_link">
-					<img src="/tns-vlc-logo-1.svg" />
+					<img data-device="desktop" src="/tns-vlc-logo-1.svg" />
+					<img data-device="mobile" src="/tns-vlc-logo-3.svg" />
 				</nuxt-link>
 			</transition>
 
@@ -84,6 +85,12 @@
 	.site_header_home_link img{
 		display: block;
 		height: var(--menu_height);
+	}
+
+	@media screen and (max-width: 768px){
+		.show_search + .site_header_home_link{
+			display: none;
+		}
 	}
 
 	.row{

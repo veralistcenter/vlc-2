@@ -74,6 +74,16 @@
 		vertical-align: top;
 	}
 
+	@media screen and (max-width: 768px){
+		.search_wrapper.show_search{
+			width: calc(100vw - 7rem);
+			flex-basis: calc(100vw - 7rem);
+		}
+		.search_input_wrapper{
+			width: calc(100% - 3.5rem);
+		}
+	}
+
 	.search_input_wrapper input{
 		padding-left: .2rem;
 		display: block;

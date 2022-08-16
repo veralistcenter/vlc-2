@@ -9,6 +9,7 @@
 			:touchable="false"
 			:transitionSpeed="300"
 			:fixedHeight="true"
+			:breakpoints="breakpoints"
 			@slide="changeActive"
 		>
     	<vueper-slide 
@@ -17,7 +18,7 @@
     	>
     		<template #content>
     			<div class="grid grid--sans">
-    				<section class="col col--3_5 carousel_image">
+    				<section class="col col--3_5 mcol--full carousel_image">
     					<img
     						v-if="$Check(s.featImage) && $Check(s.featImage.slideshowImage.sourceUrl)" 
     						:src="s.featImage.slideshowImage.sourceUrl"
@@ -34,12 +35,19 @@
     					>
     				</section>
     				<section 
-    					class="col col--2_5 col--end"
+    					class="carousel_text_content col col--2_5 mcol--full col--end"
     					:class="{'pt--1': gallerySlides.length == 1, 'pt--4': gallerySlides.length > 1}"
     				>
     					<h1></h1>
     					<h2 class="genath title" v-html="s.title"></h2>
     					<h3 class="genath title" v-html="$Check(s.pageInfo) && $Check(s.pageInfo.timeOverride) ? s.pageInfo.timeOverride : $Dated({start: s.pageInfo.date, end: s.pageInfo.endDate})"></h3>
+
+    					<p
+								class="mt--1 fs--small"
+								v-if="$Check(s.pageInfo.previewInfo.primaryDescription)"
+								v-html="s.pageInfo.previewInfo.primaryDescription"
+							></p>
+
     				</section>
     			</div>
     		</template>
@@ -172,13 +180,38 @@
 	.carousel_image img{
 		position: absolute;
 		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		left: 0;
+		transform: translateY(-50%);
 		display: block;
 		width: auto;
 		height: auto;
 		min-height: 100%;
 		min-width: 100%;
+	}
+
+	@media screen and (max-width: 768px){
+		.homepage_carousel{
+			--slideshow_height: 100vh;
+		}
+
+		.carousel_image{
+			height: auto;
+		}
+
+		.carousel_image img{
+			position: relative;
+			top: unset;
+			left: unset;
+			transform: unset;
+			display: block;
+			width: 100%;
+		}
+
+		.carousel_text_content{
+			box-sizing: border-box;
+			padding-left: var(--edge);
+			padding-right: var(--edge);
+		}
 	}
 
 

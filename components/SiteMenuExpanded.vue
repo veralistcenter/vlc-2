@@ -1,6 +1,6 @@
 <template>
 	<header class="site_menu_expanded grid grid--sans">
-			<section class="col col--1_2 col--inset menu_col">
+			<section class="col col--1_2 col--inset mcol--full menu_col">
 				<nuxt-link class="menu_logo pt--1" to="/">
 					<img src="/tns-vlc-logo-2.svg" />
 				</nuxt-link>
@@ -20,7 +20,7 @@
 				</aside>
 
 			</section>
-			<section class="col col--1_2 col--end col--inset menu_list menu_col grid grid--sansr genath title">
+			<section class="col col--1_2 mcol--full col--end col--inset menu_list menu_col grid grid--sansr genath title">
 				<ul class="col col--1_2 mt--1">
 					
 					<li v-for="(r, i) in menu.pLeftColumn" :key="'left_' + i" class="menu_link">
@@ -84,6 +84,7 @@
 		min-height: 30rem;
 	}
 
+
 	.site_menu_expanded{
 		width: 100%;
 		border-bottom: var(--border);
@@ -94,6 +95,8 @@
 	}
 
 	.banner{
+		width: 100%;
+		overflow: hidden;
 		border-top: var(--border);
 	}
 
@@ -105,6 +108,25 @@
 		}
 		.menu_link a:hover{
 			transform: translateX(var(--margin));
+		}
+	}
+
+	@media screen and (max-width: 768px){
+		.menu_col{
+			min-height: unset;
+		}
+
+		.menu_info{
+			margin-top: var(--margin);
+			position: relative;
+			bottom: unset;
+		}
+
+		.menu_list{
+			margin-top: var(--margin);
+			border-top: var(--border);
+			border-left: 0px;
+			margin-bottom: var(--margin);
 		}
 	}
 	

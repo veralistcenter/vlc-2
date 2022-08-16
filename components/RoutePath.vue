@@ -27,3 +27,20 @@
 	}
 
 </script>
+
+<style>
+	
+	.page_path{
+		width: 100%;
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.page_path p{
+		white-space: nowrap;
+		width: 100%;
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+	}
+
+</style>
