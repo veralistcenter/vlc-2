@@ -140,6 +140,12 @@ button.block{
 
 .caps, .caps *{ text-transform: uppercase; letter-spacing: 0.03em !important; }
 
+.underline{
+	text-decoration: underline;
+	text-decoration-thickness: 1.5px;
+	text-underline-offset: 2px;
+}
+
 ul.ul--inline li{
 	display: inline-block;
 }
@@ -183,6 +189,12 @@ ul.ul--inline li{
 	font-size: var(--fs-g);
 	line-height: var(--lh-g);
 	letter-spacing: var(--ls-g);
+}
+
+.genath.g--small, .genath.g--small *{
+	font-size: var(--fs-g-s);
+	line-height: var(--lh-g-s);
+	letter-spacing: var(--ls-g-s);
 }
 
 .genath.title, .genath.title *{

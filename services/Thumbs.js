@@ -132,14 +132,77 @@ sitewideTags{
 export const PublicationQuery = `__typename
 title
 slug
+featImage {
+  featuredImage {
+    ... on MediaItem {
+      srcSet
+      sizes
+      sourceUrl
+      altText
+      title
+    }
+  }
+  slideshowImage {
+    ... on MediaItem {
+      srcSet
+      sizes
+      sourceUrl
+      altText
+      title
+    }
+  }
+}
+
+networkRelation{
+  associatedNetwork{
+    ...on Network{
+      title
+      slug
+      networkInformation{
+        nameToBeAlphabetized
+      }
+    }
+  }
+}
 
 pageInfo: publicationInfo{
   date
+  previewInfo{
+    primaryDescription
+  }
+}
+
+publicationTypes{
+  edges{
+    node{
+      name
+      slug
+    }
+  }
+}
+
+publicationFormats{
+  edges{
+    node{
+      name
+      slug
+    }
+  }
 }
 
 sitewideTags{
   edges{
     node{
+      name
+      slug
+    }
+  }
+}
+
+biennialTaxonomies{
+  edges{
+    node{
+      name
       slug
     }
   }

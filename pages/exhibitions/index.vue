@@ -2,7 +2,6 @@
 	<main class="page pt--8">
 		
 		<SiteSubnav 
-			:statement="'Exhibitions Statement statement'"
 			:pages="pages"
 		/>
 

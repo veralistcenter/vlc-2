@@ -2,10 +2,6 @@
 	<main class="page pt--8">
 		<SiteSubnav :pages="pages" />
 
-		<!-- featured -->
-
-		<!-- filters -->
-
 		<PublicationFilters 
 			:formats="formats" 
 			:contributors="contributors" 
@@ -27,7 +23,9 @@
 	
 	export default{
 		head(){
-			return this.$metatags({title: 'Publications'})
+			
+			return this.$metatags({title: this.paths[this.paths.length - 1].title })
+			
 		},
 		data(){
 			return {
@@ -56,16 +54,12 @@
 			}
 		},
 
-		async asyncData({$axios, $Req, store, $Check, $CheckA, $moment}){
+		async asyncData({$axios, $Req, store, $Check, $CheckA, $moment, params}){
 
 			try{
 
 				const res = await $axios($Req(PublicationOverview))
 
-				store.commit('updatePath', [
-        	{title: 'Home', route: '/'},
-        	{title: 'Publications', route: '/publications'},
-        ])
 
 				let pages = [
 					{ title: 'All', path: '/publications' }, 
@@ -73,13 +67,30 @@
 
 
 				// pages
-				const additionaPages = res.data.data.types.edges.map(e => ({title: e.node.name, path: '/publications/type/' + e.node.slug}))
+				const additionaPages = res.data.data.types.edges.map(e => ({title: e.node.name, path: '/publications/type/' + e.node.slug, slug: e.node.slug}))
 				pages = pages.concat(additionaPages)
+
+
+				let paths = [
+        	{title: 'Home', route: '/'},
+        	{title: 'Publications', route: '/publications'},
+        ]
+
+        const page = additionaPages.filter(p => p.slug == params.type)
+
+        if($CheckA(page)){
+        	paths.push({title: page[0].title, route: `/publications/type/${params.type}`})
+        }
+
+				store.commit('updatePath', paths)
 
 				let publications = res.data.data.publications.edges.map(e => { 
 
 					let pub = e.node
 
+					// filter based off of page
+					const types = pub.publicationTypes.edges.map(ee => ee.node.slug)
+					pub.types = types
 
 					const formats = pub.publicationFormats.edges.map(ee => ee.node.slug)
 					const years = $Check(pub.pageInfo.date) ? [$moment(pub.pageInfo.date).format('YYYY')] : []
@@ -90,7 +101,9 @@
 					pub.filters = [].concat(formats).concat(years).concat(themes).concat(contributors).concat(tags)
 					return pub
 
+
 				})
+				.filter(p => p.types.includes(params.type))
 
 				publications = [].concat(publications).sort((a, b) => {
 					const bDate = ($Check(b) && b.pageInfo.date !== null) ? b.pageInfo.date : '2000-01-01'
@@ -167,7 +180,7 @@
 			  })
 
 
-				return { pages, publications, themes, tags, formats, years, contributors }
+				return { pages, publications, themes, tags, formats, years, contributors, paths }
 
 			}catch(e){
 				return {error: e}

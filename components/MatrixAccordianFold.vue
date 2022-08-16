@@ -76,36 +76,4 @@
 		max-width: 200px;
 	}
 
-	.cross{
-		background: black;
-	}
-
-	.fold_toggle{
-		width: var(--margin);
-		height: var(--margin);
-		position: absolute;
-		right: 0;
-		top: 0;
-		transition: transform .2s ease-in;
-	}
-
-	.open .fold_toggle{
-		transform: rotate(45deg);
-	}
-
-	.cross.cross--vert{
-		position: relative;
-		height: var(--margin);
-		width: 1.5px;
-		margin-left: var(--margin_half);
-		transform: translateX(-50%);
-	}
-
-	.cross.cross--hor{
-		position: relative;
-		width: var(--margin);
-		height: 1.5px;
-		transform: translateY(calc(-1 * var(--margin_half) - .5px));
-	}
-
 </style>

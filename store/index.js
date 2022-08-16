@@ -14,7 +14,7 @@ export const state = () => ({
     prize: ['prize'],
     about: ['about', 'about-about'],
     support: ['support', 'support-support'],
-    publications: ['publications', 'publications-publication'],
+    publications: ['publications', 'publications-publication', 'publications-type-type'],
     archive: ['archive']
   }
 })

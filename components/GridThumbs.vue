@@ -11,6 +11,7 @@
 			:exhibition="post"
 			:announcement="post"
 			:network="post"
+			:pub="post"
 		/>		
 	</section>
 </template>

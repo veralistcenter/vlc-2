@@ -58,5 +58,9 @@
 	--lh_heading-g: 1; /*leading for titles (h1-h6) */
 	--ls-g: -0.02em; /*letter spacing*/
 
+	--fs-g-s: 1.8rem;
+	--lh-g-s: 1; /*leading*/
+	--ls-g-s: -0.02em; /*letter spacing*/
+
 	--return:  calc(var(--fs) * var(--lh));
 }
