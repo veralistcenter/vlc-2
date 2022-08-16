@@ -1,5 +1,5 @@
 <template>
-  <main class="page">
+  <main class="page homepage_index">
     <SiteMenuExpanded id="homepage_menu" />
     <HomepageCarousel class="primary_carousel" v-if="$CheckA(gallery)" :gallery="gallery" />
 

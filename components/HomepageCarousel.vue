@@ -9,7 +9,6 @@
 			:touchable="false"
 			:transitionSpeed="300"
 			:fixedHeight="true"
-			:breakpoints="breakpoints"
 			@slide="changeActive"
 		>
     	<vueper-slide 

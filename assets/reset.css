@@ -81,6 +81,11 @@ html, body{
 @media screen and (max-width: 768px){
 	:root{
 		--edge: 1.5rem;
+		--fs-l: 1.1rem;
+
+		--border: solid 1px black;
+		--biennial_border: dashed 1.5px black;
+
 	}
 
 	html, body{
@@ -95,13 +100,13 @@ html, body{
 }
 
 @media screen and (min-width: 769px){
-	*[data-device=desktop]{
+	*[data-device=mobile]{
 			display: none !important;	
 	}
 }
 
 @media screen and (max-width: 768px){
-	*[data-device=mobile]{
+	*[data-device=desktop]{
 		display: none !important;	
 	}
 }

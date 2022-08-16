@@ -4,6 +4,9 @@
 		:class="['page_' + $route.name, {'is_contrasted': contrast}]"
 		:style="bg"
 	>
+
+		<button @click="skipToContent" class="skip_to" tabindex="1">Skip to Content</button>
+
 		<transition name="fade">
 			<SiteHeader v-if="(showMenu && $route.name === 'index') || $route.name !== 'index'" />	
 		</transition>
@@ -73,12 +76,55 @@
 				settings: 'getSettings',
 				slugs: 'getSlugs'
 			})
+		},
+		mounted(){
+			this.$nextTick(() => {
+				this.setUpUserway()
+			})
+		},
+		methods: {
+
+			skipToContent(){
+				const nodes  = document.querySelectorAll('main.page:not(.homepage_index) a, main.page:not(.homepage_index) button, .primary_carousel a, .primary_carousel button, .matrix_block a, .matrix_block button')
+
+				nodes[0].focus()
+
+
+
+
+			},
+
+			setUpUserway(){
+
+				if(document){
+					(function(d){var s = d.createElement("script");s.setAttribute("data-account", "YgSAx9OhpA");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)
+				}else{
+					setTimeout(this.setUpUserway, 1000)
+				}
+
+				
+			}
 		}
 	}
 
 </script>
 
 <style>
+
+	.skip_to{
+		position: fixed;
+		top: -100vh;
+		left: -100vw;
+	}
+
+	.skip_to:focus{
+		top: var(--edge);
+		left: var(--edge);
+		z-index: 10000;
+		background: white;
+		padding: var(--margin) var(--margin);
+		border: var(--border);
+	}
 
 	.vlc_page{
 		--bg: linear-gradient(rgba(255, 53, 53, 0.95), rgba(35, 83, 255, 0.95));
