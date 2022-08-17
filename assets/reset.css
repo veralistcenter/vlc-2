@@ -150,9 +150,8 @@ button.block{
 .center{ text-align: center; }
 
 @media screen and (max-width: 768px){
-	.m_left{
-		text-align: left !important;
-	}
+	.m_left{ text-align: left !important; }
+	.m_right{ text-align: right !important; }
 }
 
 .caps, .caps *{ text-transform: uppercase; letter-spacing: 0.03em !important; }

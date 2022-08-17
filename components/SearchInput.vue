@@ -8,6 +8,7 @@
 				v-model="search" 
 				placeholder="Searching..."
 				@keydown.escape="cancelSearch"
+				@keydown.enter="prepSearch"
 			>			
 		</div
 		><button @click="prepSearch" class="search_toggle">
@@ -32,18 +33,26 @@
 						this.$refs.searchInput.focus()
 					})
 				}
+			},
+			'$route.path': function(newpath){
+				this.showSearch = false
 			}
 		},
 		methods: {
 			cancelSearch(){
 				this.showSearch = false
 			},
-			prepSearch(){
+			prepSearch(e){
+				e.preventDefault()
 
 				if(!this.showSearch){
 					this.showSearch = true
 				}else{
-					// submit search...
+
+					if(this.search === ''){ return }
+
+					const searchQuery = this.search
+					this.$router.push({ path: '/search', query: { search: searchQuery } })
 				}
 
 			}
