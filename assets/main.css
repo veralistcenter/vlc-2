@@ -55,7 +55,18 @@
 	border: var(--border);
 }
 
+.btn--biennial{
+	border: var(--biennial_border);
+}
+
 @media screen and (any-hover: hover){
+	
+	a.btn--inline--grey:hover,
+	button.btn--inline--grey:hover{
+		border-color: black;
+	color: black;
+	}
+
 	a.btn--full:hover,
 	button.btn--full:hover{
 		color: white;

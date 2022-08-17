@@ -272,7 +272,7 @@ export const Global = `acfOptions {
 }`
 
 
-export const AllPages = `pages {
+export const AllPages = `pages(first: 20) {
   edges {
     node {
       title

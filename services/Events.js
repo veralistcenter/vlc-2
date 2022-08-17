@@ -4,6 +4,7 @@ import { Body } from '@/services/Matrix'
 import { 
   EventQuery, 
   ExhibitionQuery,
+  PublicationQuery,
   featImage
 } from '@/services/Thumbs'
 
@@ -112,8 +113,7 @@ export const Event = slug => `event (id: "${slug}", idType: SLUG) {
         ${ExhibitionQuery}
       }
       ... on Publication{
-        title
-        slug
+        ${PublicationQuery}
       }
     }
     relatedPagesSize

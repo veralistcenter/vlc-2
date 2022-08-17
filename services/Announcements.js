@@ -19,6 +19,13 @@ export const Announcement = slug => `announcement (id: "${slug}", idType: SLUG) 
 	      buttonLink
 	      buttonName
 	    }
+
+      associatedBiennial{
+        ...on Biennial{
+          title
+          slug
+        }
+      }
 	    
 	  }
 	}

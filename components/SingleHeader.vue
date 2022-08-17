@@ -18,25 +18,25 @@
 			<section class="col col--1_2 mcol--full col--end">
 				<h1 class="fs--small caps" v-if="$Check(types)" v-html="types"></h1>
 				<h2 class="genath title" v-html="post.title"></h2>
-				<h3 class="genath title" v-html="$Check(post.pageInfo.timeOverride) ? post.pageInfo.timeOverride : $Dated({start: post.pageInfo.date, end: post.pageInfo.endDate })"></h3>
+				<h3 class="genath title" v-if="$Check(post.pageInfo.date)" v-html="$Dated({start: post.pageInfo.date, end: post.pageInfo.endDate })"></h3>
 				<h4 class="genath title" v-html="$Check(post.pageInfo.timeOverride) ? post.pageInfo.timeOverride : timeRange"></h4>
 
-				<p 
+				<section 
 					class="mt--1 max--500 fs--small" 
 					v-if="$Check(post.pageInfo.previewInfo.description)" 
-					v-html="post.pageInfo.previewInfo.description"></p>
+					v-html="post.pageInfo.previewInfo.description"></section>
 
-				<p
+				<section
 					class="mt--1 max--500 fs--small"
 					v-if="$Check(post.pageInfo.previewInfo.primaryDescription)"
 					v-html="post.pageInfo.previewInfo.primaryDescription"
-				></p>
+				></section>
 				
 				<ul class="ul--inline mt--1 mb--1" v-if="$CheckA(tags)">
 					<li 
 						v-for="(tag, i) in tags" 
 						:key="'tag_'+ i"
-						class="mr--1_2 fs--regular" 
+						class="mr--1_2 fs--small" 
 					>
 							<nuxt-link 
 								class="btn--inline--grey caps"
@@ -53,6 +53,18 @@
 						v-html="post.pageInfo.previewInfo.button.buttonName"
 					></a>
 				</section>
+
+				<section
+					class="mt--1 max--500 fs--small"
+					v-if="$Check(post.pageInfo.previewInfo.secondaryDescription)"
+					v-html="post.pageInfo.previewInfo.secondaryDescription"
+				></section>
+
+				<BiennialLink 
+					class="mt--8"
+					v-if="$CheckA(post.pageInfo.previewInfo.associatedBiennial)" 
+					:biennials="post.pageInfo.previewInfo.associatedBiennial" 
+				/>
 
 			</section>
 		</div>
