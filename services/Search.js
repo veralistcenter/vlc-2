@@ -53,3 +53,37 @@ export const Search = term => `
 	}
 
 `
+
+export const SearchIds = ids => `
+
+	events(first: 200 where: {in: [${ids}]}){
+		edges{
+			node{
+				${EventQuery}
+			}
+		}
+	}
+
+	publications(first: 40 where: {in: [${ids}]}){
+		edges{
+			node{
+				${PublicationQuery}
+			}
+		}
+	}
+
+	exhibitions(first: 40 where: {in: [${ids}]}){
+		edges{
+			node{
+				${ExhibitionQuery}
+			}
+		}
+	}
+
+	announcements(first: 40 where: {in: [${ids}]}){
+		edges{
+			node{
+				${AnnouncementQuery}
+			}
+		}
+	}`

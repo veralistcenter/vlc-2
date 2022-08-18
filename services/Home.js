@@ -5,6 +5,7 @@ import {
   EventQuery, 
   EventThumb, 
   ExhibitionThumb, 
+  PublicationThumb,
   featImage
   
 } from '@/services/Thumbs'
@@ -99,6 +100,7 @@ acfOptions: acfOptions {
           ${EventThumb}
           ${ExhibitionThumb}
           ${AnnouncementThumb}
+          ${PublicationThumb}
         }
       }
       ... on AcfOptions_Homepage_PreviewSections_Recently {
@@ -164,6 +166,7 @@ acfOptions: acfOptions {
       __typename
       ${ExhibitionThumb}
       ${EventThumb}
+      ${PublicationThumb}
     }
 
   }

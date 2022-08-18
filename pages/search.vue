@@ -49,7 +49,7 @@
 
 <script>
 
-	import { Search } from '@/services/Search'
+	import { SearchIds } from '@/services/Search'
 	
 	export default{
 		head(){
@@ -93,15 +93,33 @@
 
 			if(!this.$Check(searchQuery)){
 				this.results = false
+
+				this.$store.commit('updatePath', [
+	      	{title: 'Home', route: '/'},
+	      	{title: 'Search', route: '/search'}
+	      ])
+
 				return
 			}
 
 			this.term = searchQuery
 
-			try{
-				const res = await this.$axios(this.$Req(Search(searchQuery)))
 
-				this.results = res.data.data
+			this.$store.commit('updatePath', [
+      	{title: 'Home', route: '/'},
+      	{title: 'Search', route: '/search'},
+      	{title: searchQuery, route: '/search?search=' + searchQuery }
+      ])
+
+			try{
+				const res = await this.$axios(this.$ReqWREST('/search?search=' + searchQuery + '&per_page=100' ))
+
+				const ids = res.data.map(r => r.id)
+				const s = SearchIds(ids)
+				const qlRes = await this.$axios(this.$Req(s))
+
+
+				this.results = qlRes.data.data
 
 
 			}catch(e){

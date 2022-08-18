@@ -12,11 +12,17 @@
 				<h1 class="mb--1_2 fs--small caps" v-html="format"></h1>
 				<h2 class="genath title" v-html="pub.title"></h2>
 
-				<BiennialLink 
-					class="mt--2"	
-					v-if="$CheckA(previewInfo.associatedBiennial)" 
-					:biennials="previewInfo.associatedBiennial" 
-				/>
+				<ul class="ul--inline mt--1 mb--1" v-if="$CheckA(tags)">
+					<li 
+						v-for="(tag, i) in tags" 
+						:key="'tag_'+ i"
+						class="mr--1_2 fs--small" 
+					><nuxt-link 
+							class="btn--inline--grey caps"
+							:to="'/archive?tags=' +tag.slug" 
+							v-html="tag.name"></nuxt-link>
+					</li>
+				</ul>
 
 			</section>
 			<aside class="col col--1_2 mcol--full col--end pub_info mb--1">
@@ -38,17 +44,11 @@
 						v-html="previewInfo.button.buttonName"></a>
 				</section>
 
-				<ul class="ul--inline mt--1 mb--1" v-if="$CheckA(tags)">
-					<li 
-						v-for="(tag, i) in tags" 
-						:key="'tag_'+ i"
-						class="mr--1_2 fs--small" 
-					><nuxt-link 
-							class="btn--inline--grey caps"
-							:to="'/archive?tags=' +tag.slug" 
-							v-html="tag.name"></nuxt-link>
-					</li>
-				</ul>
+				<BiennialLink 
+					class="mt--1"	
+					v-if="$CheckA(previewInfo.associatedBiennial)" 
+					:biennials="previewInfo.associatedBiennial" 
+				/>
 
 				<section 
 					class="mt--1 max--500 fs--small" 

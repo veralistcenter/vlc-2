@@ -14,6 +14,13 @@ export default (context, inject) => {
 	  }
 	}
 
+	const reqwrest = (query) => {
+		return {
+			url :`${testUrl}/wp-json/wp/v2${query}`,
+			method: 'get'
+		}
+	}
+
 	const reqwvars = (query, param, v) => {
 		return {
 	    url: `${testUrl}/graphql`,
@@ -27,8 +34,10 @@ export default (context, inject) => {
 
 	inject('Req', req)
 	inject('ReqWVars', reqwvars)
+	inject('ReqWREST', reqwrest)
 
 	context.$Req = req
 	context.$ReqWVars = reqwvars
+	context.$ReqWREST = reqwrest
 
 }

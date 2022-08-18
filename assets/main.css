@@ -72,6 +72,11 @@
 		color: white;
 		background-color: black;
 	}
+
+	a.btn--biennial.btn--full:hover{
+		background: var(--bg);
+		border-color: var(--bg);
+	}
 }
 
 .cross{

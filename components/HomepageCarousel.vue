@@ -37,16 +37,17 @@
     					class="carousel_text_content col col--2_5 mcol--full col--end"
     					:class="{'pt--1': gallerySlides.length == 1, 'pt--4': gallerySlides.length > 1}"
     				>
-    					<h1></h1>
+    					<nuxt-link :to="generatePath(s)">
+    					<h1 class="fs--small caps mb--1_2" v-html="generateType(s)"></h1>
     					<h2 class="genath title" v-html="s.title"></h2>
     					<h3 class="genath title" v-html="$Check(s.pageInfo) && $Check(s.pageInfo.timeOverride) ? s.pageInfo.timeOverride : $Dated({start: s.pageInfo.date, end: s.pageInfo.endDate})"></h3>
+    					</nuxt-link>
 
     					<p
 								class="mt--1 fs--small"
 								v-if="$Check(s.pageInfo.previewInfo.primaryDescription)"
 								v-html="s.pageInfo.previewInfo.primaryDescription"
 							></p>
-
     				</section>
     			</div>
     		</template>
@@ -94,6 +95,34 @@
 		computed:{
 			gallerySlides(){
 				return [].concat(this.gallery.filter( g => this.$Check(g) && this.$Check(g.pageInfo)))
+			},
+			generateType:state => s => {
+				if(s.__typename === 'Announcement'){
+					return 'Announcement'
+				}else if(s.__typename == 'Exhibition'){
+					return 'Exhibition'
+				}else if(s.__typename == 'Publication'){
+					return 'Publication'
+				}else if(s.__typename == 'Event'){
+					return 'Event'
+				}else{
+					return 'Post'
+				}
+			},
+			generatePath: state => s => {
+
+				let root = ''
+				if(s.__typename === 'Announcement'){
+					root = 'announcement'
+				}else if(s.__typename == 'Exhibition'){
+					root = 'exhibitions'
+				}else if(s.__typename == 'Publication'){
+					root = 'publications'
+				}else if(s.__typename == 'Event'){
+					root = 'events'
+				}
+
+				return `/${root}/${s.slug}`
 			}
 		},
 		data(){
@@ -212,6 +241,17 @@
 			padding-right: var(--edge);
 		}
 	}
+
+	@media screen and (any-hover: hover){
+		.carousel_text_content a *{
+			transition: color 0.1s ease-in-out;
+		}
+		.carousel_text_content a:hover *{
+			color: var(--lg_text);
+		}
+	}
+
+	
 
 
 </style>
