@@ -67,6 +67,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/google-gtag'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -81,6 +82,11 @@ export default {
       'vue-vimeo-player'
     ],
   },
+
+  'google-gtag': {
+    id: 'UA-16461853-1'
+  },
+
   moment: {
     defaultTimezone: 'America/New_York'
   },
