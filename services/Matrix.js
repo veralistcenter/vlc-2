@@ -76,7 +76,7 @@ export const Body = page => `bodyField{
         slideTitle
         caption
         audioFile{
-          sourceUrl
+          mediaItemUrl
         }
         video
         image{
@@ -90,7 +90,8 @@ export const Body = page => `bodyField{
     
     ... on ${page}_Bodyfield_Body_AudioPlayer{
       audioFile{
-        sourceUrl
+        title
+        mediaItemUrl
       }
     }
     

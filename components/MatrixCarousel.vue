@@ -17,12 +17,20 @@
     		<template #content>
     			<div class="matrix_slide pt--1">
     				<section class="matrix_carousel_image">
-    					<img 
+    					<img
+    						v-if="$Check(s) && $Check(s.image)" 
     						:src="s.image.sourceUrl"
     						:alt="s.image.altText"
     						:srcset="s.image.srcSet"
     						sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"
     					>
+    					<MatrixCarouselVideo v-else-if="$Check(s.video)" :video="s.video" />
+    					<MatrixAudioPlayer
+    						v-else-if="$Check(s.audioFile) && $Check(s.audioFile.mediaItemUrl)" 
+    						:block="s"
+    					/>
+    					
+
     				</section>
     			</div>
     		</template>
@@ -99,7 +107,17 @@
 
 	.matrix_carousel_image{
 		display: block;
+	}
 
+	.matrix_carousel_image .matrix_audio_player{
+		margin-top: 22%;
+	}
+
+	.matrix_carousel_image .matrix_carouse_video > div{
+		display: block;
+		margin: 0 auto;
+		max-width: 80vw;
+		height: var(--slideshow_height);
 	}
 
 	.matrix_carousel_image img{

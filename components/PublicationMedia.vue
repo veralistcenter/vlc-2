@@ -15,6 +15,9 @@
 			</client-only>	
 		</div>
 
+		<div v-if="hasAudio" class="pub_audio_player">
+			<MatrixAudioPlayer :block="{ audioFile: info.featuredMedia.featAudioFile }" />
+		</div>
 
 
 		<figure 
@@ -43,7 +46,8 @@
 		computed: {
 			hasSlides(){ return this.$CheckA(this.info.featuredMedia.featuredSlides20220816) },
 			hasVideo(){ return this.$Check(this.info.featuredMedia.featVideoFile) },
-			hasIssuu(){ return this.$Check(this.info.featuredMedia.featIssuuIframe) }
+			hasIssuu(){ return this.$Check(this.info.featuredMedia.featIssuuIframe) },
+			hasAudio(){ return this.$Check(this.info.featuredMedia.featAudioFile) }
 		},
 		data(){
 			return {
@@ -77,6 +81,16 @@
 		width: 100%;
 		height: 80vh;
 		margin-top: calc(-1 * var(--return));
+	}
+
+	.pub_audio_player{
+		width: 100%;
+		height: 20rem;
+		position: relative;
+	}
+
+	.pub_audio_player .matrix_audio_player{
+		padding-top: 8rem;
 	}
 	
 	.pub_header_fig{

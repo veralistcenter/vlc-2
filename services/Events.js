@@ -74,7 +74,7 @@ export const EventTabs = `eventTabs: eventsubs{
   }
 }`
 
-export const Event = slug => `event (id: "${slug}", idType: SLUG) {
+export const Event = (slug, preview ) => `event (id: "${slug}", idType: SLUG ${preview}) {
 	title
   slug
 

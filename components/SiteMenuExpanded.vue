@@ -31,7 +31,11 @@
 				<ul class="col col--1_2 mt--1 col--end">
 					<li v-for="(r, i) in menu.pRightColumn" :key="'left_' + i" class="menu_link">
 							<nuxt-link v-if="r.linkToggle" :to="calcLink(r.internalLink)" v-html="r.text"></nuxt-link>
-							<a v-else :href="r.link" target="_blank" v-html="r.text"></a>
+							<a
+								v-else 
+								:href="r.link" 
+								:target="(r.link.includes('veralistcenter.org') || r.link.includes('localhost:3000')) ? '' : '_blank'" 
+								v-html="r.text"></a>
 					</li>
 
 				</ul>

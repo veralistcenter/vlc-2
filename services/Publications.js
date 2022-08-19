@@ -104,8 +104,8 @@ export const Publication = slug => `publication (id: "${slug}", idType: SLUG) {
       featIssuuIframe
       featAudioFile{
         mediaItemUrl
-        sourceUrl
         altText
+        title
         caption
       }
       featVideoFile

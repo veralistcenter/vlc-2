@@ -98,13 +98,11 @@
 	}
 
 	.thumb_time.current_event{
-		background: black;
-		color: white;
+		color: black;
 	}
 
 	.thumb_time.past_event{
-		background: var(--light_grey);
-		color: white;
+		color: var(--lg_text);
 	}
 
 

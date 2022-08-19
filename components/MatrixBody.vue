@@ -66,6 +66,8 @@
 					return 'MatrixQuote'
 				}else if(t.includes('Body_RelatedColumn')){
 					return 'MatrixColumn'
+				}else if(t.includes('Body_AudioPlayer')){
+					return 'MatrixAudioPlayer'
 				}else{
 					return 'MatrixPre'
 				}

@@ -12,7 +12,7 @@
 
 		
 		<h3 
-			class="thumb_time pl--1 pr--1 pb--1_2 pt--1_2 mt--1 caps fs--small" 
+			class="thumb_time pl--1 pr--1 pb--1_2 mt--1_2 caps fs--small" 
 			:class="$IsCurrent({start: announcement.pageInfo.date, end: announcement.pageInfo.endDate }) ? 'current_event' : 'past_event'" 
 			v-html="$Check(announcement.pageInfo.timeOverride) ? announcement.pageInfo.timeOverride : $Dated({start: announcement.pageInfo.date, end: announcement.pageInfo.endDate })"
 		></h3>

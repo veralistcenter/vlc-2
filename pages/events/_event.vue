@@ -21,12 +21,14 @@
 	import { Event } from '@/services/Events'
 	
 	export default{
-		async asyncData({$axios, $Req, store, params}){
+		async asyncData({$axios, $Req, $Check, store, params, query}){
 
-			const query = Event(params.event)
+			// const preview = $Check(query.preview) ? ', isPreview: true' : ''
+
+			const q = Event(params.event, "")
 
 			try{
-				const res = await $axios($Req(query))
+				const res = await $axios($Req(q))
 
 				const event = res.data.data.event
 

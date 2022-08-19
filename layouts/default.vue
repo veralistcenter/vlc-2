@@ -56,7 +56,7 @@
 				const gs = this.gradients.filter(g => g.slug === slug && g.gradient !== false)
 
 				if(this.$CheckA(gs)){
-					return `--bg: linear-gradient(${gs[0].gradient.topColor}F2, ${gs[0].gradient.bottomColor}F2);`
+					return `--bg: linear-gradient(${gs[0].gradient.topColor}FA, ${gs[0].gradient.bottomColor}FA);`
 				}else{
 					return ''
 				}

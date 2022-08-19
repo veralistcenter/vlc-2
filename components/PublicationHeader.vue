@@ -38,7 +38,7 @@
 
 				<section class="mt--1" v-if="$Check(previewInfo.button.buttonLink)">
 					<a 
-						class="fs--regular btn--full"
+						class="fs--regular btn--full caps"
 						target="_blank" 
 						:href="previewInfo.button.buttonLink" 
 						v-html="previewInfo.button.buttonName"></a>

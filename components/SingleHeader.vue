@@ -73,7 +73,7 @@
 		<aside 
 			role="caption" 
 			v-if="$Check(post.featImage.featuredImage)" class="section_inset mt--1_2 fs--small">
-			<p v-html="post.featImage.featuredImage.caption"></p>
+			<div v-html="post.featImage.featuredImage.caption"></div>
 		</aside>
 	</header>
 </template>
