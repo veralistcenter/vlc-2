@@ -36,6 +36,10 @@ eventTypes{
   }
 }
 
+archiveSelection {
+  selectedArchiveEvent
+}
+
 sitewideTags{
   edges{
     node{
@@ -54,6 +58,11 @@ pageInfo{
   endDate
   timeOverride
 }
+
+exhibitionArchiveSelection{
+  selectedArchiveExhibition
+}
+
 featImage {
   featuredImage {
     ... on MediaItem {
@@ -151,6 +160,10 @@ featImage {
       title
     }
   }
+}
+
+archiveSelectionPublication{
+  selectedArchivePublication
 }
 
 networkRelation{

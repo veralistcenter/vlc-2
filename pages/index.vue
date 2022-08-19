@@ -19,6 +19,7 @@
       :biennials="biennials"
       :gallery="block.homepageGallery"
       :marquee="block"
+      :archive="block.archive"
     />
 
   </main>
@@ -66,6 +67,8 @@ export default {
         return 'HomepageBiennials'
       }else if(type == 'AcfOptions_Homepage_PreviewSections_HomepageMarquee'){
         return 'SiteMarquee'
+      }else if(type == 'AcfOptions_Homepage_PreviewSections_Archive'){
+        return 'GridArchive'
       }else{
         return 'p'
       }

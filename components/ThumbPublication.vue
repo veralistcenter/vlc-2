@@ -56,6 +56,20 @@
 		height: calc(25vw - var(--margin_x2));
 	}
 
+	.col--1_2 .thumb_fig{
+		height: calc(50vw - var(--margin_x2));
+	}
+
+	.col--1_6 .thumb_fig{
+		height: calc(16.66vw - var(--margin_x4));
+	}
+
+	@media screen and (max-width: 768px){
+		.col--1_4 .thumb_fig{
+			height: calc(50vw - var(--margin_x2));		
+		}
+	}
+
 	.thumb_fig img{
 		display: block;
 		width: unset;

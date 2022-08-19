@@ -27,14 +27,6 @@ events(first: 400, where: {orderby: {order: DESC, field: DATE}}){
   }
 }
 
-announcements(first: 400, where: {orderby: {order: ASC, field: DATE}}){
-  edges {
-    node {
-      ${AnnouncementQuery}
-    }
-  }
-}
-
 publications(first: 400, where: {orderby: {order: ASC, field: TITLE}}){
   edges {
     node {
@@ -53,7 +45,6 @@ taxonomy: sitewideTags(first: 400){
     }
   }
 }
-
 `
 
 export const ArchiveMoreEvents = cursor => `events(first: 400, after: "${cursor}", where: {orderby: {order: DESC, field: DATE}}){
@@ -67,3 +58,37 @@ export const ArchiveMoreEvents = cursor => `events(first: 400, after: "${cursor}
     }
   }
 }`
+
+export const FeaturedArchive = `
+
+  events(first: 200){
+    edges{
+      node{
+        ${EventQuery}
+      }
+    }
+  }
+
+  publications(first: 40 ){
+    edges{
+      node{
+        ${PublicationQuery}
+      }
+    }
+  }
+
+  exhibitions(first: 40 ){
+    edges{
+      node{
+        ${ExhibitionQuery}
+      }
+    }
+  }
+
+  announcements(first: 40 ){
+    edges{
+      node{
+        ${AnnouncementQuery}
+      }
+    }
+  }`
