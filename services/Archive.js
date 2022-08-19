@@ -35,6 +35,14 @@ publications(first: 400, where: {orderby: {order: ASC, field: TITLE}}){
   }
 }
 
+announcements(first: 400, where: {orderby: {order: ASC, field: TITLE}}){
+  edges {
+    node {
+      ${AnnouncementQuery}
+    }
+  }
+}
+
 taxonomy: sitewideTags(first: 400){
   edges{
     node{
@@ -81,14 +89,6 @@ export const FeaturedArchive = `
     edges{
       node{
         ${ExhibitionQuery}
-      }
-    }
-  }
-
-  announcements(first: 40 ){
-    edges{
-      node{
-        ${AnnouncementQuery}
       }
     }
   }`

@@ -6,6 +6,7 @@
     <component
       class="matrix_block"
       v-for="(block, i) in matrix"
+      :key="'block'+ i"
       :is="blockType(block.__typename)"
       :size="block.cardSize"
       :recently="block.recently"

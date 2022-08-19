@@ -104,8 +104,6 @@
 				</section>
 			</section>
 		</section>
-
-
 	</main>
 </template>
 
@@ -125,7 +123,7 @@
 			}
 		},
 		mounted(){
-			if(this.eventInfo.hasNextPage){
+			if(this.$Check(this.eventInfo) && this.eventInfo.hasNextPage){
 				this.fetchMoreEvents(this.eventInfo.endCursor)
 			}
 		},
@@ -159,7 +157,7 @@
 					const newEvents = res.data.data.events.edges.map(e => e.node)
 					this.additionalEvents = [].concat(this.additionalEvents).concat(newEvents)
 
-					if(res.data.data.events.pageInfo.hasNextPage){
+					if(res.data.data.events?.pageInfo?.hasNextPage){
 						this.fetchMoreEvents(res.data.data.events.pageInfo.endCursor)
 					}else{
 						console.log('no more events')
@@ -192,10 +190,12 @@
 					return posts
 				}else if(state.$CheckA(posts)){
 
+					return posts
+
 					const filteredPosts = posts.filter(p => {
 						const tags = p.sitewideTags
 						if(state.$CheckA(tags.edges)){
-							const slugs = tags.edges.map(e => e.node.slug)
+							const slugs = tags.edges.filter(e => $Check(e) && $Check(e.node)).map(e => e.node.slug)
 							const matchingSlugs = slugs.filter(s => state.activeFilters.includes(s))
 							return state.$CheckA(matchingSlugs)
 						}else{
@@ -308,6 +308,7 @@
         ])
 
 				const data = res.data.data
+				
 				const exhibitions = data.exhibitions.edges.map(e => e.node)
 				const events = data.events.edges.map(e => e.node)
 				const eventInfo = data.events.pageInfo
@@ -316,6 +317,8 @@
 				const announcements = data.announcements.edges.map(e => e.node)
 				
 				const taxonomy = data.taxonomy.edges.map(e => e.node)
+
+
 
 				return { exhibitions, events, publications, announcements, eventInfo, taxonomy }
 
