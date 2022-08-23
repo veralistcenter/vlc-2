@@ -51,7 +51,7 @@ input:focus-visible::placeholder{
 
 
 *::selection{
-	background-color: red;
+	background-color: rgb(255,53,53);
 }
 
 html, body{

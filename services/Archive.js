@@ -5,7 +5,7 @@ import {
 	PublicationQuery
 } from '@/services/Thumbs'
 
-export const Archive = `exhibitions(first: 400, where: {orderby: {order: ASC, field: DATE}}){
+export const Archive = `exhibitions(first: 150, where: {orderby: {order: ASC, field: DATE}}){
   edges {
     node {
       ${ExhibitionQuery}
@@ -13,7 +13,7 @@ export const Archive = `exhibitions(first: 400, where: {orderby: {order: ASC, fi
   }
 }
 
-events(first: 400, where: {orderby: {order: DESC, field: DATE}}){
+events(first: 200, where: {orderby: {order: DESC, field: DATE}}){
   
   pageInfo {
     hasNextPage
@@ -35,7 +35,7 @@ publications(first: 400, where: {orderby: {order: ASC, field: TITLE}}){
   }
 }
 
-announcements(first: 400, where: {orderby: {order: ASC, field: TITLE}}){
+announcements(first: 200, where: {orderby: {order: ASC, field: TITLE}}){
   edges {
     node {
       ${AnnouncementQuery}
@@ -43,7 +43,7 @@ announcements(first: 400, where: {orderby: {order: ASC, field: TITLE}}){
   }
 }
 
-taxonomy: sitewideTags(first: 400){
+taxonomy: sitewideTags(first: 150){
   edges{
     node{
       ... on SitewideTag{

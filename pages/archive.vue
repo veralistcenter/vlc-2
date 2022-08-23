@@ -190,12 +190,10 @@
 					return posts
 				}else if(state.$CheckA(posts)){
 
-					return posts
-
 					const filteredPosts = posts.filter(p => {
 						const tags = p.sitewideTags
 						if(state.$CheckA(tags.edges)){
-							const slugs = tags.edges.filter(e => $Check(e) && $Check(e.node)).map(e => e.node.slug)
+							const slugs = tags.edges.filter(e => state.$Check(e) && state.$Check(e.node)).map(e => e.node.slug)
 							const matchingSlugs = slugs.filter(s => state.activeFilters.includes(s))
 							return state.$CheckA(matchingSlugs)
 						}else{
