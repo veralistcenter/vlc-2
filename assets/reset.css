@@ -154,6 +154,7 @@ button.block{
 	.m_right{ text-align: right !important; }
 }
 
+
 .caps, .caps *{ text-transform: uppercase; letter-spacing: 0.03em !important; }
 
 .underline{

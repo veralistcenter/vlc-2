@@ -44,7 +44,7 @@
     			<div class="pub_feat_slide">
     				<figure v-if="$Check(s.slideImage.sourceUrl)">
     					<img
-    						:src="s.slideImage.sourceUrl"
+    						:src="$SourceUrl(s.slideImage, 'large')"
     						:srcset="s.slideImage.srcSet"
     						:alt="s.slideImage.altText"
     					/>

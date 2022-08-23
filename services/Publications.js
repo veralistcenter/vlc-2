@@ -117,6 +117,12 @@ export const Publication = slug => `publication (id: "${slug}", idType: SLUG) {
           srcSet
           altText
           caption
+          mediaDetails{
+            sizes{
+              name
+              sourceUrl
+            }
+          }
         }
         
       }

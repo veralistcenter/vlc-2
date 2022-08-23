@@ -51,4 +51,22 @@ export default ({ app, $moment }, inject) => {
 		}
 	})
 
+	inject('SourceUrl', (image, targetSize) => {
+		
+		if(image.mediaDetails.sizes !== null && image.mediaDetails.sizes.length > 0){
+			const sizes = image.mediaDetails.sizes
+			let size = (targetSize !== null && targetSize !== undefined) ? targetSize : 'medium_large'
+			const filtered = sizes.filter(s => s.name === size)
+
+			if(filtered.length > 0){
+				return filtered[0].sourceUrl
+			}else if(image.sourceUrl){
+				return image.sourceUrl
+			}
+
+		}else if(image.sourceUrl){
+			return image.sourceUrl
+		}
+	})
+
 }

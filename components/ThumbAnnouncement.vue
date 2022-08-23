@@ -4,7 +4,7 @@
 		<h3 class="fs--regular mb--1_2" v-html="announcement.title"></h3>
 		<img
 			v-if="$Check(announcement.featImage) && $Check(announcement.featImage.featuredImage)"
-			:src="announcement.featImage.featuredImage.sourceUrl"
+			:src="$SourceUrl(announcement.featImage.featuredImage)"
 			:srcset="announcement.featImage.featuredImage.srcSet"
 			:alt="announcement.featImage.featuredImage.altText"
 			sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"

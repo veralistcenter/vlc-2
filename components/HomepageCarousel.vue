@@ -17,17 +17,17 @@
     	>
     		<template #content>
     			<div class="grid grid--sans">
-    				<section class="col col--3_5 mcol--full carousel_image">
+    				<section class="col col--3_5 mcol--full carousel_image mmt--4">
     					<img
     						v-if="$Check(s.featImage) && $Check(s.featImage.slideshowImage) && $Check(s.featImage.slideshowImage.sourceUrl)" 
-    						:src="s.featImage.slideshowImage.sourceUrl"
+    						:src="$SourceUrl(s.featImage.slideshowImage, 'large')"
     						:alt="s.featImage.slideshowImage.altText"
     						:srcset="s.featImage.slideshowImage.srcSet"
     						sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"
     					>
     					<img 
     						v-else-if="$Check(s.featImage) && $Check(s.featImage.featuredImage) && $Check(s.featImage.featuredImage.sourceUrl)"
-    						:src="s.featImage.featuredImage.sourceUrl"
+    						:src="$SourceUrl(s.featImage.featuredImage, 'large')"
     						:alt="s.featImage.featuredImage.altText"
     						:srcset="s.featImage.featuredImage.srcSet"
     						sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"
@@ -35,7 +35,7 @@
     				</section>
     				<section 
     					class="carousel_text_content col col--2_5 mcol--full col--end"
-    					:class="{'pt--1': gallerySlides.length == 1, 'pt--4': gallerySlides.length > 1}"
+    					:class="{'pt--1': gallerySlides.length == 1, 'pt--4 mpt--2': gallerySlides.length > 1}"
     				>
     					<nuxt-link :to="generatePath(s)">
     					<h1 class="fs--small caps mb--1_2" v-html="generateType(s)"></h1>
@@ -44,7 +44,7 @@
     					</nuxt-link>
 
     					<p
-								class="mt--1 fs--small"
+								class="mt--1 fs--small carousel_text_description"
 								v-if="$Check(s.pageInfo.previewInfo.primaryDescription)"
 								v-html="s.pageInfo.previewInfo.primaryDescription"
 							></p>
@@ -55,7 +55,7 @@
     </vueper-slides>
 
     <nav v-if="$CheckA(gallerySlides) && gallerySlides.length > 1" class="homepage_carousel_nav grid grid--sans">
-    	<aside class="col col--2_3">
+    	<aside class="col col--2_3 mcol--1_2">
     		<button 
     		v-for="(b, i) in gallerySlides"
     		:key="'dot_' + i"
@@ -63,7 +63,7 @@
     		:class="{filled: i === activeIndex}"
     		class="hc_nav_button_dots mr--1_2"></button>
     	</aside>
-    	<section class="col col--1_3 col--end right">
+    	<section class="col col--1_3 mcol--1_2 mcol--end col--end right">
     		<p>
     			<button 
     				@click="$refs.myVueperSlides.previous()" 
@@ -188,6 +188,12 @@
 		width: calc(40% - (var(--margin) * 2));
 		height: calc(var(--margin) * 2);
 	}
+
+	@media screen and (max-width: 768px){
+		.homepage_carousel_nav{
+			width: calc(100% - var(--margin_x2));
+		}
+	}
 	
 	.homepage_carousel .vueperslides, 
 	.homepage_carousel .vueperslide, 
@@ -215,6 +221,11 @@
 		height: auto;
 		min-height: 100%;
 		min-width: 100%;
+	}
+
+	.carousel_text_description{
+		box-sizing: border-box;
+		padding-right: var(--margin_x2);
 	}
 
 	@media screen and (max-width: 768px){

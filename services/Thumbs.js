@@ -6,6 +6,12 @@ export const featImage = `featImage {
       altText
       title
       caption
+      mediaDetails{
+        sizes{
+          name
+          sourceUrl
+        }
+      }
     }
 
     slideshowImage{
@@ -14,6 +20,12 @@ export const featImage = `featImage {
       altText
       title
       caption 
+      mediaDetails{
+        sizes{
+          name
+          sourceUrl
+        }
+      }
     }
 
     imageCaption
@@ -71,6 +83,12 @@ featImage {
       sourceUrl
       altText
       title
+      mediaDetails{
+        sizes{
+          name
+          sourceUrl
+        }
+      }
     }
   }
   slideshowImage {
@@ -80,6 +98,12 @@ featImage {
       sourceUrl
       altText
       title
+      mediaDetails{
+        sizes{
+          name
+          sourceUrl
+        }
+      }
     }
   }
 }
@@ -116,6 +140,12 @@ featImage {
       sourceUrl
       altText
       title
+      mediaDetails{
+        sizes{
+          name
+          sourceUrl
+        }
+      }
     }
   }
   slideshowImage {
@@ -125,6 +155,12 @@ featImage {
       sourceUrl
       altText
       title
+      mediaDetails{
+        sizes{
+          name
+          sourceUrl
+        }
+      }
     }
   }
 }
@@ -149,6 +185,12 @@ featImage {
       sourceUrl
       altText
       title
+      mediaDetails{
+        sizes{
+          name
+          sourceUrl
+        }
+      }
     }
   }
   slideshowImage {
@@ -158,6 +200,12 @@ featImage {
       sourceUrl
       altText
       title
+      mediaDetails{
+        sizes{
+          name
+          sourceUrl
+        }
+      }
     }
   }
 }

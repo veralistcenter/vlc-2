@@ -63,6 +63,12 @@ export const Biennials = `biennials{
               sourceUrl
               altText
               title
+              mediaDetails{
+                sizes{
+                  name
+                  sourceUrl
+                }
+              }
             }
           }
         }

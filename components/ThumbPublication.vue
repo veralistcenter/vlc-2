@@ -4,7 +4,7 @@
 		<figure class="thumb_fig">
 			<img
 				v-if="$Check(pub.featImage) && $Check(pub.featImage.featuredImage)"
-				:src="pub.featImage.featuredImage.sourceUrl"
+				:src="$SourceUrl(pub.featImage.featuredImage)"
 				:srcset="pub.featImage.featuredImage.srcSet"
 				:alt="pub.featImage.featuredImage.altText"
 				sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"

@@ -4,7 +4,7 @@
 
 		<img
 			v-if="$Check(exhibition.featImage) && $Check(exhibition.featImage.featuredImage)"
-			:src="exhibition.featImage.featuredImage.sourceUrl"
+			:src="$SourceUrl(exhibition.featImage.featuredImage)"
 			:srcset="exhibition.featImage.featuredImage.srcSet"
 			:alt="exhibition.featImage.featuredImage.altText"
 			sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"
