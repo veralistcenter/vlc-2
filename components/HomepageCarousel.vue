@@ -19,14 +19,14 @@
     			<div class="grid grid--sans">
     				<section class="col col--3_5 mcol--full carousel_image">
     					<img
-    						v-if="$Check(s.featImage) && $Check(s.featImage.slideshowImage.sourceUrl)" 
+    						v-if="$Check(s.featImage) && $Check(s.featImage.slideshowImage) && $Check(s.featImage.slideshowImage.sourceUrl)" 
     						:src="s.featImage.slideshowImage.sourceUrl"
     						:alt="s.featImage.slideshowImage.altText"
     						:srcset="s.featImage.slideshowImage.srcSet"
     						sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"
     					>
     					<img 
-    						v-else-if="$Check(s.featImage) && $Check(s.featImage.featuredImage.sourceUrl)"
+    						v-else-if="$Check(s.featImage) && $Check(s.featImage.featuredImage) && $Check(s.featImage.featuredImage.sourceUrl)"
     						:src="s.featImage.featuredImage.sourceUrl"
     						:alt="s.featImage.featuredImage.altText"
     						:srcset="s.featImage.featuredImage.srcSet"
