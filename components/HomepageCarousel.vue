@@ -144,7 +144,8 @@
 
 	.homepage_carousel{
 		position: relative;
-		--slideshow_height: 46.875vw;
+		/*--slideshow_height: calc(48vw - var(--margin));*/
+		--slideshow_height: calc(46vw - var(--margin));
 		border-top: var(--border);
 		border-bottom: var(--border);
 	}
@@ -217,10 +218,8 @@
 		left: 0;
 		transform: translateY(-50%);
 		display: block;
-		width: auto;
+		width: 100%;
 		height: auto;
-		min-height: 100%;
-		min-width: 100%;
 	}
 
 	.carousel_text_description{
