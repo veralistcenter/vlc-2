@@ -149,7 +149,7 @@
 	
 	.image_caption a{
 		text-decoration: underline;
-		text-decoration-thickness: 1.5px;
+		text-decoration-thickness: 1px;
 		text-underline-offset: 2px;
 	}
 
@@ -158,5 +158,6 @@
 			text-decoration: none;
 		}
 	}
+
 
 </style>
