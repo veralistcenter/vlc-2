@@ -156,6 +156,7 @@ button.block{
 
 
 .caps, .caps *{ text-transform: uppercase; letter-spacing: 0.03em !important; }
+.italic, .italic *{ font-style: italic; }
 
 .underline{
 	text-decoration: underline;

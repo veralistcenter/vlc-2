@@ -12,7 +12,7 @@
 				<h1 class="mb--1_2 fs--small caps" v-html="format"></h1>
 				<h2 class="genath title" v-html="pub.title"></h2>
 				<section 
-					class="mt--1 max--500 genath italic title" 
+					class="max--500 genath italic title" 
 					v-if="previewInfo.author"
 					v-html="previewInfo.author"
 				></section>
