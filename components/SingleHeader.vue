@@ -15,7 +15,7 @@
 				</figure>
 			</section>
 			<section 
-				class="col col--1_2 mcol--full col--end"
+				class="col mcol--full col--end"
 				:class="{'col--1_2': $Check(post.featImage.featuredImage), 'col--header': !$Check(post.featImage.featuredImage)}"
 			>
 				<h1 class="fs--small caps" v-if="$Check(types)" v-html="types"></h1>
