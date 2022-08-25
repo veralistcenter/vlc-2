@@ -61,6 +61,12 @@
 	margin-right: 0;
 }
 
+.grid .col.col--header{
+	flex-basis: calc(100% - (var(--edge)*2));
+	width: calc(100% - (var(--edge)*2));
+	max-width: var(--max_width);
+}
+
 .grid .col.col--fullbleed{
 	width: 100%;
 	flex-basis: 100%;

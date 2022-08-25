@@ -11,6 +11,11 @@
 			<section class="col col--1_2 mcol--full mb--1">
 				<h1 class="mb--1_2 fs--small caps" v-html="format"></h1>
 				<h2 class="genath title" v-html="pub.title"></h2>
+				<section 
+					class="mt--1 max--500 genath italic title" 
+					v-if="previewInfo.author"
+					v-html="previewInfo.author"
+				></section>
 
 				<ul class="ul--inline mt--1 mb--1" v-if="$CheckA(tags)">
 					<li 
@@ -26,11 +31,6 @@
 
 			</section>
 			<aside class="col col--1_2 mcol--full col--end pub_info mb--1">
-				<section 
-					class="mt--1 max--500 fs--regular" 
-					v-if="previewInfo.author"
-					v-html="previewInfo.author"
-				></section>
 				<section 
 					class="mt--1 max--500 fs--regular" 
 					v-if="$Check(previewInfo.primaryDescription)" 

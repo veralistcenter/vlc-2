@@ -1,10 +1,9 @@
 <template>
 	<header class="single_header">
-		<div class="grid">
-			<section class="col col--1_2 mcol--full pb--1">
+		<div class="grid" :class="{'grid--center': !$Check(post.featImage.featuredImage)}">
+			<section class="col col--1_2 mcol--full pb--1" v-if="$Check(post.featImage.featuredImage)">
 				<figure 
 					class="header_image"
-					v-if="$Check(post.featImage.featuredImage)"
 				>
 					<img 
 						:src="post.featImage.featuredImage.sourceUrl"
@@ -15,7 +14,10 @@
 					<figcaption style="visibility: hidden; overflow: hidden; height: 0px;" class="mt--1_2 fs--small" v-html="post.featImage.featuredImage.caption"></figcaption>
 				</figure>
 			</section>
-			<section class="col col--1_2 mcol--full col--end">
+			<section 
+				class="col col--1_2 mcol--full col--end"
+				:class="{'col--1_2': $Check(post.featImage.featuredImage), 'col--header': !$Check(post.featImage.featuredImage)}"
+			>
 				<h1 class="fs--small caps" v-if="$Check(types)" v-html="types"></h1>
 				<h2 class="genath title" v-html="post.title"></h2>
 				<h3 class="genath title" v-if="$Check(post.pageInfo.date)" v-html="$Dated({start: post.pageInfo.date, end: post.pageInfo.endDate })"></h3>
@@ -61,7 +63,7 @@
 				></section>
 
 				<BiennialLink 
-					class="mt--8"
+					class="mt--2"
 					v-if="$CheckA(post.pageInfo.previewInfo.associatedBiennial)" 
 					:biennials="post.pageInfo.previewInfo.associatedBiennial" 
 				/>
