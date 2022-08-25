@@ -74,7 +74,7 @@
 		<div class="border--btm"></div>
 		<aside 
 			role="caption" 
-			v-if="$Check(post.featImage.featuredImage)" class="section_inset max--auto mt--1_2 fs--small">
+			v-if="$Check(post.featImage.featuredImage)" class="section_inset image_caption max--auto mt--1_2 fs--small">
 			<div 
 				v-if="$Check(post.featImage.imageCaption)" 
 				v-html="post.featImage.imageCaption"></div>
@@ -144,3 +144,19 @@
 	}
 
 </script>
+
+<style>
+	
+	.image_caption a{
+		text-decoration: underline;
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 2px;
+	}
+
+	@media screen and (any-hover: hover){
+		.image_caption a{
+			text-decoration: none;
+		}
+	}
+
+</style>
