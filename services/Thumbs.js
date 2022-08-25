@@ -1,4 +1,7 @@
 export const featImage = `featImage {
+    
+    imageCaption
+
     featuredImage {
       srcSet
       sizes

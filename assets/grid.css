@@ -5,7 +5,7 @@
 	padding-right: var(--edge);
 }
 
-.section_heading{
+.section_heading:not(.homepage_text){
 	max-width: 800px;
 }
 
@@ -223,6 +223,7 @@
 
 .max--400{ max-width: 400px; }
 .max--500{ max-width: 500px; }
+.max--auto{ max-width: var(--max_width); }
 
 /* standardized margins */
 

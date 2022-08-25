@@ -74,8 +74,11 @@
 		<div class="border--btm"></div>
 		<aside 
 			role="caption" 
-			v-if="$Check(post.featImage.featuredImage)" class="section_inset mt--1_2 fs--small">
-			<div v-html="post.featImage.featuredImage.caption"></div>
+			v-if="$Check(post.featImage.featuredImage)" class="section_inset max--auto mt--1_2 fs--small">
+			<div 
+				v-if="$Check(post.featImage.imageCaption)" 
+				v-html="post.featImage.imageCaption"></div>
+			<div v-else v-html="post.featImage.featuredImage.caption"></div>
 		</aside>
 	</header>
 </template>

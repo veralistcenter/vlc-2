@@ -1,5 +1,5 @@
 <template>
-	<section class="mt--2 genath title section_heading" v-html="text">
+	<section class="mt--2 genath title section_heading homepage_text" v-html="text">
 		
 	</section>
 </template>
