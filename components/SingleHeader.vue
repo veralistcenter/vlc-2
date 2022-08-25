@@ -154,7 +154,7 @@
 	}
 
 	@media screen and (any-hover: hover){
-		.image_caption a{
+		.image_caption a:hover{
 			text-decoration: none;
 		}
 	}
