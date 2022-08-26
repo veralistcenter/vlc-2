@@ -12,6 +12,7 @@
 				:class="{grey_text: (potential !== 'years' && potential !== false)}"
 			>Year Published</button>, 
 			<button 
+				v-if="$CheckA(formats)"
 				@click="setPotential('formats')" 
 				class="underline"
 				:class="{grey_text: (potential !== 'formats' && potential !== false)}"
@@ -25,7 +26,7 @@
 				@click="setPotential('themes')" 
 				class="underline"
 				:class="{grey_text: (potential !== 'themes' && potential !== false)}"
-			>Theme</button>
+			>Focus Theme</button>
 		</h2>
 
 		<section class="potential_filters mt--1" v-if="potential">
