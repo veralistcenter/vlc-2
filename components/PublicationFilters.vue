@@ -16,7 +16,7 @@
 				@click="setPotential('formats')" 
 				class="underline"
 				:class="{grey_text: (potential !== 'formats' && potential !== false)}"
-			>Format</button>, 
+			>Format</button><span v-if="$CheckA(formats)">, </span>
 			<button 
 				@click="setPotential('tags')" 
 				class="underline"
