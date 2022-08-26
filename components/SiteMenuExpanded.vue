@@ -36,6 +36,7 @@
 								:href="r.link" 
 								:target="(r.link.includes('veralistcenter.org') || r.link.includes('localhost:3000')) ? '' : '_blank'" 
 								v-html="r.text"></a>
+
 					</li>
 
 				</ul>
@@ -56,6 +57,27 @@
 		computed: {
 			menu(){ return this.settings.acfOptions.menu },
 			calcLink: state => iL => {
+
+				if(state.$Check(iL) && state.$Check(iL.slug) && iL.__typename == 'About'){
+					return `/about/${iL.slug}`
+				}
+
+				if(state.$Check(iL) && state.$Check(iL.slug) && iL.__typename.includes('Event')){
+					return `/events/${iL.slug}`
+				}
+
+				if(state.$Check(iL) && state.$Check(iL.slug) && iL.__typename.includes('Announcement')){
+					return `/announcement/${iL.slug}`
+				}
+
+				if(state.$Check(iL) && state.$Check(iL.slug) && iL.__typename.includes('Exhibition')){
+					return `/exhibitions/${iL.slug}`
+				}
+
+				if(state.$Check(iL) && state.$Check(iL.slug) && iL.__typename.includes('Publication')){
+					return `/publications/${iL.slug}`
+				}
+
 				return (state.$Check(iL) && state.$Check(iL.slug)) ? '/' + iL.slug : '/'
 			},
 			...mapGetters({

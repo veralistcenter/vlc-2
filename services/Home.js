@@ -200,6 +200,7 @@ export const Global = `acfOptions {
       text
       link
       internalLink{
+        __typename
         ...on Page{
           slug
         }
@@ -222,6 +223,9 @@ export const Global = `acfOptions {
           slug
         }
         ...on Announcement{
+          slug
+        }
+        ...on About{
           slug
         }
       }
@@ -232,6 +236,7 @@ export const Global = `acfOptions {
       text
       link
       internalLink{
+        __typename
         ...on Page{
           slug
         }
@@ -254,6 +259,9 @@ export const Global = `acfOptions {
           slug
         }
         ...on Announcement{
+          slug
+        }
+        ...on About{
           slug
         }
       }
