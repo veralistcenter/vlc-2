@@ -1,7 +1,35 @@
+@font-face{
+    font-family: 'Jungka';
+    src:url("/fonts/Jungka/Jungka-Book.woff2") format("woff2"),url("/fonts/Jungka/Jungka-Book.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Jungka';
+    src:url("/fonts/Jungka/Jungka-BookItalic.woff2") format("woff2"),url("/fonts/Jungka/Jungka-BookItalic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face{
+    font-family: 'Genath';
+    src:url("/fonts/Optimo-Genath/genath.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Genath';
+    src:url("/fonts/Optimo-Genath/genath-italic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+}
+
 html, body, h1, h2, h3, h4, h5, h6, p, ul, li, ol, button, select, input, pre, textarea{
 	padding: 0;
 	margin: 0;
-	font-family: 'Arial', Arial, sans-serif;
+	font-family: var(--sans);
 	font-weight: normal;
 	font-size: var(--fs);
 	line-height: var(--lh);
@@ -11,8 +39,19 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, li, ol, button, select, input, pre, t
 	list-style-type: none;
 }
 
+a:focus-visible, button:focus-visible{
+	background-color: black !important;
+	color: white !important;
+}
+
+
+input:focus-visible::placeholder{
+	color: black !important;
+}
+
+
 *::selection{
-	background-color: gray;
+	background-color: rgb(255,53,53);
 }
 
 html, body{
@@ -20,14 +59,54 @@ html, body{
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media screen and (max-width: 1400px){
+	html, body{
+		font-size: var(--desktop_base);
+	}
+}
+
+@media screen and (max-width: 1220px){
+	html, body{
+		font-size: var(--tablet_base);
+	}
+}
+
+@media screen and (max-width: 1100px){
+	:root{
+		--max_width: 550px;
+	}
+}
+
+
+@media screen and (max-width: 768px){
+	:root{
+		--edge: 1.5rem;
+		--fs-l: 1.1rem;
+
+		--border: solid 1px black;
+		--biennial_border: dashed 1.5px black;
+
+	}
+
+	html, body{
+		font-size: var(--mobile_base);
+	}
+}
+
+@media screen and (min-width: 1401px){
+	html, body{
+		font-size: var(--xl_base);
+	}
+}
+
 @media screen and (min-width: 769px){
-	*[data-device=desktop]{
+	*[data-device=mobile]{
 			display: none !important;	
 	}
 }
 
 @media screen and (max-width: 768px){
-	*[data-device=mobile]{
+	*[data-device=desktop]{
 		display: none !important;	
 	}
 }
@@ -59,4 +138,83 @@ button, input[type=submit], .point{ cursor: pointer; }
 }
 
 
-a.block{ display: block; }
+a.block, button.block{ display: block; }
+
+button.block{
+	width: 100%;
+	text-align: inherit;
+}
+
+.left{ text-align: left; }
+.right{ text-align: right; }
+.center{ text-align: center; }
+
+@media screen and (max-width: 768px){
+	.m_left{ text-align: left !important; }
+	.m_right{ text-align: right !important; }
+}
+
+
+.caps, .caps *{ text-transform: uppercase; letter-spacing: 0.03em !important; }
+.italic, .italic *{ font-style: italic; }
+
+.underline{
+	text-decoration: underline;
+	text-decoration-thickness: 1.5px;
+	text-underline-offset: 2px;
+}
+
+ul.ul--inline li{
+	display: inline-block;
+}
+
+.grey_text, .grey_text button{
+	color: var(--lg_text);
+}
+
+.grey_text .active{
+	color: black;
+}
+
+.fs--large, .fs--large *{
+	font-family: var(--sans);
+	font-size: var(--fs-l);
+	line-height: var(--lh-l);
+	letter-spacing: var(--ls-l);
+}
+
+.fs--regular, .fs--regular *{
+	font-family: var(--sans);
+	font-size: var(--fs-r);
+	line-height: var(--lh-r);
+	letter-spacing: var(--ls-r);
+}
+
+.fs--regular.caps, .fs--regular *.caps{
+	letter-spacing: 0.03em !important;
+}
+
+
+.fs--small, .fs--small *{
+	font-family: var(--sans);
+	font-size: var(--fs-s);
+	line-height: var(--lh-s);
+	letter-spacing: var(--ls-s);
+}
+
+.genath, .genath *{
+	font-family: var(--serif);
+	font-size: var(--fs-g);
+	line-height: var(--lh-g);
+	letter-spacing: var(--ls-g);
+}
+
+.genath.g--small, .genath.g--small *{
+	font-size: var(--fs-g-s);
+	line-height: var(--lh-g-s);
+	letter-spacing: var(--ls-g-s);
+}
+
+.genath.title, .genath.title *{
+	line-height: var(--lh_heading-g);
+}

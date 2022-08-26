@@ -5,9 +5,9 @@ export default (context, inject) => {
 
         const settings = context.store.getters.getSettings
 
-        const realTitle  = (title !== undefined) ? `Vera List Center | ${title}` : 'Vera List Center'
-        const realDescription = (!description || description === '') ? '' : description
-        const realImage = (!image || image === '') ? context.$UrlFor(settings.seo.siteImage).width(1400) : context.$UrlFor(image).width(1400).url()
+        const realTitle  = (title !== undefined) ? `${title} | Vera List Center` : 'Vera List Center'
+        const realDescription = (!description || description === '') ? 'The Vera List Center for Art and Politics is a research center and a public forum for art, culture, and politics.' : description
+        const realImage = (!image || image === '' || image === undefined || image === null) ? '/site_image.png' : image
 
         return{
           title: realTitle,
@@ -30,8 +30,8 @@ export default (context, inject) => {
     }
 
     const metatagsImg = image => {
-        const settings = context.store.getters.getSettings
-        const seoImage = (settings.seo.siteImage ) ? context.$UrlFor(settings.seo.siteImage).width(1400) : ''
+      
+        const seoImage = 'site_image.png'
         const realImage = (!image || image === '') ? seoImage : image
 
         return{

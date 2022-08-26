@@ -1,7 +1,7 @@
 export default (context, inject) => {
 	/* plugin to keep all request formats centralized */
 
-	var testUrl = 'http://localhost:8888'
+	var testUrl = (context.app.$config.wpURL !== null && context.app.$config.wpURL) ? context.app.$config.wpURL : 'http://localhost:8888'
 
 
 	const req = (query) => {
@@ -12,6 +12,13 @@ export default (context, inject) => {
 	      query: `query{ ${query} }`
 	    }
 	  }
+	}
+
+	const reqwrest = (query) => {
+		return {
+			url :`${testUrl}/wp-json/wp/v2${query}`,
+			method: 'get'
+		}
 	}
 
 	const reqwvars = (query, param, v) => {
@@ -27,8 +34,10 @@ export default (context, inject) => {
 
 	inject('Req', req)
 	inject('ReqWVars', reqwvars)
+	inject('ReqWREST', reqwrest)
 
 	context.$Req = req
 	context.$ReqWVars = reqwvars
+	context.$ReqWREST = reqwrest
 
 }
