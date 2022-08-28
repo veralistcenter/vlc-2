@@ -4,10 +4,9 @@
 			<a 
 				class="btn--full" 
 				target="_blank" 
-				:href="$Check(block.buttonFile) ? block.buttonFile : block.buttonLink" 
+				:href="$Check(block.buttonFile) ? block.buttonFile.sourceUrl : block.buttonLink" 
 				v-html="block.buttonName"></a>
 		</p>
-
 	</section>
 </template>
 
