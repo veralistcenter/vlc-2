@@ -1,3 +1,66 @@
+const axios = require('axios')
+
+
+
+const Sitemap = `query {
+
+pages(first: 20) {
+  edges {
+    node {
+      slug
+    }
+  }
+}
+
+
+
+exhibitions (first: 150, where: {orderby: {order: DESC, field: DATE}}){
+  edges {
+    node {
+      slug
+    }
+  }
+}
+events (first: 800, where: {orderby: {order: DESC, field: DATE}}){
+  edges {
+    node {
+      slug
+    }
+  }
+}
+publications (first: 150, where: {orderby: {order: DESC, field: DATE}}){
+  edges {
+    node {
+      slug
+    }
+  }
+}
+announcements(first: 150, where: {orderby: {order: DESC, field: DATE}}){
+  edges {
+    node {
+      slug
+    }
+  }
+}
+
+themes: biennials(first: 150, where: {orderby: {order: DESC, field: DATE}}){
+  edges {
+    node {
+      slug
+    }
+  }
+}
+
+abouts{
+  edges{
+    node{
+      slug
+    }
+  }
+}
+
+}`
+
 let meta = [
   { charset: 'utf-8' },
   { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -67,13 +130,56 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/google-gtag'
+    '@nuxtjs/google-gtag',
+    '@nuxtjs/sitemap'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
+  },
+
+  sitemap: {
+    hostname: 'https://www.veralistcenter.org',
+    exclude: [
+      '/announcement',
+      '/biennial-focus'
+    ],
+    routes(){
+      return axios({
+        url: `https://admin.veralistcenter.org/graphql`,
+        method: 'post',
+        data: {
+          query: Sitemap
+        }
+      }).then(results => {
+        if(results.data && results.data.data !== undefined && results.data.data !== null){
+
+          let menu = []
+          const res = results.data.data
+
+          const pages = res.pages.edges.map(a => `/${a.node.slug}`)
+          const events = res.events.edges.map(a => `/events/${a.node.slug}`)
+          const exhibitions = res.exhibitions.edges.map(is => `/exhibitions/${is.node.slug}`)
+          const publications = res.publications.edges.map(is => `/publications/${is.node.slug}`)
+          const themes = res.themes.edges.map(is => `/focus-themes/${is.node.slug}`)
+          const abouts = res.abouts.edges.map(a => `/about/${a.node.slug}`)
+          const announcements = res.announcements.edges.map(is => `/announcements/${is.node.slug}`)
+
+          return menu
+          .concat(pages)
+          .concat(events)
+          .concat(exhibitions)
+          .concat(publications)
+          .concat(themes)
+          .concat(abouts)
+          .concat(announcements)
+
+        }
+      })
+    }
+
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
