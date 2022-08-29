@@ -14,7 +14,17 @@
 			return this.$metatags({title: 'Focus Theme'})
 		},
 		computed: {
-			biennials(){ return [].concat(this.focus.biennials.edges.map(e => e.node)) }
+			biennials(){ 
+				return []
+				.concat(this.focus.biennials.edges.map(e => e.node))
+				.sort((a, b) => {
+					const aY = a.biennialInfo.dateRange.startingYear
+					const bY = b.biennialInfo.dateRange.startingYear
+
+					return parseInt(bY) - parseInt(aY)
+
+				})
+			}
 		},
 
 		async asyncData({ $axios, $Req, store }){
