@@ -50,7 +50,9 @@ export const RecentAnnouncements = `recentAnnouncements: announcements(
   }
 }`
 
-export const Biennials = `biennials{
+export const Biennials = `biennials(
+  first: 100
+){
     edges{
       node{
         title
