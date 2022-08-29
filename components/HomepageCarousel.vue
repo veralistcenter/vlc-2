@@ -45,7 +45,7 @@
 
     					<p
 								class="mt--1 fs--small carousel_text_description"
-								v-if="$Check(s.pageInfo.previewInfo.primaryDescription)"
+								v-if="$Check(s.pageInfo.previewInfo) && $Check(s.pageInfo.previewInfo.primaryDescription)"
 								v-html="s.pageInfo.previewInfo.primaryDescription"
 							></p>
     				</section>
