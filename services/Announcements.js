@@ -4,6 +4,7 @@ import { Body } from '@/services/Matrix'
 import { 
   EventQuery, 
   ExhibitionQuery,
+  PublicationQuery,
   featImage
 } from '@/services/Thumbs'
 
@@ -57,6 +58,10 @@ export const Announcement = slug => `announcement (id: "${slug}", idType: SLUG) 
 
       ...on Event{
         ${EventQuery}
+      }
+
+      ...on Publication{
+        ${PublicationQuery}
       }
     }
   }

@@ -23,6 +23,24 @@
 		max-width: var(--max_width);
 	}
 
+	.richtext u,
+	.richtext a{
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 3px;
+	}
+
+	.richtext u a,
+	.richtext a u{
+		text-decoration: none;
+	}
+
+	@media screen and (any-hover: hover){
+		.richtext a:hover{
+			opacity: .6;
+		}
+	}
+
 	.richtext p + p{
 		margin-top: calc(var(--fs-r) * var(--lh-r));
 	}
