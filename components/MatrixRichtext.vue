@@ -23,10 +23,16 @@
 		max-width: var(--max_width);
 	}
 
+	.richtext u,
 	.richtext a{
 		text-decoration: underline;
-		text-decoration-thickness: 1.5px;
-		text-underline-offset: 2px;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 3px;
+	}
+
+	.richtext u a,
+	.richtext a u{
+		text-decoration: none;
 	}
 
 	@media screen and (any-hover: hover){

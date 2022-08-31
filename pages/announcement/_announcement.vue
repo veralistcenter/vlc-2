@@ -7,7 +7,7 @@
 			<h3 class="genath title" v-html="$Dated({start: announcement.pageInfo.date, end: null })"></h3>
 			<p 
 				class="mt--1_2 max--500" 
-				v-if="$Check(announcement.pageInfo.previewInfo.description)" 
+				v-if="$Check(announcement.pageInfo) && $Check(announcement.pageInfo.previewInfo) && $Check(announcement.pageInfo.previewInfo.description)" 
 				v-html="announcement.pageInfo.previewInfo.description"></p>
 		</header>
 
