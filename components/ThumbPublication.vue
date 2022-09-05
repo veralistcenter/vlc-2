@@ -12,8 +12,16 @@
 		</figure>		
 
 		<h1 class="mt--1_2 mb--1_2 fs--small caps" v-html="format"></h1>
-		<h2 class="genath g--small" v-html="pub.title"></h2>
+		<h2 class="genath g--small">
+			<span v-html="pub.title"></span>
+			<template v-if="$Check(pub.pageInfo?.previewInfo) && $Check(pub.pageInfo.previewInfo.author)">
+				<br />
+				<em  v-html="pub.pageInfo.previewInfo.author"></em>	
+			</template>
+			
+		</h2>
 		<aside class="mt--1_2 fs--small" v-if="description" ref="description" v-html="description"></aside>
+
 	</nuxt-link>
 </template>
 
@@ -37,7 +45,7 @@
 				return this.$CheckA(this.pub.publicationFormats.edges) ? this.pub.publicationFormats.edges.map(e => e.node.name).join(', ') : 'Publication'
 			},
 			description(){
-				return this.$Check(this.pub.pageInfo.previewInfo.primaryDescription) ? this.pub.pageInfo.previewInfo.primaryDescription : false 
+				return this.$Check(this.pub.featImage) && this.$Check(this.pub.featImage.subtitle) ? this.pub.featImage.subtitle : false 
 			}
 		}
 	}
