@@ -93,8 +93,8 @@
 				})
 
 				publications = [].concat(publications).sort((a, b) => {
-					const bDate = ($Check(b) && b.pageInfo.date !== null) ? b.pageInfo.date : '2000-01-01'
-					const aDate = ($Check(a) && a.pageInfo.date !== null) ? a.pageInfo.date : '2000-01-01'
+					const bDate = ($Check(b) && b.pageInfo.date !== null) ? b.pageInfo.date : '1950-01-01'
+					const aDate = ($Check(a) && a.pageInfo.date !== null) ? a.pageInfo.date : '1950-01-01'
 					return bDate.valueOf() - aDate.valueOf()
 				})
 

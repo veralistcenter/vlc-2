@@ -114,7 +114,7 @@
 				}else if(this.$Check(this.post.exhibitionTypes)){
 					return this.$CheckA(this.post.exhibitionTypes.edges) ? this.post.exhibitionTypes.edges.map(e => e.node.name).join(', ') : 'Exhibition'
 				}else if(this.post.__typename === 'Announcement'){
-					return 'Announcement'
+					return this.post.announcementTypes.edges.length > 0 ? this.post.announcementTypes.edges.map(e => e.node.name).join(', ') : 'Announcement'
 				}
 			},
 			tags(){

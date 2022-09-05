@@ -1,6 +1,6 @@
 export const featImage = `featImage {
     
-    imageCaption
+    subtitle
 
     featuredImage {
       srcSet
@@ -175,12 +175,29 @@ sitewideTags{
     }
   }
 }
+
+announcementTypes{
+  edges{
+    node{
+      name
+      slug
+    }
+  }
+}
+
 `
 
 export const PublicationQuery = `__typename
 title
 slug
+
+
+
 featImage {
+
+  imageCaption
+  subtitle
+
   featuredImage {
     ... on MediaItem {
       srcSet
@@ -232,6 +249,7 @@ networkRelation{
 pageInfo: publicationInfo{
   date
   previewInfo{
+    author
     primaryDescription
   }
 }

@@ -9,6 +9,12 @@
 			:alt="network.featImage.featuredImage.altText"
 			sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"
 		/>
+		<h4 
+			v-if="$Check(network.featImage) && $Check(network.featImage.subtitle)"
+			class="fs--small mt--1_2" 
+			v-html="network.featImage.subtitle"></h4>
+
+
 		
 	</nuxt-link>
 </template>

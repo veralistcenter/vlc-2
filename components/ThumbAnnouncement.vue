@@ -1,6 +1,6 @@
 <template>
 	<nuxt-link class="thumb announcement_thumb pt--1_2 pl--1 pr--1" :to="'/announcements/' + announcement.slug">
-		<h1 class="fs--small caps mb--1_2">Announcement</h1>
+		<h1 class="fs--small caps mb--1_2" v-html="announcementTypes"></h1>
 		<h3 class="fs--regular mb--1_2" v-html="announcement.title"></h3>
 		<img
 			v-if="$Check(announcement.featImage) && $Check(announcement.featImage.featuredImage)"
@@ -25,6 +25,11 @@
 	export default{
 		props: {
 			announcement: Object
+		},
+		computed: {
+			announcementTypes(){
+				return this.announcement.announcementTypes.edges.length > 0 ? this.announcement.announcementTypes.edges.map(e => e.node.name).join(', ') : 'Announcement'
+			}
 		}
 	}
 
