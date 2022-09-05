@@ -43,6 +43,15 @@ export const Announcement = slug => `announcement (id: "${slug}", idType: SLUG) 
     }
   }
 
+  announcementTypes{
+    edges{
+      node{
+        name
+        slug
+      }
+    }
+  }
+
   related{
     relatedPagesSize
     relatedPagesTitle

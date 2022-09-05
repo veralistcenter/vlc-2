@@ -175,6 +175,16 @@ sitewideTags{
     }
   }
 }
+
+announcementTypes{
+  edges{
+    node{
+      name
+      slug
+    }
+  }
+}
+
 `
 
 export const PublicationQuery = `__typename
