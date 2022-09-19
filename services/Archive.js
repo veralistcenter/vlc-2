@@ -13,7 +13,7 @@ export const Archive = `exhibitions(first: 150, where: {orderby: {order: ASC, fi
   }
 }
 
-events(first: 200, where: {orderby: {order: DESC, field: DATE}}){
+events(first: 150, where: {orderby: {order: DESC, field: DATE}}){
   
   pageInfo {
     hasNextPage
@@ -27,7 +27,7 @@ events(first: 200, where: {orderby: {order: DESC, field: DATE}}){
   }
 }
 
-publications(first: 400, where: {orderby: {order: ASC, field: TITLE}}){
+publications(first: 200, where: {orderby: {order: ASC, field: TITLE}}){
   edges {
     node {
       ${PublicationQuery}

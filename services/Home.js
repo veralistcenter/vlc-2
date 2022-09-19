@@ -167,6 +167,20 @@ acfOptions: acfOptions {
           }
         }
       }
+
+      ... on AcfOptions_Homepage_PreviewSections_Upcoming {
+        cardSize
+        upcoming {
+          ... on AcfOptions_Homepage_PreviewSections_Upcoming_Upcoming {
+            __typename
+            title
+            manualAddition {
+              ${EventThumb}
+              ${ExhibitionThumb}
+            }
+          }
+        }
+      }
     }
 
 
@@ -183,7 +197,7 @@ acfOptions: acfOptions {
 
 /*
 
-[ ] get current modules
+[x] get current modules
 
 [ ] get upcoming events
 [ ] get upcoming exhibitions
