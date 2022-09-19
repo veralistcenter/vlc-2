@@ -224,9 +224,9 @@
 				let byYears = []
 
 				let posts = [].concat(this.allPosts).sort((a, b) => {
-					const bDate = (this.$Check(b) && b.pageInfo.date !== null) ? b.pageInfo.date : '2000-01-01'
-					const aDate = (this.$Check(a) && a.pageInfo.date !== null) ? a.pageInfo.date : '2000-01-01'
-					return bDate.valueOf() - aDate.valueOf()
+					const bDate = (this.$Check(b) && b.pageInfo && this.$Check(b.pageInfo.date)) ? b.pageInfo.date : '2000-01-01'
+					const aDate = (this.$Check(a) && a.pageInfo && this.$Check(a.pageInfo.date)) ? a.pageInfo.date : '2000-01-01'
+					return bDate.localeCompare(aDate)
 				})
 
 
