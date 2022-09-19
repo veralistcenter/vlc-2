@@ -13,6 +13,7 @@
       :current="block.current"
       :recentPosts="recentPosts"
       :manual="block.manual"
+      :upcoming="block.upcoming"
       :text="block.text"
       :network="block.networkPreviewGroup"
       :networkNodes="networks"
@@ -60,6 +61,8 @@ export default {
         return 'HomepageText'
       }else if(type == 'AcfOptions_Homepage_PreviewSections_Current'){
         return 'GridCurrent'
+      }else if(type == 'AcfOptions_Homepage_PreviewSections_Upcoming'){
+        return 'GridUpcoming'
       }else if(type == 'AcfOptions_Homepage_PreviewSections_Manual'){
         return 'GridManual'
       }else if(type == 'AcfOptions_Homepage_PreviewSections_NetworkPreview'){
