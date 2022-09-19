@@ -223,6 +223,7 @@
 			byYear(){
 				let byYears = []
 
+				// sort by default year
 				let posts = [].concat(this.allPosts).sort((a, b) => {
 					const bDate = (this.$Check(b) && b.pageInfo && this.$Check(b.pageInfo.date)) ? b.pageInfo.date : '2000-01-01'
 					const aDate = (this.$Check(a) && a.pageInfo && this.$Check(a.pageInfo.date)) ? a.pageInfo.date : '2000-01-01'
