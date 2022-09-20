@@ -44,7 +44,7 @@
 				let events = [].concat(this.events).concat(this.additionalEvents).sort((a, b) => {
 					const bDate = b.pageInfo.date !== null ? b.pageInfo.date : '2000-01-01'
 					const aDate = a.pageInfo.date !== null ? a.pageInfo.date : '2000-01-01'
-					return bDate.valueOf() - aDate.valueOf()
+					return bDate.localeCompare(aDate)
 				})
 
 				let byYears = []
