@@ -51,9 +51,20 @@
 						return this.$moment(e.pageInfo.date).isSame(this.$moment(), 'day') ? true : false
 					}
 				})
+				.sort((a, b) => {
+					const bDate = b.pageInfo.date !== null ? b.pageInfo.date : '2000-01-01'
+					const aDate = a.pageInfo.date !== null ? a.pageInfo.date : '2000-01-01'
+					return aDate.localeCompare(bDate)
+				})
 			},
 			upcoming(){
-				return this.events.filter(e => (this.$moment().isBefore(this.$moment(e.pageInfo.date))))
+				return this.events
+				.filter(e => (this.$moment().isBefore(this.$moment(e.pageInfo.date))))
+				.sort((a, b) => {
+					const bDate = b.pageInfo.date !== null ? b.pageInfo.date : '2000-01-01'
+					const aDate = a.pageInfo.date !== null ? a.pageInfo.date : '2000-01-01'
+					return aDate.localeCompare(bDate)
+				})
 			},
 			recent(){
 				const c = [].concat(this.current).concat(this.upcoming).map(e => e.slug)
