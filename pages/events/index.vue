@@ -57,7 +57,9 @@
 			},
 			recent(){
 				const c = [].concat(this.current).concat(this.upcoming).map(e => e.slug)
-				return this.events.filter(e => !c.includes(e.slug))
+				let recent = [].concat(this.events.filter(e => !c.includes(e.slug)))
+				recent.length = 16
+				return recent
 			},
 		},
 
@@ -89,12 +91,20 @@
 
 				pages = pages.concat(tabs)
 
-				const events = res.data.data.currentEvents.edges.map(e => e.node).sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date))
+				const events = res.data.data.currentEvents.edges.map(e => e.node).sort((a, b) => {
+					const bDate = b.pageInfo.date !== null ? b.pageInfo.date : '2000-01-01'
+					const aDate = a.pageInfo.date !== null ? a.pageInfo.date : '2000-01-01'
+					return bDate.localeCompare(aDate)
+				})
 
 				let series = res.data.data.series.edges.map(e => e.node).filter(e => e.ongoingSeries.pinSeries)
 
 				series.forEach(s => {
-					s.events = s.events.edges.map(e => e.node).sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date))
+					s.events = s.events.edges.map(e => e.node).sort((a, b) => {
+						const bDate = b.pageInfo.date !== null ? b.pageInfo.date : '2000-01-01'
+						const aDate = a.pageInfo.date !== null ? a.pageInfo.date : '2000-01-01'
+						return bDate.localeCompare(aDate)
+					})
 				})
 
 				return { 

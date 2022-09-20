@@ -26,7 +26,11 @@
 					}
 				}
 
-				let posts = [].concat(this.recentPosts.filter(e => isRecent(e.pageInfo)).sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date)))
+				let posts = [].concat(this.recentPosts.filter(e => isRecent(e.pageInfo)).sort((a, b) => {
+					const bDate = (this.$Check(b) && b.pageInfo && this.$Check(b.pageInfo.date)) ? b.pageInfo.date : '2000-01-01'
+					const aDate = (this.$Check(a) && a.pageInfo && this.$Check(a.pageInfo.date)) ? a.pageInfo.date : '2000-01-01'
+					return bDate.localeCompare(aDate)
+				}))
 				if(posts.length > 8){
 					posts.length = 8
 				}
