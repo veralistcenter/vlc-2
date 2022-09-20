@@ -89,7 +89,11 @@
 				const exhibitions = res.data.data.exhibitions.edges
 				.map(e => e.node)
 				.filter(e => $moment().isAfter($moment(e.pageInfo.date)) && (e.pageInfo.endDate === null || $moment().isAfter($moment(e.pageInfo.endDate))))
-				.sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date))
+				.sort((a, b) => {
+					const bDate = b.pageInfo.date !== null ? b.pageInfo.date : '2000-01-01'
+					const aDate = a.pageInfo.date !== null ? a.pageInfo.date : '2000-01-01'
+					return bDate.localeCompare(aDate)
+				})
 
 
 				return { 
