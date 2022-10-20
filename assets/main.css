@@ -120,6 +120,18 @@
 	transform: translateY(calc(-1 * var(--margin_half) - .5px));
 }
 
+/* event */
+
+.iframe_wrapper{
+	margin-top: calc(var(--margin) * -1.3);
+	display: block;
+	width: 100%;
+}
+
+.iframe_wrapper iframe{
+	width: 100%;
+}
+
 
 /* profile */
 

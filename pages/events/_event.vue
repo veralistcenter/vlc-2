@@ -1,5 +1,11 @@
 <template>
 	<main class="page pt--7">
+		<div 
+			v-if="$Check(event) && event.livestreamIframe.displayLivestreamIframe"
+			class="iframe_wrapper mb--1"
+			v-html="event.livestreamIframe.iframeCode"
+		></div>
+
 		<SingleHeader :post="event" />
 		<MatrixBody v-if='$CheckA(event.bodyField.body)' :matrix="event.bodyField.body" />
 
