@@ -99,7 +99,7 @@
 
 				as.forEach(a => {
 					const link = a.getAttribute('href')
-					a.setAttribute('href', link.replace('www.veralist', 'admin.veralist').replace('://veralist', '://admin.veralist'))
+					a.setAttribute('href', link.replace('www.veralist', 'admin.veralist').replace('staging.veralist', 'admin.veralist').replace('://veralist', '://admin.veralist'))
 				})
 
 			},
