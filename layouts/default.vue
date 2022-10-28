@@ -3,6 +3,7 @@
 		class="vlc_page" 
 		:class="['page_' + $route.name, {'is_contrasted': contrast}]"
 		:style="bg"
+		ref="page"
 	>
 
 		<button @click="skipToContent" class="skip_to" tabindex="1">Skip to Content</button>
@@ -80,18 +81,32 @@
 		mounted(){
 			this.$nextTick(() => {
 				this.setUpUserway()
+				this.replaceFileLinks()
 			})
 		},
+		watch: {
+			'$route.path': function(newPath){
+				this.$nextTick(() => {
+					this.replaceFileLinks()
+				})
+			}
+		},
 		methods: {
+			replaceFileLinks(){
+				const p = this.$refs.page
+				const as = p.querySelectorAll('a[href*="wp-content/uploads"]')
+				console.log(as)
 
+				as.forEach(a => {
+					const link = a.getAttribute('href')
+					a.setAttribute('href', link.replace('www.veralist', 'admin.veralist').replace('://veralist', '://admin.veralist'))
+				})
+
+			},
 			skipToContent(){
 				const nodes  = document.querySelectorAll('main.page:not(.homepage_index) a, main.page:not(.homepage_index) button, .primary_carousel a, .primary_carousel button, .matrix_block a, .matrix_block button')
 
 				nodes[0].focus()
-
-
-
-
 			},
 
 			setUpUserway(){
