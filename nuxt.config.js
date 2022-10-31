@@ -12,8 +12,6 @@ pages(first: 20) {
   }
 }
 
-
-
 exhibitions (first: 150, where: {orderby: {order: DESC, field: DATE}}){
   edges {
     node {
@@ -114,6 +112,7 @@ export default {
     '~/plugins/requests.js',
     '~/plugins/meta.js',
     { src: `~plugins/vimeo-player` },
+    { src: `~plugins/youtube-player` },
     { src: '~/plugins/scroll-to.js', mode: 'client' },
     { src: '~/plugins/scroll-lock.js', mode: 'client' },
   ],

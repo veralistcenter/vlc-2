@@ -10,9 +10,18 @@
 		></div>
 
 		<div class="pub_video_player" v-if="hasVideo">
-			<client-only>
-			  <vimeo-player ref="player" :video-id="info.featuredMedia.featVideoFile" :options="options" />
-			</client-only>	
+			
+			<template v-if="youtubeId">
+				<client-only>
+					<youtube :video-id="youtubeId" ref="youtube"></youtube>
+				</client-only>	
+			</template>
+			<template v-else-if="info.featuredMedia.featVideoFile.includes('vimeo')">
+				<client-only>
+				  <vimeo-player ref="player" :video-id="info.featuredMedia.featVideoFile" :options="options" />
+				</client-only>		
+			</template>
+			
 		</div>
 
 		<div v-if="hasAudio" class="pub_audio_player">
@@ -37,6 +46,8 @@
 </template>
 
 <script>
+
+	import { getIdFromUrl } from 'vue-youtube'
 	
 	export default{
 		props: {
@@ -49,8 +60,17 @@
 			hasIssuu(){ return this.$Check(this.info.featuredMedia.featIssuuIframe) },
 			hasAudio(){ return this.$Check(this.info.featuredMedia.featAudioFile) }
 		},
+		mounted(){ this.getId() },
+		methods: {
+			getId () {
+				if(this.hasVideo){
+					this.youtubeId = getIdFromUrl(this.info.featuredMedia.featVideoFile)
+				}
+	    }
+		},
 		data(){
 			return {
+				youtubeId: null,
 				options: {
 					background: false,
 					responsive: true

@@ -84,6 +84,9 @@
 		border: 0px;
 		height: 0px;
 		border-bottom: var(--border);
+		margin-top: var(--margin_x4);
+		margin-bottom: var(--margin_x4);
+
 	}
 
 </style>
