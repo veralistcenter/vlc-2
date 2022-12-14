@@ -1,5 +1,5 @@
 <template>
-	<nuxt-link class="col thumb thumb_pub mb--4" :to="'/publications/' + pub.slug">
+	<nuxt-link v-if="$Check(pub.slug)" class="col thumb thumb_pub mb--4" :to="'/publications/' + pub.slug">
 
 		<figure class="thumb_fig">
 			<img
@@ -42,7 +42,7 @@
 		},
 		computed: {
 			format(){
-				return this.$CheckA(this.pub.publicationFormats.edges) ? this.pub.publicationFormats.edges.map(e => e.node.name).join(', ') : 'Publication'
+				return this.$CheckA(this.pub.publicationFormats?.edges) ? this.pub.publicationFormats.edges.map(e => e.node.name).join(', ') : 'Publication'
 			},
 			description(){
 				return this.$Check(this.pub.featImage) && this.$Check(this.pub.featImage.subtitle) ? this.pub.featImage.subtitle : false 
