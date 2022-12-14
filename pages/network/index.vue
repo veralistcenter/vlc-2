@@ -91,9 +91,9 @@
 				try{
 					const res = await this.$axios(this.$Req(AdditionalNetwork(cursor)))
 
-					this.additional = res.data.data.moreNetwork.edges.map(e => e.node)
+					this.additional = [].concat(this.additional).concat(res.data.data.moreNetwork.edges.map(e => e.node))
 
-										console.log(res.data.data)
+					console.log(res.data.data)
 
 					if(res.data.data.moreNetwork.pageInfo.hasNextPage){
 						this.fetchMore(res.data.data.moreNetwork.pageInfo.endCursor)

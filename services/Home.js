@@ -137,6 +137,7 @@ acfOptions: acfOptions {
             manualAddition {
               ${EventThumb}
               ${ExhibitionThumb}
+              ${PublicationThumb}
             }
           }
         }
