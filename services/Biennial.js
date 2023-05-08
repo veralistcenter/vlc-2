@@ -1,4 +1,4 @@
-import {featImage, EventQuery, ExhibitionQuery, AnnouncementQuery } from '@/services/Thumbs'
+import {featImage, EventQuery, ExhibitionQuery, AnnouncementQuery, PublicationQuery } from '@/services/Thumbs'
 
 export const Biennial = slug => `biennial (id: "${slug}", idType: SLUG) {
 	title
@@ -58,6 +58,16 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
     edges{
       node{
         ${AnnouncementQuery}
+      }
+    }
+  }
+
+  publications(
+    where: {orderby: {order: ASC, field: TITLE}}
+  ){
+    edges{
+      node{
+        ${PublicationQuery}
       }
     }
   }

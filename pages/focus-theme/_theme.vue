@@ -100,6 +100,7 @@
 						events: [].concat(t.events.edges.map(n => n.node)),
 						exhibitions: [].concat(t.exhibitions.edges.map(n => n.node)),
 						announcements: [].concat(t.announcements.edges.map(n => n.node)),
+						publications: [].concat(t.publications.edges.map(n => n.node)),
 					}
 
 				}else{
@@ -107,7 +108,8 @@
 						networks: [],
 						events: [],
 						exhibitions: [],
-						announcements: []
+						announcements: [],
+						publications: []
 					}
 				}
 			},
