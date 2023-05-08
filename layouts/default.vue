@@ -64,7 +64,7 @@
 
 			},
 			gradients(){
-				return this.settings.pages.edges.map(p => {
+				return this.settings?.pages?.edges.map(p => {
 					return {
 						slug: p.node.slug,
 						gradient: this.$CheckA(p.node.gradient.gradientPicker) ? p.node.gradient.gradientPicker[0].gradientPicker : false
