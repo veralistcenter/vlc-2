@@ -30,6 +30,33 @@
 		text-underline-offset: 3px;
 	}
 
+	.richtext ul{
+		list-style: none;
+	}
+
+	.richtext ul:not(:first-child){
+		margin-top: 1em;
+		margin-bottom: 1em;
+	}
+
+	.richtext ul li{
+		position: relative;
+		box-sizing: border-box;
+		padding-left: 1.25em;
+	}
+
+	.richtext ul li:before{
+		content: "";
+		position: absolute;
+		left: 0;
+		width: .5em;
+		height: .5em;
+		background: black;
+		top: .5em;
+		border-radius: 100%;
+
+	}
+
 	.richtext u a,
 	.richtext a u{
 		text-decoration: none;

@@ -181,6 +181,10 @@ export default {
 
   },
 
+  router: {
+    middleware: 'redirects'
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     vendor: [
