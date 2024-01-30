@@ -56,6 +56,19 @@ export const Search = term => `
 
 export const SearchIds = ids => `
 
+	networks(first: 100 where: {in: [${ids}]}){
+		edges{
+			node{
+				title
+	      slug
+	      networkInformation{
+	        type
+	      }
+			}
+		}
+	}
+	
+
 	events(first: 200 where: {in: [${ids}]}){
 		edges{
 			node{
