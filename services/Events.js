@@ -150,6 +150,13 @@ export const Event = (slug, preview ) => `event (id: "${slug}", idType: SLUG ${p
           slug
         }
       }
+
+      associatedProject{
+        ...on Project{
+          title
+          slug
+        }
+      }
     }
     
   }

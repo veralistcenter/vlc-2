@@ -95,6 +95,13 @@ export const Exhibition = slug => `exhibition (id: "${slug}", idType: SLUG) {
           slug
         }
       }
+
+      associatedProject{
+        ...on Project{
+          title
+          slug
+        }
+      }
     }
     
   }

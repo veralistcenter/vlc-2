@@ -1,49 +1,33 @@
 <template>
 	<main class="page pt--8">
 		<h1 class="genath section_heading title mb--1">
-			<span v-html="b.title"></span><br />
-			<span v-html="b.biennialInfo.dateRange.startingYear"></span>–<span v-html="b.biennialInfo.dateRange.endingYear"></span>
+			<span v-html="project.title"></span><br />
+			<span v-html="project.projectInfo.dateRange.startingYear"></span>–<span v-html="project.projectInfo.dateRange.endingYear"></span>
 		</h1>
-		
 
 		<section class="grid">
-				
 			<aside class="col col--1_4 mcol--full">
 				<figure>
 					<img
 						class="biennial_img"
-						v-if="$Check(b.featImage) && $Check(b.featImage.featuredImage)"
-						:src="b.featImage.featuredImage.sourceUrl"
-						:srcset="b.featImage.featuredImage.srcSet"
+						v-if="$Check(project.featImage) && $Check(project.featImage.featuredImage)"
+						:src="project.featImage.featuredImage.sourceUrl"
+						:srcset="project.featImage.featuredImage.srcSet"
 						sizes="(max-width: 768px) 100vw, (min-width: 769px) 80vw, 100vw"
-						:alt="b.featImage.featuredImage.altText"
-						:title="b.featImage.featuredImage.title"
+						:alt="project.featImage.featuredImage.altText"
+						:title="project.featImage.featuredImage.title"
 					/>
 
 					<figcaption 
 						class="fs--small mt--1_4"
-						v-if="$Check(b.featImage.imageCaption)" v-html="b.featImage.imageCaption"></figcaption>
+						v-if="$Check(project.featImage.imageCaption)" v-html="project.featImage.imageCaption"></figcaption>
 					<figcaption 
 						class="fs--small mt--1_4"
-						v-else-if="$Check(b.featImage) && $Check(b.featImage.featuredImage.caption)" v-html="b.featImage.featuredImage.caption"></figcaption>
+						v-else-if="$Check(project.featImage) && $Check(project.featImage?.featuredImage?.caption)" v-html="project.featImage.featuredImage.caption"></figcaption>
 
 				</figure>
 			</aside>
-			<section 
-				class="col col--1_2 mcol--full mmt--1" 
-			>
-			
-				<section class="fs--regular" v-html="b.biennialInfo.fullDescription"></section>
-
-				<ProjectLink 
-					class="mt--2"
-					v-if="$CheckA(b.biennialInfo.associatedProject)" 
-					:projects="b.biennialInfo.associatedProject" 
-				/>
-
-			</section>
-
-			
+			<section class="col col--1_2 mcol--full mmt--1 fs--regular" v-html="project.projectInfo.fullDescription"></section>
 
 		</section>
 
@@ -65,33 +49,35 @@
 		</section>
 
 
-		<section class="mt--1 mb--4">
+		<section 
+			class="mb--4"
+			:class="!$CheckA(taxonomy.networks) ? 'mt--2' : 'mt--1'"
+		>
 			
 			<GridThumbs :posts="relatedPosts" :size="'Quarter'" />
 
 		</section>
 
-		<BiennialList :biennials="biennials" />
+
 
 	</main>
 </template>
 
 <script>
 	
-	import { Biennials } from '@/services/Home'
-	import { Biennial } from '@/services/Biennial'
+	import { Project } from '@/services/Project'
 
 
 	export default{
 		head(){
 
-			const description = `${this.b.biennialInfo.dateRange.startingYear}–${this.b.biennialInfo.dateRange.endingYear}`
+			const description = `${this.project.projectInfo.dateRange.startingYear}–${this.project.projectInfo.dateRange.endingYear}`
 
-			const image = (this.$Check(this.b.featImage) && this.$Check(this.b.featImage.featuredImage)) ? this.b.featImage.featuredImage.sourceUrl : undefined
+			const image = (this.$Check(this.project.featImage) && this.$Check(this.project.featImage.featuredImage)) ? this.project.featImage.featuredImage.sourceUrl : undefined
 
 
 			return this.$metatags({
-				title: this.b.title,
+				title: this.project.title,
 				description,
 				image
 			})
@@ -100,14 +86,14 @@
 		computed: {
 			relatedPosts(){
 				let posts = [].concat(this.taxonomy.events).concat(this.taxonomy.exhibitions).concat(this.taxonomy.announcements).concat(this.taxonomy.publications)
-				const sortedPosts = posts.sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date))
+				const sortedPosts = posts.sort((a, b) => a.valueOf(a.pageInfo.date) - project.valueOf(a.pageInfo.date))
 				return posts
 
 			},
 			taxonomy(){
-				if(this.$Check(this.focus.biennialTaxonomy)){
+				if(this.$Check(this.projectData.projectTaxonomy)){
 
-					const t = this.focus.biennialTaxonomy
+					const t = this.projectData.projectTaxonomy
 
 					return {
 						networks: [].concat(t.networks.edges.map(n => n.node)),
@@ -127,29 +113,30 @@
 					}
 				}
 			},
-			b(){ return this.focus.biennial },
-			biennials(){ return [].concat(this.focus.biennials.edges.map(e => e.node)) }
+			project(){ return this.projectData.project },
 		},
 
 		async asyncData({ $axios, $Req, store, params }){
-    const query = Biennial(params.theme) + Biennials
+    	const query = Project(params.project)
 
       try{
         const res = await $axios($Req(query))
+
+        console.log(res)
         
-        const title = (res.data.data.biennial) ? res.data.data.biennial.title : 'Focus Theme'
-        const slug = (res.data.data.biennial) ? res.data.data.biennial.slug : ''
+        const title = (res.data.data.project) ? res.data.data.project.title : 'Project'
+        const slug = (res.data.data.project) ? res.data.data.project.slug : ''
 
         store.commit('updatePath', [
-        	{title: 'Home', route: '/'},
-        	{title: 'Focus Theme', route: '/focus-theme'},
-        	{title: title, route: '/focus-theme/' + slug}
+        	{ title: 'Home', route: '/' },
+        	{ title: 'Projects', route: '/' },
+        	{ title: title, route: '/project/' + slug }
         ])
 
-        return { focus: res.data.data }
+        return { projectData: res.data.data }
 
       }catch(e){
-        return { focus: e }
+        return { project: e }
       }
   }
 	}

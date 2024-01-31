@@ -68,6 +68,12 @@
 					:biennials="post.pageInfo.previewInfo.associatedBiennial" 
 				/>
 
+				<ProjectLink 
+					:class="$CheckA(post.pageInfo.previewInfo.associatedBiennial) ? 'mt--1' : 'mt--2'"
+					v-if="$CheckA(post.pageInfo.previewInfo.associatedProject)" 
+					:projects="post.pageInfo.previewInfo.associatedProject" 
+				/>
+
 			</section>
 		</div>
 

@@ -1,26 +1,19 @@
 import {featImage, EventQuery, ExhibitionQuery, AnnouncementQuery, PublicationQuery } from '@/services/Thumbs'
 
-export const Biennial = slug => `biennial (id: "${slug}", idType: SLUG) {
+export const Project = slug => `project (id: "${slug}", idType: SLUG) {
 	title
   slug
 
   ${featImage}
-  biennialInfo{
+  projectInfo{
     fullDescription
-
-    associatedProject{
-      ...on Project{
-        title
-        slug
-      }
-    }
 
     dateRange{
       startingYear
       endingYear
     }
 
-    correspondingBiennialTag{
+    correspondingProjectTag{
       slug
       name
       id
@@ -29,7 +22,7 @@ export const Biennial = slug => `biennial (id: "${slug}", idType: SLUG) {
 
 }
 
-biennialTaxonomy(id: "${slug}", idType: SLUG) {
+projectTaxonomy(id: "${slug}", idType: SLUG) {
   networks{
     edges{
       node{
