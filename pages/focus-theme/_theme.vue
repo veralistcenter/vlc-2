@@ -99,7 +99,12 @@
 
 		computed: {
 			relatedPosts(){
-				let posts = [].concat(this.taxonomy.events).concat(this.taxonomy.exhibitions).concat(this.taxonomy.announcements).concat(this.taxonomy.publications)
+				let posts = []
+					.concat(this.taxonomy.events)
+					.concat(this.taxonomy.exhibitions)
+					.concat(this.taxonomy.announcements)
+					.concat(this.taxonomy.publications)
+				
 				const sortedPosts = posts.sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date))
 				return posts
 

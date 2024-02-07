@@ -1,4 +1,4 @@
-import { EventQuery, featImage, ExhibitionQuery } from '@/services/Thumbs'
+import { EventQuery, featImage, ExhibitionQuery, PublicationQuery } from '@/services/Thumbs'
 
 
 export const Network100 = `networks: networks(where: {orderby: {field: MODIFIED, order: ASC}}, first: 100) {
@@ -182,7 +182,7 @@ export const Item = slug => `network (id: "${slug}", idType: SLUG) {
             ${ExhibitionQuery}
           }
           ... on Publication{
-            title
+            ${PublicationQuery}
           }
         }
       }
@@ -195,7 +195,7 @@ export const Item = slug => `network (id: "${slug}", idType: SLUG) {
     relatedPages{
       __typename
       ...on Publication{
-        title
+        ${PublicationQuery}
       }
       
       ...on Exhibition{

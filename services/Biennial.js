@@ -30,7 +30,9 @@ export const Biennial = slug => `biennial (id: "${slug}", idType: SLUG) {
 }
 
 biennialTaxonomy(id: "${slug}", idType: SLUG) {
-  networks{
+  networks(
+  first: 50
+  ){
     edges{
       node{
         title
@@ -40,7 +42,7 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
   }
   
   events(
-    where: {orderby: {order: ASC, field: DATE}}
+    first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
     edges{
       node{
@@ -50,7 +52,7 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
   }
 
   exhibitions(
-    where: {orderby: {order: ASC, field: DATE}}
+    first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
     edges{
       node{
@@ -60,7 +62,7 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
   }
   
   announcements(
-    where: {orderby: {order: ASC, field: DATE}}
+    first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
     edges{
       node{
@@ -70,7 +72,7 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
   }
 
   publications(
-    where: {orderby: {order: ASC, field: TITLE}}
+    first: 50 where: { orderby: {order: ASC, field: TITLE}}
   ){
     edges{
       node{
