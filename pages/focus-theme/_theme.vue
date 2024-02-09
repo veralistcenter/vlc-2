@@ -66,9 +66,7 @@
 
 
 		<section class="mt--1 mb--4">
-			
 			<GridThumbs :posts="relatedPosts" :size="'Quarter'" />
-
 		</section>
 
 		<BiennialList :biennials="biennials" />
@@ -105,7 +103,9 @@
 					.concat(this.taxonomy.announcements)
 					.concat(this.taxonomy.publications)
 				
-				const sortedPosts = posts.sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date))
+				const sortedPosts = posts
+					.sort((a, b) => new Date(b.pageInfo.date) - new Date(a.pageInfo.date))
+					// a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date)
 				
 				return sortedPosts
 
