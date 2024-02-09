@@ -106,7 +106,8 @@
 					.concat(this.taxonomy.publications)
 				
 				const sortedPosts = posts.sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date))
-				return posts
+				
+				return sortedPosts
 
 			},
 			taxonomy(){
