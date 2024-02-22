@@ -5,6 +5,7 @@ import {
   EventQuery, 
   ExhibitionQuery,
   PublicationQuery,
+  AnnouncementQuery,
   featImage
 } from '@/services/Thumbs'
 
@@ -114,6 +115,9 @@ export const Event = (slug, preview ) => `event (id: "${slug}", idType: SLUG ${p
       }
       ... on Publication{
         ${PublicationQuery}
+      }
+      ... on Announcement{
+        ${AnnouncementQuery}
       }
     }
     relatedPagesSize

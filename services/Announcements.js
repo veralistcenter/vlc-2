@@ -5,6 +5,7 @@ import {
   EventQuery, 
   ExhibitionQuery,
   PublicationQuery,
+  AnnouncementQuery,
   featImage
 } from '@/services/Thumbs'
 
@@ -67,17 +68,17 @@ export const Announcement = slug => `announcement (id: "${slug}", idType: SLUG) 
       ...on Publication{
         title
       }
-      
       ...on Exhibition{
         ${ExhibitionQuery}
       }
-
       ...on Event{
         ${EventQuery}
       }
-
       ...on Publication{
         ${PublicationQuery}
+      }
+      ...on Announcement{
+        ${AnnouncementQuery}
       }
     }
   }

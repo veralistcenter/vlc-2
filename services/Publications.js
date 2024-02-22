@@ -79,6 +79,9 @@ export const Publication = slug => `publication (id: "${slug}", idType: SLUG) {
       ... on Publication{
         ${PublicationQuery}
       }
+      ... on Announcement{
+        ${AnnouncementQuery}
+      }
     }
     relatedPagesSize
     relatedPagesTitle
