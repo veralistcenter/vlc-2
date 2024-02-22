@@ -5,7 +5,7 @@
 			<span v-html="project.projectInfo.dateRange.startingYear"></span>–<span v-html="project.projectInfo.dateRange.endingYear"></span>
 		</h1>
 
-		<section class="grid">
+		<section class="grid" v-if="project">
 			<aside class="col col--1_4 mcol--full">
 				<figure>
 					<img
@@ -31,7 +31,7 @@
 
 		</section>
 
-		<section v-if="$CheckA(taxonomy.networks)" class="section_inset mt--2 mb--2 pt--1 pb--1 border--top border--btm">
+		<section v-if="project && $CheckA(taxonomy.networks)" class="section_inset mt--2 mb--2 pt--1 pb--1 border--top border--btm">
 			<h2 class="fs--large">Network</h2>
 
 			<ul class="ul--inline fs--regular mt--1">
@@ -86,7 +86,7 @@
 		computed: {
 			relatedPosts(){
 				let posts = [].concat(this.taxonomy.events).concat(this.taxonomy.exhibitions).concat(this.taxonomy.announcements).concat(this.taxonomy.publications)
-				const sortedPosts = posts.sort((a, b) => a.valueOf(a.pageInfo.date) - project.valueOf(a.pageInfo.date))
+				const sortedPosts = posts.sort((a, b) => a.valueOf(a.pageInfo.date) - this.project.valueOf(a.pageInfo.date))
 				return posts
 
 			},
@@ -113,7 +113,7 @@
 					}
 				}
 			},
-			project(){ return this.projectData.project },
+			project(){ return this.projectData ? this.projectData.project : {} },
 		},
 
 		async asyncData({ $axios, $Req, store, params }){
@@ -124,8 +124,8 @@
 
         console.log(res)
         
-        const title = (res.data.data.project) ? res.data.data.project.title : 'Project'
-        const slug = (res.data.data.project) ? res.data.data.project.slug : ''
+        const title = res.data.data.project ? res.data.data.project.title : 'Project'
+        const slug = res.data.data.project ? res.data.data.project.slug : ''
 
         store.commit('updatePath', [
         	{ title: 'Home', route: '/' },
