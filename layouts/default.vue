@@ -95,7 +95,7 @@
 			replaceFileLinks(){
 				const p = this.$refs.page
 				const as = p.querySelectorAll('a[href*="wp-content/uploads"]')
-				console.log(as)
+				// console.log(as)
 
 				as.forEach(a => {
 					const link = a.getAttribute('href')

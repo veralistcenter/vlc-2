@@ -50,6 +50,12 @@
 					:biennials="previewInfo.associatedBiennial" 
 				/>
 
+				<ProjectLink 
+					class="mt--1"	
+					v-if="$CheckA(previewInfo.associatedProject)" 
+					:projects="previewInfo.associatedProject" 
+				/>
+
 				<section 
 					class="mt--1 max--500 fs--small" 
 					v-if="$Check(previewInfo.secondaryDescription)" 

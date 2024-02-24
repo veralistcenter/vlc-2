@@ -29,7 +29,21 @@
 
 				</figure>
 			</aside>
-			<section class="col col--1_2 mcol--full mmt--1 fs--regular" v-html="b.biennialInfo.fullDescription"></section>
+			<section 
+				class="col col--1_2 mcol--full mmt--1" 
+			>
+			
+				<section class="fs--regular" v-html="b.biennialInfo.fullDescription"></section>
+
+				<ProjectLink 
+					class="mt--2"
+					v-if="$CheckA(b.biennialInfo.associatedProject)" 
+					:projects="b.biennialInfo.associatedProject" 
+				/>
+
+			</section>
+
+			
 
 		</section>
 
@@ -52,9 +66,7 @@
 
 
 		<section class="mt--1 mb--4">
-			
 			<GridThumbs :posts="relatedPosts" :size="'Quarter'" />
-
 		</section>
 
 		<BiennialList :biennials="biennials" />
@@ -85,9 +97,17 @@
 
 		computed: {
 			relatedPosts(){
-				let posts = [].concat(this.taxonomy.events).concat(this.taxonomy.exhibitions).concat(this.taxonomy.announcements).concat(this.taxonomy.publications)
-				const sortedPosts = posts.sort((a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date))
-				return posts
+				let posts = []
+					.concat(this.taxonomy.events)
+					.concat(this.taxonomy.exhibitions)
+					.concat(this.taxonomy.announcements)
+					.concat(this.taxonomy.publications)
+				
+				const sortedPosts = posts
+					.sort((a, b) => new Date(b.pageInfo.date) - new Date(a.pageInfo.date))
+					// a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date)
+				
+				return sortedPosts
 
 			},
 			taxonomy(){

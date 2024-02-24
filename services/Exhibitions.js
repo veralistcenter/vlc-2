@@ -1,5 +1,5 @@
 import { Body } from '@/services/Matrix'
-import { ExhibitionQuery, EventQuery, featImage, PublicationQuery } from '@/services/Thumbs'
+import { ExhibitionQuery, EventQuery, featImage, PublicationQuery, AnnouncementQuery } from '@/services/Thumbs'
 
 export const RecentExhibitions = `recentExhibitions: exhibitions(
   first: 150
@@ -60,6 +60,9 @@ export const Exhibition = slug => `exhibition (id: "${slug}", idType: SLUG) {
       ... on Publication{
         ${PublicationQuery}
       }
+      ... on Announcement{
+        ${AnnouncementQuery}
+      }
     }
     relatedPagesSize
     relatedPagesTitle
@@ -91,6 +94,13 @@ export const Exhibition = slug => `exhibition (id: "${slug}", idType: SLUG) {
       
       associatedBiennial{
         ...on Biennial{
+          title
+          slug
+        }
+      }
+
+      associatedProject{
+        ...on Project{
           title
           slug
         }

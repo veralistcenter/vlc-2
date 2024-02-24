@@ -1,26 +1,19 @@
 import {featImage, EventQuery, ExhibitionQuery, AnnouncementQuery, PublicationQuery } from '@/services/Thumbs'
 
-export const Biennial = slug => `biennial (id: "${slug}", idType: SLUG) {
+export const Project = slug => `project (id: "${slug}", idType: SLUG) {
 	title
   slug
 
   ${featImage}
-  biennialInfo{
+  projectInfo{
     fullDescription
-
-    associatedProject{
-      ...on Project{
-        title
-        slug
-      }
-    }
 
     dateRange{
       startingYear
       endingYear
     }
 
-    correspondingBiennialTag{
+    correspondingProjectTag{
       slug
       name
       id
@@ -29,10 +22,8 @@ export const Biennial = slug => `biennial (id: "${slug}", idType: SLUG) {
 
 }
 
-biennialTaxonomy(id: "${slug}", idType: SLUG) {
-  networks(
-  first: 50
-  ){
+projectTaxonomy(id: "${slug}", idType: SLUG) {
+  networks{
     edges{
       node{
         title
@@ -42,7 +33,7 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
   }
   
   events(
-    first: 50 where: { orderby: {order: ASC, field: DATE}}
+    where: {orderby: {order: ASC, field: DATE}}
   ){
     edges{
       node{
@@ -52,7 +43,7 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
   }
 
   exhibitions(
-    first: 50 where: { orderby: {order: ASC, field: DATE}}
+    where: {orderby: {order: ASC, field: DATE}}
   ){
     edges{
       node{
@@ -62,7 +53,7 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
   }
   
   announcements(
-    first: 50 where: { orderby: {order: ASC, field: DATE}}
+    where: {orderby: {order: ASC, field: DATE}}
   ){
     edges{
       node{
@@ -72,7 +63,7 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
   }
 
   publications(
-    first: 50 where: { orderby: {order: ASC, field: TITLE}}
+    where: {orderby: {order: ASC, field: TITLE}}
   ){
     edges{
       node{
