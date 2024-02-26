@@ -184,9 +184,6 @@ export const Item = slug => `network (id: "${slug}", idType: SLUG) {
           ... on Publication{
             ${PublicationQuery}
           }
-          ... on Announcement{
-            ${AnnouncementQuery}
-          }
         }
       }
     }
@@ -206,7 +203,7 @@ export const Item = slug => `network (id: "${slug}", idType: SLUG) {
       ...on Event{
         ${EventQuery}
       }
-      ... on Announcement{
+      ...on Announcement{
         ${AnnouncementQuery}
       }
     }
