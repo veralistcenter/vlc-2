@@ -31,5 +31,8 @@
   "devDependencies": {
     "@nuxtjs/google-analytics": "^2.4.0",
     "video.js": "^7.19.2"
+  },
+  "engines": {
+    "node": "16.20.0"
   }
 }
