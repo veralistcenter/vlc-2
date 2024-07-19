@@ -199,4 +199,10 @@ export default {
   moment: {
     defaultTimezone: 'America/New_York'
   },
+
+
+  server: {
+    host: '0.0.0.0' // default: localhost
+  }
+
 }
