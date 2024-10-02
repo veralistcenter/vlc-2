@@ -1,5 +1,8 @@
 <template>
-	<nuxt-link class="thumb announcement_thumb pt--1_2 pl--1 pr--1" :to="'/announcements/' + announcement.slug">
+	<nuxt-link 
+		v-if="announcement"
+		class="thumb announcement_thumb pt--1_2 pl--1 pr--1" 
+		:to="'/announcements/' + announcement.slug">
 		<h1 class="fs--small caps mb--1_2" v-html="announcementTypes"></h1>
 		<h3 class="fs--regular mb--1_2" v-html="announcement.title"></h3>
 		<img
@@ -28,7 +31,7 @@
 		},
 		computed: {
 			announcementTypes(){
-				return this.announcement.announcementTypes.edges.length > 0 ? this.announcement.announcementTypes.edges.map(e => e.node.name).join(', ') : 'Announcement'
+				return this.announcement?.announcementTypes && this.announcement.announcementTypes.edges.length > 0 ? this.announcement.announcementTypes.edges.map(e => e.node.name).join(', ') : 'Announcement'
 			}
 		}
 	}
