@@ -1,4 +1,4 @@
-import {featImage, PublicationQuery, EventQuery, ExhibitionQuery } from '@/services/Thumbs'
+import {featImage, PublicationQuery, EventQuery, ExhibitionQuery, AnnouncementQuery } from '@/services/Thumbs'
 
 import { Body } from '@/services/Matrix'
 
@@ -78,6 +78,9 @@ export const Publication = slug => `publication (id: "${slug}", idType: SLUG) {
       }
       ... on Publication{
         ${PublicationQuery}
+      }
+      ... on Announcement{
+        ${AnnouncementQuery}
       }
     }
     relatedPagesSize
