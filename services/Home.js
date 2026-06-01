@@ -1,19 +1,17 @@
-import { 
+import {
   ExhibitionQuery,
-  AnnouncementQuery, 
+  AnnouncementQuery,
   AnnouncementThumb,
-  EventQuery, 
-  EventThumb, 
-  ExhibitionThumb, 
+  EventQuery,
+  EventThumb,
+  ExhibitionThumb,
   PublicationThumb,
-  featImage
-  
-} from '@/services/Thumbs'
+  featImage,
+} from "@/services/Thumbs";
 
-import { Network100 } from '@/services/Network'
+import { Network100 } from "@/services/Network";
 
-import { Body } from '@/services/Matrix'
-
+import { Body } from "@/services/Matrix";
 
 export const RecentEvents = `recentEvents: events(
   first: 30
@@ -24,8 +22,7 @@ export const RecentEvents = `recentEvents: events(
       ${EventQuery}
     }
   }
-}`
-
+}`;
 
 export const RecentExhibitions = `recentExhibitions: exhibitions(
   first: 30
@@ -36,8 +33,7 @@ export const RecentExhibitions = `recentExhibitions: exhibitions(
       ${ExhibitionQuery}
     }
   }
-}`
-
+}`;
 
 export const RecentAnnouncements = `recentAnnouncements: announcements(
   first: 30
@@ -48,7 +44,7 @@ export const RecentAnnouncements = `recentAnnouncements: announcements(
       ${AnnouncementQuery}
     }
   }
-}`
+}`;
 
 export const Biennials = `biennials(
   first: 100
@@ -83,7 +79,7 @@ export const Biennials = `biennials(
         }
       }
     }
-  }`
+  }`;
 
 export const Home = `
 ${RecentEvents}
@@ -194,7 +190,7 @@ acfOptions: acfOptions {
 
   }
 
-}`
+}`;
 
 /*
 
@@ -207,9 +203,6 @@ acfOptions: acfOptions {
 [ ] get network
 
 */
-
-
-
 
 export const Global = `acfOptions {
   menu{
@@ -303,8 +296,7 @@ export const Global = `acfOptions {
     columnTwo
     columnThree
   }
-}`
-
+}`;
 
 export const AllPages = `pages(first: 20) {
   edges {
@@ -329,7 +321,7 @@ export const AllPages = `pages(first: 20) {
         }
       }
 
-      ${ Body('Page') }
+      ${Body("Page")}
       
       fellows {
         currentFellows {
@@ -373,4 +365,4 @@ export const AllPages = `pages(first: 20) {
       }
     }
   }
-}`
+}`;

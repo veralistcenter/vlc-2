@@ -1,6 +1,12 @@
-import {featImage, EventQuery, ExhibitionQuery, AnnouncementQuery, PublicationQuery } from '@/services/Thumbs'
+import {
+  featImage,
+  EventQuery,
+  ExhibitionQuery,
+  AnnouncementQuery,
+  PublicationQuery,
+} from "@/services/Thumbs";
 
-export const Project = slug => `project (id: "${slug}", idType: SLUG) {
+export const Project = (slug) => `project (id: "${slug}", idType: SLUG) {
 	title
   slug
 
@@ -72,4 +78,4 @@ projectTaxonomy(id: "${slug}", idType: SLUG) {
     }
   }
   
-}`
+}`;

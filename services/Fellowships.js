@@ -1,4 +1,4 @@
-import { featImage } from '@/services/Thumbs'
+import { featImage } from "@/services/Thumbs";
 
 export const FellowPages = `
 fellowships{
@@ -36,4 +36,4 @@ fellowships{
       }
     }
   }
-}`
+}`;

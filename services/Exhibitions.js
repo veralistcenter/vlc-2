@@ -1,5 +1,11 @@
-import { Body } from '@/services/Matrix'
-import { ExhibitionQuery, EventQuery, featImage, PublicationQuery, AnnouncementQuery } from '@/services/Thumbs'
+import { Body } from "@/services/Matrix";
+import {
+  ExhibitionQuery,
+  EventQuery,
+  featImage,
+  PublicationQuery,
+  AnnouncementQuery,
+} from "@/services/Thumbs";
 
 export const RecentExhibitions = `recentExhibitions: exhibitions(
   first: 150
@@ -10,7 +16,7 @@ export const RecentExhibitions = `recentExhibitions: exhibitions(
       ${ExhibitionQuery}
     }
   }
-}`
+}`;
 
 export const Exhibitions = `exhibitions(first: 150, where: {orderby: {order: DESC, field: DATE}}){
   edges {
@@ -18,11 +24,11 @@ export const Exhibitions = `exhibitions(first: 150, where: {orderby: {order: DES
       ${ExhibitionQuery}
     }
   }
-}`
+}`;
 
 // divide into current, upcoming, past
 
-export const Exhibition = slug => `exhibition (id: "${slug}", idType: SLUG) {
+export const Exhibition = (slug) => `exhibition (id: "${slug}", idType: SLUG) {
   
   title
   slug
@@ -109,5 +115,5 @@ export const Exhibition = slug => `exhibition (id: "${slug}", idType: SLUG) {
     
   }
 
-  ${ Body('Exhibition') }
-}`
+  ${Body("Exhibition")}
+}`;

@@ -1,6 +1,11 @@
-import { ExhibitionQuery, EventQuery, AnnouncementQuery, PublicationQuery} from '@/services/Thumbs'
+import {
+  ExhibitionQuery,
+  EventQuery,
+  AnnouncementQuery,
+  PublicationQuery,
+} from "@/services/Thumbs";
 
-export const Search = term => `
+export const Search = (term) => `
 
 	events(where: {search: "${term}"}){
 		edges{
@@ -52,9 +57,9 @@ export const Search = term => `
 		}
 	}
 
-`
+`;
 
-export const SearchIds = ids => `
+export const SearchIds = (ids) => `
 
 	networks(first: 100 where: {in: [${ids}]}){
 		edges{
@@ -99,4 +104,4 @@ export const SearchIds = ids => `
 				${AnnouncementQuery}
 			}
 		}
-	}`
+	}`;

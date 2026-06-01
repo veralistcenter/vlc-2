@@ -1,4 +1,4 @@
-import { Body } from '@/services/Matrix'
+import { Body } from "@/services/Matrix";
 
 export const AboutPages = `aboutPages: abouts(first: 27){
   edges{
@@ -7,7 +7,7 @@ export const AboutPages = `aboutPages: abouts(first: 27){
       title
       slug
       
-      ${ Body('About') }
+      ${Body("About")}
     }
   }
-}`
+}`;

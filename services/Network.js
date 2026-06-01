@@ -1,5 +1,10 @@
-import { EventQuery, featImage, ExhibitionQuery, PublicationQuery, AnnouncementQuery } from '@/services/Thumbs'
-
+import {
+  EventQuery,
+  featImage,
+  ExhibitionQuery,
+  PublicationQuery,
+  AnnouncementQuery,
+} from "@/services/Thumbs";
 
 export const Network100 = `networks: networks(where: {orderby: {field: MODIFIED, order: ASC}}, first: 100) {
   edges {
@@ -11,7 +16,7 @@ export const Network100 = `networks: networks(where: {orderby: {field: MODIFIED,
       }
     }
   }
-}`
+}`;
 
 export const Network = `networks(first: 200, where: {orderby: {order: ASC, field: TITLE}}){
   
@@ -39,10 +44,11 @@ export const Network = `networks(first: 200, where: {orderby: {order: ASC, field
       }
     }
   }
-}`
+}`;
 
-
-export const AdditionalNetwork = cursor => `moreNetwork: networks(first: 200, after: "${cursor}", where: {orderby: {order: ASC, field: TITLE}}){
+export const AdditionalNetwork = (
+  cursor
+) => `moreNetwork: networks(first: 200, after: "${cursor}", where: {orderby: {order: ASC, field: TITLE}}){
   pageInfo {
     hasNextPage
     endCursor
@@ -67,10 +73,9 @@ export const AdditionalNetwork = cursor => `moreNetwork: networks(first: 200, af
       }
     }
   }
-}`
+}`;
 
-
-export const Item = slug => `network (id: "${slug}", idType: SLUG) {
+export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
   title
   slug
 
@@ -208,4 +213,4 @@ export const Item = slug => `network (id: "${slug}", idType: SLUG) {
       }
     }
   }
-}`
+}`;

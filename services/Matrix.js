@@ -1,6 +1,11 @@
-import { EventQuery, ExhibitionQuery, PublicationQuery, AnnouncementQuery } from '@/services/Thumbs'
+import {
+  EventQuery,
+  ExhibitionQuery,
+  PublicationQuery,
+  AnnouncementQuery,
+} from "@/services/Thumbs";
 
-export const Body = page => `bodyField{
+export const Body = (page) => `bodyField{
   body{
     __typename
     
@@ -142,4 +147,4 @@ export const Body = page => `bodyField{
       }
     }
   }
-}`
+}`;
