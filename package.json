@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@nuxtjs/google-analytics": "^2.4.0",
+    "@nuxtjs/web-vitals": "0.1.10",
     "video.js": "^7.19.2"
   },
   "engines": {
