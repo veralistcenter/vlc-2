@@ -146,15 +146,15 @@ acfOptions: acfOptions {
           show
         }
       }
-      
+
       ...on AcfOptions_Homepage_PreviewSections_HomepageText{
         text
       }
-      
+
       ...on AcfOptions_Homepage_PreviewSections_BiennialFocus{
-        biennialTitle          
+        biennialTitle
       }
-      
+
       ... on AcfOptions_Homepage_PreviewSections_Current {
         cardSize
         current {
@@ -241,7 +241,7 @@ export const Global = `acfOptions {
       }
       linkToggle
     }
-    
+
     pRightColumn{
       text
       link
@@ -291,6 +291,10 @@ export const Global = `acfOptions {
       link
     }
   }
+  donationsPopup{
+    title
+    text
+  }
   footer{
     columnOne
     columnTwo
@@ -322,7 +326,7 @@ export const AllPages = `pages(first: 20) {
       }
 
       ${Body("Page")}
-      
+
       fellows {
         currentFellows {
           title

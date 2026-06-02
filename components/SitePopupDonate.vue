@@ -1,7 +1,9 @@
 <template>
   <div class="site_popup_donate" :class="{ active: showDonate }">
     <div class="site_popup_donate_content pt--1 pl--1 pr--1">
-      <h2 class="caps fs--large">Donate to the site</h2>
+      <h2 class="caps fs--large">
+        {{ donationPopup?.title || "Donate to the site" }}
+      </h2>
 
       <button
         aria-label="Close donation popup"
@@ -17,15 +19,8 @@
         ></div>
       </button>
 
-      <div class="mt--1">
-        <p>
-          The New School’s Vera List Center for Art and Politics is an
-          artist-focused forum that imagines and supports politically-engaged
-          art, public scholarship, research, and community around the world.
-          Named in honor of our founder, Vera’s List is a dynamic group of
-          individuals who support the VLC with annual gifts of any amount up to
-          $999. Monthly gifts of $5 or $10 make a big difference!
-        </p>
+      <div v-if="donationPopup?.text" class="mt--1">
+        <div v-html="donationPopup?.text"></div>
       </div>
 
       <div class="center caps">
@@ -62,7 +57,11 @@ export default {
     };
   },
   computed: {
+    donationPopup() {
+      return this.settings?.acfOptions?.donationsPopup;
+    },
     ...mapGetters({
+      settings: "getSettings",
       showDonate: "getShowDonate",
     }),
   },

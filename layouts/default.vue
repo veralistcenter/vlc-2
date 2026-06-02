@@ -68,7 +68,7 @@ export default {
         slug = "";
       }
 
-      const gs = this.gradients.filter(
+      const gs = this.gradients?.filter(
         (g) => g.slug === slug && g.gradient !== false
       );
 
