@@ -4,6 +4,8 @@
       <h2 class="caps fs--large">Donate to the site</h2>
 
       <button
+        aria-label="Close donation popup"
+        tabindex="1"
         class="site_popup_donate_cross_container cross_container"
         @click="closeDonate()"
       >
