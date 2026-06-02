@@ -4,6 +4,7 @@ export const state = () => ({
   settings: false,
   paths: [],
   showMenu: false,
+  showDonate: false,
   contrast: false,
   slugs: {
     events: ["events", "events-past", "events-tab-type"],
@@ -40,6 +41,12 @@ export const mutations = {
       state.contrast = true;
     }
   },
+  closeDonate(state) {
+    state.showDonate = false;
+  },
+  openDonate(state) {
+    state.showDonate = true;
+  },
 };
 
 export const getters = {
@@ -48,6 +55,7 @@ export const getters = {
   getMenuStatus: (state) => state.showMenu,
   getContrast: (state) => state.contrast,
   getSlugs: (state) => state.slugs,
+  getShowDonate: (state) => state.showDonate,
 };
 
 export const actions = {

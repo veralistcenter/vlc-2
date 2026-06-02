@@ -17,6 +17,8 @@
 
     <Nuxt />
 
+    <SitePopupDonate />
+
     <SiteFooter />
   </div>
 </template>
