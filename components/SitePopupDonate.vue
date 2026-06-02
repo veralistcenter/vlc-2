@@ -122,6 +122,12 @@ export default {
   visibility: hidden;
 }
 
+@media screen and (max-width: 768px) {
+  .site_popup_donate {
+    width: calc(100% - var(--edge) * 2);
+  }
+}
+
 .site_popup_donate.active {
   opacity: 1;
   visibility: visible;
@@ -143,5 +149,22 @@ export default {
 .site_popup_donate_cross.cross--hor {
   width: var(--margin_x2);
   transform: translateY(calc(-1 * var(--margin) - 0.5px));
+}
+
+@media screen and (max-width: 768px) {
+  .site_popup_donate_cross_container {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .site_popup_donate_cross.cross--vert {
+    height: 1.5rem;
+    margin-left: 0.75rem;
+  }
+
+  .site_popup_donate_cross.cross--hor {
+    width: 1.5rem;
+    transform: translateY(calc(-1 * 0.75rem - 0.5px));
+  }
 }
 </style>
