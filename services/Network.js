@@ -19,7 +19,7 @@ export const Network100 = `networks: networks(where: {orderby: {field: MODIFIED,
 }`;
 
 export const Network = `networks(first: 200, where: {orderby: {order: ASC, field: TITLE}}){
-  
+
 	pageInfo{
 		hasNextPage
 		endCursor
