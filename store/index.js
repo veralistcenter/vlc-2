@@ -4,7 +4,7 @@ export const state = () => ({
   settings: false,
   paths: [],
   showMenu: false,
-  showDonate: true,
+  showDonate: false,
   contrast: false,
   slugs: {
     events: ["events", "events-past", "events-tab-type"],
