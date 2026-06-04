@@ -19,8 +19,8 @@
         ></div>
       </button>
 
-      <div v-if="donationPopup?.text" class="mt--1">
-        <div v-html="donationPopup?.text"></div>
+      <div v-if="$Check(donationPopup.text)" class="mt--1">
+        <div v-html="donationPopup.text"></div>
       </div>
 
       <div class="center caps">

@@ -64,6 +64,8 @@ export default {
         return "MatrixColumn";
       } else if (t.includes("Body_AudioPlayer")) {
         return "MatrixAudioPlayer";
+      } else if (t.includes("Body_Donations")) {
+        return "MatrixDonations";
       } else {
         return "MatrixPre";
       }
