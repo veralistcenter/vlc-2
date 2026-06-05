@@ -51,6 +51,13 @@ export default {
   border: dashed 2px black;
 }
 
+@media screen and (max-width: 768px) {
+  .matrix_donations {
+    margin-left: var(--edge);
+    margin-right: var(--edge);
+  }
+}
+
 .matrix_donations_inner {
   color: white;
   background-color: black;
