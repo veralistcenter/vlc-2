@@ -46,7 +46,7 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-  
+
   events(
     first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
@@ -66,7 +66,7 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-  
+
   announcements(
     first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
@@ -86,5 +86,5 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-  
+
 }`;

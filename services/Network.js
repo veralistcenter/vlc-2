@@ -101,7 +101,7 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
       externalLinkUrl
     }
   }
-  
+
   networkPreview{
     subtitle
     description
@@ -110,7 +110,7 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
       buttonName
     }
   }
-  
+
   pageFormat{
     pageLength
     shortBody
@@ -123,7 +123,7 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
         buttonLink
         buttonName
       }
-      
+
       ...on Network_Pageformat_Body_Gallery{
         title
         slide{
@@ -141,12 +141,12 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
           }
         }
       }
-      
+
       ...on Network_Pageformat_Body_Richtext{
         title
         text
       }
-      
+
       ...on Network_Pageformat_Body_Accordian{
         title
         section{
@@ -159,21 +159,21 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
           }
           sectionTitle
           sectionSubtitle
-        }  
+        }
       }
-      
+
       ...on Network_Pageformat_Body_AudioPlayer{
         audioFile{
           sourceUrl
         }
       }
-      
+
       ...on Network_Pageformat_Body_VideoPlayer{
         title
         caption
         vimeoUrl
       }
-      
+
       ...on Network_Pageformat_Body_RelatedPages{
         title
         relatedPagesTitle
@@ -193,7 +193,7 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
       }
     }
   }
-  
+
   related{
     relatedPagesSize
     relatedPagesTitle

@@ -18,7 +18,7 @@ export const PublicationOverview = `types: publicationTypes(first: 50){
       }
     }
   }
-  
+
   formats: publicationFormats(first: 50){
     edges{
       node{
@@ -72,8 +72,8 @@ export const Publication = (
 
 
   ${featImage}
-  
-  
+
+
   related{
     relatedPages{
       __typename
@@ -93,7 +93,7 @@ export const Publication = (
     relatedPagesSize
     relatedPagesTitle
   }
-  
+
   networkRelation{
     associatedNetwork{
       ...on Network{
@@ -119,9 +119,9 @@ export const Publication = (
         caption
       }
       featVideoFile
-      
+
       featuredSlides20220816{
-          
+
         slideImage{
           sourceUrl
           srcSet
@@ -134,9 +134,9 @@ export const Publication = (
             }
           }
         }
-        
+
       }
-      
+
     }
 
     previewInfo{
@@ -147,7 +147,7 @@ export const Publication = (
         buttonLink
         buttonName
       }
-      
+
       associatedBiennial{
         ...on Biennial{
           title
@@ -202,7 +202,7 @@ export const Publication = (
       }
     }
   }
-  
+
 
   ${Body("Publication")}
 }`;
