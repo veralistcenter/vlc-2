@@ -81,11 +81,48 @@ export const Biennials = `biennials(
     }
   }`;
 
+export const Prizes = `prizes(
+    first: 100
+  ){
+      edges{
+        node{
+          title
+          slug
+          featImage{
+            featuredImage {
+              ... on MediaItem {
+                srcSet
+                sizes
+                sourceUrl
+                altText
+                title
+                mediaDetails{
+                  sizes{
+                    name
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+          prizeInfo{
+            title
+            prizeDescriptionPreview
+            dateRange{
+              startingYear
+              endingYear
+            }
+          }
+        }
+      }
+    }`;
+
 export const Home = `
 ${RecentEvents}
 ${RecentExhibitions}
 ${RecentAnnouncements}
 ${Biennials}
+${Prizes}
 ${Network100}
 
 acfOptions: acfOptions {

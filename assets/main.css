@@ -27,6 +27,17 @@
   transition: all 0.8s ease-in-out;
 }
 
+.prize_preview.open {
+  max-height: 1000px;
+}
+
+.prize_preview {
+  height: auto;
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 0.8s ease-in-out;
+}
+
 .biennial_preview.open {
   max-height: 1000px;
 }
