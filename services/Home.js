@@ -83,6 +83,7 @@ export const Biennials = `biennials(
 
 export const Prizes = `prizes(
     first: 100
+    where: {orderby: {order: DESC, field: TITLE}}
   ){
       edges{
         node{

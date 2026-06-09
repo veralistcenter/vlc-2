@@ -12,6 +12,7 @@ export const Prize = (slug) => `prize (id: "${slug}", idType: SLUG) {
 
   ${featImage}
   prizeInfo{
+    title
     fullDescription
 
     dateRange{
