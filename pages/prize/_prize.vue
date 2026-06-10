@@ -111,7 +111,6 @@ export default {
       const sortedPosts = posts.sort(
         (a, b) => new Date(b.pageInfo.date) - new Date(a.pageInfo.date)
       );
-      // a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date)
 
       return sortedPosts;
     },

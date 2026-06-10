@@ -31,7 +31,7 @@ export const Prize = (slug) => `prize (id: "${slug}", idType: SLUG) {
 
 prizeTaxonomy(id: "${slug}", idType: SLUG) {
   networks(
-  first: 50
+    first: 50
   ){
     edges{
       node{

@@ -37,7 +37,7 @@ export const Biennial = (slug) => `biennial (id: "${slug}", idType: SLUG) {
 
 biennialTaxonomy(id: "${slug}", idType: SLUG) {
   networks(
-  first: 50
+    first: 50
   ){
     edges{
       node{
