@@ -140,7 +140,14 @@ export default {
       return this.focus.biennial;
     },
     biennials() {
-      return [].concat(this.focus.biennials.edges.map((e) => e.node));
+      return [].concat(
+        this.focus.biennials.edges.reduce((acc, e) => {
+          if (e.node.slug !== this.b.slug) {
+            return [e.node, ...acc];
+          }
+          return acc;
+        }, [])
+      );
     },
   },
 

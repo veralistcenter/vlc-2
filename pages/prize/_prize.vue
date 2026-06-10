@@ -139,7 +139,14 @@ export default {
       return this.focus.prize;
     },
     prizes() {
-      return [].concat(this.focus.prizes.edges.map((e) => e.node));
+      return [].concat(
+        this.focus.prizes.edges.reduce((acc, e) => {
+          if (e.node.slug !== this.p.slug) {
+            return [e.node, ...acc];
+          }
+          return acc;
+        }, [])
+      );
     },
   },
 
