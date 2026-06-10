@@ -1,6 +1,6 @@
 <template>
   <main class="page pt--8">
-    <SiteSubnav :pages="[]" />
+    <!-- <SiteSubnav :pages="[]" /> -->
 
     <nav class="section_inset mb--1">
       <!-- tags -->

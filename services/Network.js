@@ -19,32 +19,43 @@ export const Network100 = `networks: networks(where: {orderby: {field: MODIFIED,
 }`;
 
 export const Network = `networks(first: 200, where: {orderby: {order: ASC, field: TITLE}}){
+    pageInfo{
+      hasNextPage
+      endCursor
+    }
 
-	pageInfo{
-		hasNextPage
-		endCursor
-	}
-  edges{
-    node{
-      title
-      slug
-
-      networkInformation{
-        type
-        nameToBeAlphabetized
-      }
-
-      networkTypes{
-        edges{
-          node{
-            name
-            slug
+    edges{
+      node{
+        title
+        slug
+        networkInformation{
+          type
+          nameToBeAlphabetized
+        }
+        networkTypes{
+          edges{
+            node{
+              name
+              slug
+            }
           }
         }
       }
     }
   }
-}`;
+
+  taxonomy: networkTypes(first: 150){
+    edges{
+      node{
+        ... on NetworkType{
+          name
+          slug
+        }
+      }
+    }
+  }
+
+`;
 
 export const AdditionalNetwork = (
   cursor

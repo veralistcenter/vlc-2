@@ -5,7 +5,6 @@
     <NetworkNav :keyprefix="'all_'" :list="list" />
 
     <nav class="section_inset mb--1">
-      <!-- tags -->
       <ul class="ul--inline">
         <li
           class="node_item mr--1_2 mb--1_2"
@@ -101,6 +100,19 @@ export default {
     byNames() {
       let nodes = [].concat(this.networks).concat(this.additional);
 
+      if (this.activeFilters.length > 0) {
+        nodes = nodes.filter((n) => {
+          const tags = n.networkTypes;
+          if (this.$CheckA(tags && tags.edges)) {
+            const slugs = tags.edges
+              .filter((e) => this.$Check(e) && this.$Check(e.node))
+              .map((e) => e.node.slug);
+            return slugs.some((s) => this.activeFilters.includes(s));
+          }
+          return false;
+        });
+      }
+
       let byNames = [];
 
       nodes.sort((a, b) => {
@@ -145,6 +157,16 @@ export default {
 
       return byNames;
     },
+
+    activeFilters() {
+      const tags = this.$route.query.tags;
+      if (this.$Check(tags)) {
+        let activeTags = tags.split(",");
+        return activeTags;
+      } else {
+        return [];
+      }
+    },
   },
   mounted() {
     if (this.pageInfo.hasNextPage) {
@@ -152,6 +174,23 @@ export default {
     }
   },
   methods: {
+    setTag(slug) {
+      let tags = this.$route.query.tags;
+      if (this.$Check(tags)) {
+        const existingTags = tags.split(",");
+        const i = existingTags.indexOf(slug);
+        if (i > -1) {
+          // remove tag
+          existingTags.splice(i, 1);
+          tags = existingTags.join(",");
+        } else {
+          tags = tags + "," + slug;
+        }
+      } else {
+        tags = slug;
+      }
+      this.$router.replace({ query: { ...this.$route.query, tags: tags } });
+    },
     async fetchMore(cursor) {
       try {
         const res = await this.$axios(this.$Req(AdditionalNetwork(cursor)));
@@ -175,6 +214,8 @@ export default {
   async asyncData({ $axios, $Req, store }) {
     try {
       const res = await $axios($Req(Network));
+
+      console.log(res);
 
       store.commit("updatePath", [
         { title: "Home", route: "/" },
@@ -212,10 +253,13 @@ export default {
           return artistAlphaA.localeCompare(artistAlphaB);
         });
 
+      const taxonomy = res.data.data.taxonomy.edges.map((e) => e.node);
+
       return {
         pages,
         networks,
         pageInfo: res.data.data.networks.pageInfo,
+        taxonomy,
       };
     } catch (e) {
       return { error: e };
