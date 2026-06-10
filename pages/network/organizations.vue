@@ -4,6 +4,35 @@
 
     <NetworkNav :keyprefix="'all_'" :list="list" />
 
+    <nav class="section_inset mb--1">
+      <ul class="ul--inline">
+        <li
+          class="node_item mr--1_2 mb--1_2"
+          v-for="(tag, i) in taxonomy"
+          :key="'tag_' + tag.slug"
+          v-if="(!showAllTags && i < 15) || showAllTags"
+          :class="{ active: activeFilters.includes(tag.slug) }"
+        >
+          <button
+            class="block caps pb--1_2 pt--1_2 pr--1_2 pl--1_2"
+            @click="setTag(tag.slug)"
+          >
+            <span v-html="tag.name"></span>
+          </button>
+        </li>
+
+        <li
+          v-if="!showAllTags"
+          class="mr--1_2 mb--1_2"
+          @click="showAllTags = true"
+        >
+          <button class="block caps pb--1_2 pt--1_2 pr--1_2 pl--1_2">
+            View All
+          </button>
+        </li>
+      </ul>
+    </nav>
+
     <section
       class="section_inset"
       v-for="(l, i) in byNames"
@@ -68,6 +97,19 @@ export default {
     byNames() {
       let nodes = [].concat(this.networks).concat(this.additional);
 
+      if (this.activeFilters.length > 0) {
+        nodes = nodes.filter((n) => {
+          const tags = n.networkTypes;
+          if (this.$CheckA(tags && tags.edges)) {
+            const slugs = tags.edges
+              .filter((e) => this.$Check(e) && this.$Check(e.node))
+              .map((e) => e.node.slug);
+            return slugs.some((s) => this.activeFilters.includes(s));
+          }
+          return false;
+        });
+      }
+
       let byNames = [];
 
       nodes = nodes
@@ -114,6 +156,16 @@ export default {
 
       return byNames;
     },
+
+    activeFilters() {
+      const tags = this.$route.query.tags;
+      if (this.$Check(tags)) {
+        let activeTags = tags.split(",");
+        return activeTags;
+      } else {
+        return [];
+      }
+    },
   },
   mounted() {
     if (this.pageInfo.hasNextPage) {
@@ -121,6 +173,23 @@ export default {
     }
   },
   methods: {
+    setTag(slug) {
+      let tags = this.$route.query.tags;
+      if (this.$Check(tags)) {
+        const existingTags = tags.split(",");
+        const i = existingTags.indexOf(slug);
+        if (i > -1) {
+          // remove tag
+          existingTags.splice(i, 1);
+          tags = existingTags.join(",");
+        } else {
+          tags = tags + "," + slug;
+        }
+      } else {
+        tags = slug;
+      }
+      this.$router.replace({ query: { ...this.$route.query, tags: tags } });
+    },
     async fetchMore(cursor) {
       try {
         const res = await this.$axios(this.$Req(AdditionalNetwork(cursor)));
@@ -177,10 +246,13 @@ export default {
           return artistAlphaA.localeCompare(artistAlphaB);
         });
 
+      const taxonomy = res.data.data.taxonomy.edges.map((e) => e.node);
+
       return {
         pages,
         networks,
         pageInfo: res.data.data.networks.pageInfo,
+        taxonomy,
       };
     } catch (e) {
       return { error: e };

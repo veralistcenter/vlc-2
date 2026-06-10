@@ -215,8 +215,6 @@ export default {
     try {
       const res = await $axios($Req(Network));
 
-      console.log(res);
-
       store.commit("updatePath", [
         { title: "Home", route: "/" },
         { title: "Network", route: "/network" },
