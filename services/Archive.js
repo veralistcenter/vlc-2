@@ -14,7 +14,7 @@ export const Archive = `exhibitions(first: 150, where: {orderby: {order: ASC, fi
 }
 
 events(first: 150, where: {orderby: {order: DESC, field: DATE}}){
-  
+
   pageInfo {
     hasNextPage
     endCursor
