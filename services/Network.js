@@ -225,3 +225,117 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
     }
   }
 }`;
+
+export const NETWORK_NAV_PAGES = [
+  { title: "All", path: "/network" },
+  { title: "Individuals", path: "/network/individuals" },
+  { title: "Organizations", path: "/network/organizations" },
+];
+
+export const NETWORK_LETTER_LIST = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "Y",
+  "Z",
+];
+
+export const getNetworkAlphaName = (node) => {
+  const custom = node.networkInformation?.nameToBeAlphabetized;
+  if (custom !== null && custom !== undefined && custom !== "") {
+    return custom;
+  }
+  const names = node.title.split(" ");
+  return names[names.length - 1];
+};
+
+export const compareNetworkNodes = (a, b) => {
+  return getNetworkAlphaName(a).localeCompare(getNetworkAlphaName(b));
+};
+
+export const filterNetworkNodesByTags = (nodes, activeFilters) => {
+  if (!activeFilters.length) {
+    return nodes;
+  }
+
+  return nodes.filter((node) => {
+    const edges = node.networkTypes?.edges;
+    if (!edges?.length) {
+      return false;
+    }
+
+    return edges.some(
+      (edge) => edge?.node && activeFilters.includes(edge.node.slug)
+    );
+  });
+};
+
+export const filterNetworkNodesByType = (nodes, type) => {
+  if (!type) {
+    return nodes;
+  }
+
+  return nodes.filter((n) => n.networkInformation?.type === type);
+};
+
+export const groupNetworkNodesByLetter = (nodes) => {
+  const groups = new Map();
+
+  [...nodes].sort(compareNetworkNodes).forEach((node) => {
+    const letter = getNetworkAlphaName(node)[0].toUpperCase();
+    if (!groups.has(letter)) {
+      groups.set(letter, []);
+    }
+    groups.get(letter).push(node);
+  });
+
+  return [...groups.entries()].map(([letter, nodes]) => ({ letter, nodes }));
+};
+
+export const buildNetworkByNames = (
+  nodes,
+  { activeFilters = [], type = null } = {}
+) => {
+  let filtered = filterNetworkNodesByTags(nodes, activeFilters);
+  filtered = filterNetworkNodesByType(filtered, type);
+  return groupNetworkNodesByLetter(filtered);
+};
+
+export const fetchNetworkListPage = async (
+  { $axios, $Req, store },
+  { breadcrumb }
+) => {
+  const res = await $axios($Req(Network));
+
+  store.commit("updatePath", [
+    { title: "Home", route: "/" },
+    { title: "Network", route: "/network" },
+    breadcrumb,
+  ]);
+
+  return {
+    pages: NETWORK_NAV_PAGES,
+    networks: res.data.data.networks.edges.map((e) => e.node),
+    pageInfo: res.data.data.networks.pageInfo,
+    taxonomy: res.data.data.taxonomy.edges.map((e) => e.node),
+  };
+};
