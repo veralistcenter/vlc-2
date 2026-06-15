@@ -45,14 +45,12 @@
       ></h2>
 
       <section class="grid grid--sans network_section pb--1">
-        <nuxt-link
+        <NetworkNodeLink
           v-for="(node, j) in l.nodes"
           :key="l.letter + i + node.slug + j"
+          :node="node"
           class="fs--regular col col--1_4 mcol--1_2 mcol--tile col--tile mb--1_2"
-          :to="'/network/' + node.slug"
-        >
-          <span class="node_name" v-html="node.title"></span>
-        </nuxt-link>
+        />
       </section>
     </section>
   </main>

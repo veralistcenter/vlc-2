@@ -13,6 +13,10 @@ export const Network100 = `networks: networks(where: {orderby: {field: MODIFIED,
       slug
       networkInformation{
         type
+        externalLink{
+          makeExternalLink
+          externalLinkUrl
+        }
       }
     }
   }
@@ -31,6 +35,10 @@ export const Network = `networks(first: 200, where: {orderby: {order: ASC, field
         networkInformation{
           type
           nameToBeAlphabetized
+          externalLink{
+            makeExternalLink
+            externalLinkUrl
+          }
         }
         networkTypes{
           edges{
@@ -72,6 +80,10 @@ export const AdditionalNetwork = (
       networkInformation{
         type
         nameToBeAlphabetized
+        externalLink{
+          makeExternalLink
+          externalLinkUrl
+        }
       }
 
       networkTypes{
