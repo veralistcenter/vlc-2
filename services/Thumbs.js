@@ -1,5 +1,4 @@
 export const featImage = `featImage {
-    
     subtitle
 
     featuredImage {
@@ -22,7 +21,7 @@ export const featImage = `featImage {
       sourceUrl
       altText
       title
-      caption 
+      caption
       mediaDetails{
         sizes{
           name
@@ -132,7 +131,6 @@ pageInfo: announcementFields{
       buttonLink
       buttonName
     }
-    
   }
 }
 featImage {
@@ -190,8 +188,6 @@ announcementTypes{
 export const PublicationQuery = `__typename
 title
 slug
-
-
 
 featImage {
 
