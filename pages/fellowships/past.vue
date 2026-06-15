@@ -8,12 +8,8 @@
     />
 
     <div class="section_inset mt--2">
-      <button
-        aria-label="Scroll to top"
-        class="btn--grey"
-        @click="scrollToTop()"
-      >
-        ↑ Scroll to top
+      <button aria-label="Back to top" class="btn--grey" @click="scrollToTop()">
+        ↑ Back to top
       </button>
     </div>
   </main>
