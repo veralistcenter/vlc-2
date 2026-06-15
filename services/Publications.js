@@ -52,7 +52,10 @@ export const PublicationOverview = `types: publicationTypes(first: 50){
     }
   }
 
-  publications: publications (first: 400){
+  publications: publications (
+    first: 400
+    where: {orderby: {order: DESC, field: DATE}}
+  ){
     edges{
       node{
         ...on Publication{
@@ -61,8 +64,7 @@ export const PublicationOverview = `types: publicationTypes(first: 50){
       }
     }
   }
-
-  `;
+`;
 
 export const Publication = (
   slug
@@ -70,9 +72,7 @@ export const Publication = (
   title
   slug
 
-
   ${featImage}
-
 
   related{
     relatedPages{
@@ -202,7 +202,6 @@ export const Publication = (
       }
     }
   }
-
 
   ${Body("Publication")}
 }`;
