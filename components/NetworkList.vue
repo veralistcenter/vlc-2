@@ -10,12 +10,17 @@
       class="fs--large section_heading"
       v-html="interiorTitle"
     ></h1>
-    <ul class="ul--inline fs--regular section_inset mt--1">
+    <ul
+      class="ul--inline fs--regular section_inset mt--1 stagger-items"
+      ref="list"
+      :class="{ 'stagger-items--visible': visible }"
+    >
       <li
-        class="node_item mr--1_2 mb--1"
+        class="node_item mr--1_2 mb--1 stagger-item"
         v-for="(n, i) in networkMembers"
         :key="'network' + i"
         v-if="i < 20"
+        :style="{ '--stagger': i * 0.06 + 's' }"
       >
         <nuxt-link
           :to="'/network/' + n.slug"
@@ -34,7 +39,10 @@
 </template>
 
 <script>
+import { createIntersectionObserverMixin } from "@/mixins/intersectionObserver";
+
 export default {
+  mixins: [createIntersectionObserverMixin({ ref: "list", key: "visible" })],
   props: {
     network: Object,
     interiorTitle: String,

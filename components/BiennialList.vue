@@ -1,15 +1,24 @@
 <template>
-  <section class="biennial_list section_inset">
+  <section
+    class="biennial_list section_inset stagger-items"
+    ref="list"
+    :class="{ 'stagger-items--visible': visible }"
+  >
     <BiennialLineItem
       v-for="(b, i) in biennials"
       :key="'biennial_' + i"
+      class="stagger-item"
+      :style="{ '--stagger': i * 0.06 + 's' }"
       :b="b"
     />
   </section>
 </template>
 
 <script>
+import { createIntersectionObserverMixin } from "@/mixins/intersectionObserver";
+
 export default {
+  mixins: [createIntersectionObserverMixin({ ref: "list", key: "visible" })],
   props: {
     biennials: Array,
   },
