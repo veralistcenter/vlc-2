@@ -1,11 +1,16 @@
 <template>
-  <section class="grid mt--1">
+  <section
+    class="grid mt--1 stagger-items"
+    ref="grid"
+    :class="{ 'stagger-items--visible': visible }"
+  >
     <component
-      class="col col--tile mb--2"
-      :class="colWidth"
       v-for="(post, i) in posts"
       v-if="$Check(post)"
       :key="post.__typename + '__' + i"
+      class="stagger-item col col--tile mb--2"
+      :class="colWidth"
+      :style="{ '--stagger': i * 0.06 + 's' }"
       :is="postType(post.__typename)"
       :event="post"
       :exhibition="post"
@@ -17,7 +22,10 @@
 </template>
 
 <script>
+import { createIntersectionObserverMixin } from "@/mixins/intersectionObserver";
+
 export default {
+  mixins: [createIntersectionObserverMixin({ ref: "grid", key: "visible" })],
   props: {
     size: String,
     posts: Array,
@@ -52,9 +60,6 @@ export default {
 </script>
 
 <style>
-.thumb {
-}
-
 @media screen and (any-hover) {
   .thumb img {
     transition: filter 0.1s ease-in-out;

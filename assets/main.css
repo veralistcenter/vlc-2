@@ -232,3 +232,23 @@ span.node_name {
     transform: translateY(-0.15em) scale(1.3);
   }
 }
+
+/* stagger items */
+
+.stagger-item {
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+  transition-delay: var(--stagger);
+}
+
+.stagger-items--visible .stagger-item {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
