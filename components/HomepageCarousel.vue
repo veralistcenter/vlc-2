@@ -8,6 +8,7 @@
       :touchable="false"
       :transitionSpeed="300"
       :fixedHeight="true"
+      :autoplay="true"
       @slide="changeActive"
     >
       <vueper-slide v-for="(s, i) in gallerySlides" :key="i">
@@ -187,10 +188,12 @@ export default {
   box-sizing: border-box;
   border: var(--border);
   border-radius: 100%;
+  transition: background-color 0.1s ease-in-out;
 }
 
+.hc_nav_button_dots:hover,
 .hc_nav_button_dots.filled {
-  background: black;
+  background-color: black;
 }
 
 .hc_nav_buttons {
