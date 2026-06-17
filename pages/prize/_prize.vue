@@ -58,6 +58,7 @@
         <li
           class="node_item mr--1_2 mb--1"
           v-for="(n, i) in taxonomy.networks"
+          v-if="(!showAllNetworks && i < 15) || showAllNetworks"
           :key="'network' + i"
         >
           <nuxt-link
@@ -68,11 +69,25 @@
             <span v-html="n.title"></span>
           </nuxt-link>
         </li>
+
+        <li
+          v-if="!showAllNetworks"
+          class="mr--1_2 mb--1_2"
+          @click="showAllNetworks = true"
+        >
+          <button class="block caps pb--1_2 pt--1_2 pr--1_2 pl--1_2">
+            View All
+          </button>
+        </li>
       </ul>
     </section>
 
     <section class="mt--1 mb--4">
-      <GridThumbs :posts="relatedPosts" :size="'Quarter'" />
+      <GridThumbs
+        :posts="relatedPosts"
+        :size="'Quarter'"
+        :enable-show-all="true"
+      />
     </section>
 
     <PrizeList :prizes="prizes" />
@@ -99,7 +114,11 @@ export default {
       image,
     });
   },
-
+  data() {
+    return {
+      showAllNetworks: false,
+    };
+  },
   computed: {
     relatedPosts() {
       let posts = []
@@ -149,7 +168,6 @@ export default {
       );
     },
   },
-
   async asyncData({ $axios, $Req, store, params }) {
     const query = Prize(params.prize) + Prizes;
 
