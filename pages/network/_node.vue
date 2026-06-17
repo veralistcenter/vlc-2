@@ -49,7 +49,6 @@ export default {
       });
     }
   },
-
   async asyncData({ $axios, $Req, store, params }) {
     const query = Item(params.node) + " " + Network100;
 

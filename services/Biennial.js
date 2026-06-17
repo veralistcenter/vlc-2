@@ -9,7 +9,6 @@ import {
 export const Biennial = (slug) => `biennial (id: "${slug}", idType: SLUG) {
 	title
   slug
-
   ${featImage}
   biennialInfo{
     fullDescription
@@ -32,7 +31,6 @@ export const Biennial = (slug) => `biennial (id: "${slug}", idType: SLUG) {
       id
     }
   }
-
 }
 
 biennialTaxonomy(id: "${slug}", idType: SLUG) {
@@ -46,7 +44,6 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   events(
     first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
@@ -56,7 +53,6 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   exhibitions(
     first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
@@ -66,7 +62,6 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   announcements(
     first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
@@ -76,7 +71,6 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   publications(
     first: 50 where: { orderby: {order: ASC, field: TITLE}}
   ){
@@ -86,5 +80,4 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
 }`;

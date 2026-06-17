@@ -27,7 +27,6 @@ export const Network = `networks(first: 200, where: {orderby: {order: ASC, field
       hasNextPage
       endCursor
     }
-
     edges{
       node{
         title
@@ -51,7 +50,6 @@ export const Network = `networks(first: 200, where: {orderby: {order: ASC, field
       }
     }
   }
-
   taxonomy: networkTypes(first: 150){
     edges{
       node{
@@ -62,7 +60,6 @@ export const Network = `networks(first: 200, where: {orderby: {order: ASC, field
       }
     }
   }
-
 `;
 
 export const AdditionalNetwork = (
@@ -76,7 +73,6 @@ export const AdditionalNetwork = (
     node {
       title
       slug
-
       networkInformation{
         type
         nameToBeAlphabetized
@@ -85,7 +81,6 @@ export const AdditionalNetwork = (
           externalLinkUrl
         }
       }
-
       networkTypes{
         edges{
           node{
@@ -101,9 +96,7 @@ export const AdditionalNetwork = (
 export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
   title
   slug
-
   ${featImage}
-
   networkTypes{
     edges{
       node{
@@ -124,7 +117,6 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
       externalLinkUrl
     }
   }
-
   networkPreview{
     subtitle
     description
@@ -133,7 +125,6 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
       buttonName
     }
   }
-
   pageFormat{
     pageLength
     shortBody
@@ -146,7 +137,6 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
         buttonLink
         buttonName
       }
-
       ...on Network_Pageformat_Body_Gallery{
         title
         slide{
@@ -164,12 +154,10 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
           }
         }
       }
-
       ...on Network_Pageformat_Body_Richtext{
         title
         text
       }
-
       ...on Network_Pageformat_Body_Accordian{
         title
         section{
@@ -184,19 +172,16 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
           sectionSubtitle
         }
       }
-
       ...on Network_Pageformat_Body_AudioPlayer{
         audioFile{
           sourceUrl
         }
       }
-
       ...on Network_Pageformat_Body_VideoPlayer{
         title
         caption
         vimeoUrl
       }
-
       ...on Network_Pageformat_Body_RelatedPages{
         title
         relatedPagesTitle
@@ -216,7 +201,6 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   related{
     relatedPagesSize
     relatedPagesTitle
