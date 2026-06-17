@@ -45,8 +45,9 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      if (this.description) {
-        clamp(this.$refs.description, { clamp: 3 });
+      const el = this.$refs.description;
+      if (el) {
+        clamp(el, { clamp: 3 });
       }
     });
   },
