@@ -1,23 +1,33 @@
 <template>
-  <section
-    class="grid mt--1 stagger-items"
-    ref="grid"
-    :class="{ 'stagger-items--visible': visible }"
-  >
-    <component
-      v-for="(post, i) in posts"
-      v-if="$Check(post)"
-      :key="post.__typename + '__' + i"
-      class="stagger-item col col--tile mb--2"
-      :class="colWidth"
-      :style="{ '--stagger': i * 0.06 + 's' }"
-      :is="postType(post.__typename)"
-      :event="post"
-      :exhibition="post"
-      :announcement="post"
-      :network="post"
-      :pub="post"
-    />
+  <section class="mt--1">
+    <div
+      class="grid stagger-items"
+      ref="grid"
+      :class="{ 'stagger-items--visible': visible }"
+    >
+      <component
+        v-for="(post, i) in posts"
+        v-if="$Check(post) && ((!showAll && i < 8) || showAll)"
+        :key="post.__typename + '__' + i"
+        class="stagger-item col col--tile mb--2"
+        :class="colWidth"
+        :style="{ '--stagger': i * 0.06 + 's' }"
+        :is="postType(post.__typename)"
+        :event="post"
+        :exhibition="post"
+        :announcement="post"
+        :network="post"
+        :pub="post"
+      />
+    </div>
+
+    <div
+      v-if="!showAll"
+      class="section_inset mb--2 mt--1 fs--regular center caps"
+      @click="showAll = true"
+    >
+      <button class="btn--full">View All</button>
+    </div>
   </section>
 </template>
 
@@ -29,6 +39,17 @@ export default {
   props: {
     size: String,
     posts: Array,
+    enableShowAll: Boolean,
+  },
+  data() {
+    return {
+      showAll: true,
+    };
+  },
+  created() {
+    if (this.enableShowAll) {
+      this.showAll = false;
+    }
   },
   computed: {
     colWidth() {
