@@ -81,9 +81,15 @@ export const Biennials = `biennials(
     }
   }`;
 
+export const sortPrizesByStartingYear = (prizes) =>
+  [...prizes].sort((a, b) => {
+    const aY = parseInt(a.prizeInfo?.dateRange?.startingYear ?? 0, 10);
+    const bY = parseInt(b.prizeInfo?.dateRange?.startingYear ?? 0, 10);
+    return bY - aY;
+  });
+
 export const Prizes = `prizes(
     first: 100
-    where: {orderby: {order: DESC, field: TITLE}}
   ){
       edges{
         node{

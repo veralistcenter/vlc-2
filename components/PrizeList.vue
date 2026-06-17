@@ -1,13 +1,20 @@
 <template>
   <section class="prize_list section_inset">
-    <PrizeLineItem v-for="(p, i) in prizes" :key="'prize_' + i" :p="p" />
+    <PrizeLineItem v-for="(p, i) in sortedPrizes" :key="'prize_' + i" :p="p" />
   </section>
 </template>
 
 <script>
+import { sortPrizesByStartingYear } from "@/services/Home";
+
 export default {
   props: {
     prizes: Array,
+  },
+  computed: {
+    sortedPrizes() {
+      return sortPrizesByStartingYear(this.prizes);
+    },
   },
 };
 </script>

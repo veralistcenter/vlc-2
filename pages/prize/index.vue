@@ -24,14 +24,7 @@ export default {
         .filter((p) => p.slug == "prize")[0];
     },
     prizes() {
-      return []
-        .concat(this.focus.prizes.edges.map((e) => e.node))
-        .sort((a, b) => {
-          const aY = a.prizeInfo.dateRange.startingYear;
-          const bY = b.prizeInfo.dateRange.startingYear;
-
-          return parseInt(bY) - parseInt(aY);
-        });
+      return this.focus.prizes.edges.map((e) => e.node);
     },
     ...mapGetters({
       settings: "getSettings",
