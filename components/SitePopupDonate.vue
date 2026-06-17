@@ -28,6 +28,7 @@
           class="btn--full btn--black"
           target="_blank"
           href="https://www.givecampus.com/campaigns/23255/donations/new?amt=25.00"
+          @click="closeDonate()"
         >
           Donate
         </a>
@@ -39,23 +40,11 @@
 <script>
 import { mapGetters } from "vuex";
 
-const IDLE_TIME = 5000;
+const DONATE_DISMISS_COOKIE = "vlc_donate_popup_dismissed";
+const DONATE_DISMISS_MAX_AGE = 60 * 60 * 24 * 7;
 
 export default {
   name: "SitePopupDonate",
-  data() {
-    return {
-      idleTimer: null,
-      dismissed: false,
-      activityEvents: [
-        "mousemove",
-        "mousedown",
-        "keydown",
-        "scroll",
-        "touchstart",
-      ],
-    };
-  },
   computed: {
     donationPopup() {
       return this.settings?.acfOptions?.donationsPopup;
@@ -66,43 +55,18 @@ export default {
     }),
   },
   methods: {
-    resetIdleTimer() {
-      if (this.dismissed) {
-        return;
-      }
-
-      clearTimeout(this.idleTimer);
-
-      this.idleTimer = setTimeout(() => {
-        this.$store.commit("openDonate");
-      }, IDLE_TIME);
-    },
-    setActivityListeners() {
-      this.activityEvents.forEach((eventName) => {
-        window.addEventListener(eventName, this.resetIdleTimer, {
-          passive: true,
-        });
-      });
-    },
-    removeActivityListeners() {
-      this.activityEvents.forEach((eventName) => {
-        window.removeEventListener(eventName, this.resetIdleTimer);
-      });
-    },
     closeDonate() {
-      this.dismissed = true;
-      clearTimeout(this.idleTimer);
-      this.removeActivityListeners();
+      this.$cookies.set(DONATE_DISMISS_COOKIE, "1", {
+        maxAge: DONATE_DISMISS_MAX_AGE,
+        path: "/",
+      });
       this.$store.commit("closeDonate");
     },
   },
   mounted() {
-    this.setActivityListeners();
-    this.resetIdleTimer();
-  },
-  beforeDestroy() {
-    clearTimeout(this.idleTimer);
-    this.removeActivityListeners();
+    if (!this.$cookies.get(DONATE_DISMISS_COOKIE)) {
+      this.$store.commit("openDonate");
+    }
   },
 };
 </script>
