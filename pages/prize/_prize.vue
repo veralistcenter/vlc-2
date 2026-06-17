@@ -1,6 +1,6 @@
 <template>
   <main class="page pt--8">
-    <h1 class="genath section_heading title mb--1">
+    <h1 class="genath section_heading title mb--1 prize_heading">
       <span v-html="p.prizeInfo.title || p.title"></span><br />
       <span v-html="p.prizeInfo.dateRange.startingYear"></span>–<span
         v-html="p.prizeInfo.dateRange.endingYear"
