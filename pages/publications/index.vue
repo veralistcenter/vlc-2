@@ -52,7 +52,6 @@ export default {
       }
     },
   },
-
   async asyncData({ $axios, $Req, store, $Check, $CheckA, $moment }) {
     try {
       const res = await $axios($Req(PublicationOverview));

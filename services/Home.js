@@ -10,7 +10,6 @@ import {
 } from "@/services/Thumbs";
 
 import { Network100 } from "@/services/Network";
-
 import { Body } from "@/services/Matrix";
 
 export const RecentEvents = `recentEvents: events(
@@ -49,37 +48,53 @@ export const RecentAnnouncements = `recentAnnouncements: announcements(
 export const Biennials = `biennials(
   first: 100
 ){
-    edges{
-      node{
-        title
-        slug
-        featImage{
-          featuredImage {
-            ... on MediaItem {
-              srcSet
-              sizes
-              sourceUrl
-              altText
-              title
-              mediaDetails{
-                sizes{
-                  name
-                  sourceUrl
-                }
+  edges{
+    node{
+      title
+      slug
+      featImage{
+        featuredImage {
+          ... on MediaItem {
+            srcSet
+            sizes
+            sourceUrl
+            altText
+            title
+            mediaDetails{
+              sizes{
+                name
+                sourceUrl
               }
             }
           }
         }
-        biennialInfo{
-          biennialDescriptionPreview
-          dateRange{
-            startingYear
-            endingYear
+      }
+      biennialInfo{
+        biennialDescriptionPreview
+        dateRange{
+          startingYear
+          endingYear
+        }
+      }
+      prizeTaxonomies{
+        edges{
+          node{
+            name
+            slug
+          }
+        }
+      }
+      sitewideTags{
+        edges{
+          node{
+            name
+            slug
           }
         }
       }
     }
-  }`;
+  }
+}`;
 
 export const sortPrizesByStartingYear = (prizes) =>
   [...prizes].sort((a, b) => {
@@ -89,40 +104,40 @@ export const sortPrizesByStartingYear = (prizes) =>
   });
 
 export const Prizes = `prizes(
-    first: 100
-  ){
-      edges{
-        node{
-          title
-          slug
-          featImage{
-            featuredImage {
-              ... on MediaItem {
-                srcSet
-                sizes
-                sourceUrl
-                altText
-                title
-                mediaDetails{
-                  sizes{
-                    name
-                    sourceUrl
-                  }
-                }
-              }
-            }
-          }
-          prizeInfo{
+  first: 100
+){
+  edges{
+    node{
+      title
+      slug
+      featImage{
+        featuredImage {
+          ... on MediaItem {
+            srcSet
+            sizes
+            sourceUrl
+            altText
             title
-            prizeDescriptionPreview
-            dateRange{
-              startingYear
-              endingYear
+            mediaDetails{
+              sizes{
+                name
+                sourceUrl
+              }
             }
           }
         }
       }
-    }`;
+      prizeInfo{
+        title
+        prizeDescriptionPreview
+        dateRange{
+          startingYear
+          endingYear
+        }
+      }
+    }
+  }
+}`;
 
 export const Home = `
 ${RecentEvents}
@@ -133,16 +148,13 @@ ${Prizes}
 ${Network100}
 
 acfOptions: acfOptions {
-
   homepage {
     previewSections{
       __typename
-
       ...on AcfOptions_Homepage_PreviewSections_HomepageMarquee{
         marqueeContent
         homepageMarqueeSpeed
       }
-
       ... on AcfOptions_Homepage_PreviewSections_HomepageGallery {
         homepageGallery {
           ${EventThumb}
@@ -182,7 +194,6 @@ acfOptions: acfOptions {
           }
         }
       }
-
       ...on AcfOptions_Homepage_PreviewSections_NetworkPreview{
        __typename
         networkPreviewGroup{
@@ -190,15 +201,12 @@ acfOptions: acfOptions {
           show
         }
       }
-
       ...on AcfOptions_Homepage_PreviewSections_HomepageText{
         text
       }
-
       ...on AcfOptions_Homepage_PreviewSections_BiennialFocus{
         biennialTitle
       }
-
       ... on AcfOptions_Homepage_PreviewSections_Current {
         cardSize
         current {
@@ -208,7 +216,6 @@ acfOptions: acfOptions {
           }
         }
       }
-
       ... on AcfOptions_Homepage_PreviewSections_Upcoming {
         cardSize
         upcoming {
@@ -223,17 +230,13 @@ acfOptions: acfOptions {
         }
       }
     }
-
-
     gallery {
       __typename
       ${ExhibitionThumb}
       ${EventThumb}
       ${PublicationThumb}
     }
-
   }
-
 }`;
 
 /*
