@@ -235,6 +235,20 @@ span.node_name {
 
 /* stagger items */
 
+.stagger-items {
+  position: relative;
+}
+
+.stagger-sentinel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  visibility: hidden;
+}
+
 .stagger-item {
   opacity: 0;
   transition: opacity 0.1s ease-in-out;

@@ -2,9 +2,9 @@
   <section class="mt--1">
     <div
       class="grid stagger-items"
-      ref="grid"
       :class="{ 'stagger-items--visible': visible }"
     >
+      <div ref="observeTarget" class="stagger-sentinel" aria-hidden="true" />
       <component
         v-for="(post, i) in posts"
         v-if="$Check(post) && ((!showAll && i < 8) || showAll)"
@@ -35,7 +35,9 @@
 import { createIntersectionObserverMixin } from "@/mixins/intersectionObserver";
 
 export default {
-  mixins: [createIntersectionObserverMixin({ ref: "grid", key: "visible" })],
+  mixins: [
+    createIntersectionObserverMixin({ ref: "observeTarget", key: "visible" }),
+  ],
   props: {
     size: String,
     posts: Array,
@@ -50,6 +52,13 @@ export default {
     if (this.enableShowAll) {
       this.showAll = false;
     }
+  },
+  watch: {
+    posts() {
+      if (!this.visible) {
+        this.$observeWhenVisible();
+      }
+    },
   },
   computed: {
     colWidth() {
