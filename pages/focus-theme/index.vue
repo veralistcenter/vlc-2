@@ -77,8 +77,6 @@ export default {
           ? biennial.sitewideTags.edges.map((ee) => ee.node.slug)
           : [];
 
-        console.log("tags", tags);
-
         biennial.filters = [].concat(prizes).concat(tags);
         return biennial;
       });
@@ -104,8 +102,6 @@ export default {
 
       prizes = constructArray(biennials, "prizeTaxonomies");
       tags = constructArray(biennials, "sitewideTags");
-
-      // console.log("biennials", biennials);
 
       return {
         biennials,
