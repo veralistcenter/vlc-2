@@ -8,6 +8,13 @@ import {
 
 import { Body } from "@/services/Matrix";
 
+export const sortPublicationsByDate = (publications) =>
+  [...publications].sort((a, b) => {
+    const aDate = a.pageInfo?.date || "1950-01-01";
+    const bDate = b.pageInfo?.date || "1950-01-01";
+    return bDate.localeCompare(aDate);
+  });
+
 export const PublicationOverview = `types: publicationTypes(first: 50){
     edges{
       node{
@@ -54,7 +61,6 @@ export const PublicationOverview = `types: publicationTypes(first: 50){
 
   publications: publications (
     first: 400
-    where: {orderby: {order: DESC, field: DATE}}
   ){
     edges{
       node{
