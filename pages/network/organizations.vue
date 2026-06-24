@@ -4,34 +4,14 @@
 
     <NetworkNav :keyprefix="'all_'" :list="list" />
 
-    <nav class="section_inset mb--1">
-      <ul class="ul--inline">
-        <li
-          class="node_item mr--1_2 mb--1_2"
-          v-for="(tag, i) in taxonomy"
-          :key="'tag_' + tag.slug"
-          v-if="(!showAllTags && i < 15) || showAllTags"
-          :class="{ active: activeFilters.includes(tag.slug) }"
-        >
-          <button
-            class="block caps pb--1_2 pt--1_2 pr--1_2 pl--1_2"
-            @click="setTag(tag.slug)"
-          >
-            <span v-html="tag.name"></span>
-          </button>
-        </li>
-
-        <li
-          v-if="!showAllTags"
-          class="mr--1_2 mb--1_2"
-          @click="showAllTags = true"
-        >
-          <button class="block caps pb--1_2 pt--1_2 pr--1_2 pl--1_2">
-            View All
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <NetworkTagNav
+      :tags="rootTags"
+      :child-tags="activeChildTags"
+      :active-filters="activeFilters"
+      :show-all-tags="showAllTags"
+      @toggle-tag="setTag"
+      @show-all-tags="showAllTags = true"
+    />
 
     <section
       class="section_inset"

@@ -54,8 +54,18 @@ export const Network = `networks(first: 200, where: {orderby: {order: ASC, field
     edges{
       node{
         ... on NetworkType{
+          databaseId
           name
           slug
+          parentDatabaseId
+          parent {
+            node {
+              ... on NetworkType {
+                name
+                slug
+              }
+            }
+          }
         }
       }
     }

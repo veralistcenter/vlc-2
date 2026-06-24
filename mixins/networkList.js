@@ -25,6 +25,39 @@ export default {
       const tags = this.$route.query.tags;
       return this.$Check(tags) ? tags.split(",") : [];
     },
+    rootTags() {
+      if (!this.$CheckA(this.taxonomy)) {
+        return [];
+      }
+
+      return this.taxonomy.filter(
+        (tag) => !tag.parentDatabaseId || tag.parentDatabaseId === 0
+      );
+    },
+    activeChildTags() {
+      if (!this.$CheckA(this.taxonomy) || !this.activeFilters.length) {
+        return [];
+      }
+
+      const parentIds = new Set();
+
+      this.taxonomy
+        .filter((tag) => this.activeFilters.includes(tag.slug))
+        .forEach((tag) => {
+          if (tag.databaseId) {
+            parentIds.add(tag.databaseId);
+          }
+          if (tag.parentDatabaseId) {
+            parentIds.add(tag.parentDatabaseId);
+          }
+        });
+
+      if (!parentIds.size) {
+        return [];
+      }
+
+      return this.taxonomy.filter((tag) => parentIds.has(tag.parentDatabaseId));
+    },
   },
   mounted() {
     if (this.pageInfo?.hasNextPage) {
