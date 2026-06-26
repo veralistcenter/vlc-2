@@ -2,10 +2,10 @@
   <nav class="section_inset mb--1">
     <ul class="ul--inline">
       <li
-        class="node_item mr--1_2 mb--1_2"
+        v-if="(!showAllTags && i < 15) || showAllTags"
         v-for="(tag, i) in tags"
         :key="'tag_' + tag.slug"
-        v-if="(!showAllTags && i < 15) || showAllTags"
+        class="node_item mr--1_2 mb--1_2"
         :class="{ active: activeFilters.includes(tag.slug) }"
       >
         <button
@@ -29,8 +29,8 @@
 
     <ul v-if="childTags.length" class="ul--inline pt--1">
       <li
-        class="node_item mr--1_2 mb--1_2"
         v-for="tag in childTags"
+        class="node_item mr--1_2 mb--1_2"
         :key="'child_tag_' + tag.slug"
         :class="{ active: activeFilters.includes(tag.slug) }"
       >

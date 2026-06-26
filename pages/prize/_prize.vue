@@ -56,10 +56,10 @@
 
       <ul class="ul--inline fs--regular mt--1">
         <li
-          class="node_item mr--1_2 mb--1"
-          v-for="(n, i) in taxonomy.networks"
           v-if="(!showAllNetworks && i < 15) || showAllNetworks"
+          v-for="(n, i) in taxonomy.networks"
           :key="'network' + i"
+          class="node_item mr--1_2 mb--1"
         >
           <nuxt-link
             :to="'/network/' + n.slug"
