@@ -60,6 +60,57 @@ export const filterByGroups = (items, activeFilters = [], filterTypes = []) => {
   );
 };
 
+export const getPostDate = (post) => post?.pageInfo?.date || "2000-01-01";
+
+export const getPostYear = (post) => {
+  const date = post?.pageInfo?.date;
+  if (!date) {
+    return "Unsorted";
+  }
+
+  const year = date.slice(0, 4);
+  return /^\d{4}$/.test(year) ? year : "Unsorted";
+};
+
+export const getPostLetter = (post) => {
+  const title = (post?.title || "").replace(/[^a-z]/gi, "");
+  return (title[0] || "A").toUpperCase();
+};
+
+export const groupPostsByYear = (posts) => {
+  const groups = new Map();
+
+  [...posts]
+    .sort((a, b) => getPostDate(b).localeCompare(getPostDate(a)))
+    .forEach((post) => {
+      const year = getPostYear(post);
+      if (!groups.has(year)) {
+        groups.set(year, []);
+      }
+      groups.get(year).push(post);
+    });
+
+  return [...groups.entries()]
+    .sort(([yearA], [yearB]) => yearB.localeCompare(yearA))
+    .map(([year, posts]) => ({ year, posts }));
+};
+
+export const groupPostsByLetter = (posts) => {
+  const groups = new Map();
+
+  [...posts]
+    .sort((a, b) => getPostLetter(a).localeCompare(getPostLetter(b)))
+    .forEach((post) => {
+      const letter = getPostLetter(post);
+      if (!groups.has(letter)) {
+        groups.set(letter, []);
+      }
+      groups.get(letter).push(post);
+    });
+
+  return [...groups.entries()].map(([letter, posts]) => ({ letter, posts }));
+};
+
 export const attachPublicationFilters = (pub, { $Check, $CheckA, $moment }) => {
   const formats =
     pub.publicationFormats?.edges?.map((edge) => edge.node.slug) || [];

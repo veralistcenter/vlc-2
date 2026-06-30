@@ -132,60 +132,6 @@ export const attachArchivePostFilters = (post) => {
   return post;
 };
 
-export const getArchivePostDate = (post) =>
-  post?.pageInfo?.date || "2000-01-01";
-
-export const getArchivePostYear = (post) => {
-  const date = post?.pageInfo?.date;
-  if (!date) {
-    return "Unsorted";
-  }
-
-  const year = date.slice(0, 4);
-  return /^\d{4}$/.test(year) ? year : "Unsorted";
-};
-
-export const getArchivePostLetter = (post) => {
-  const title = (post?.title || "").replace(/[^a-z]/gi, "");
-  return (title[0] || "A").toUpperCase();
-};
-
-export const groupPostsByYear = (posts) => {
-  const groups = new Map();
-
-  [...posts]
-    .sort((a, b) => getArchivePostDate(b).localeCompare(getArchivePostDate(a)))
-    .forEach((post) => {
-      const year = getArchivePostYear(post);
-      if (!groups.has(year)) {
-        groups.set(year, []);
-      }
-      groups.get(year).push(post);
-    });
-
-  return [...groups.entries()]
-    .sort(([yearA], [yearB]) => yearB.localeCompare(yearA))
-    .map(([year, posts]) => ({ year, posts }));
-};
-
-export const groupPostsByLetter = (posts) => {
-  const groups = new Map();
-
-  [...posts]
-    .sort((a, b) =>
-      getArchivePostLetter(a).localeCompare(getArchivePostLetter(b))
-    )
-    .forEach((post) => {
-      const letter = getArchivePostLetter(post);
-      if (!groups.has(letter)) {
-        groups.set(letter, []);
-      }
-      groups.get(letter).push(post);
-    });
-
-  return [...groups.entries()].map(([letter, posts]) => ({ letter, posts }));
-};
-
 export const fetchArchivePage = async ({ $axios, $Req, store }) => {
   const res = await $axios($Req(`${Archive} ${ArchiveFilters}`));
   const data = res.data.data;

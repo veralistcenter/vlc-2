@@ -95,9 +95,8 @@ import {
   attachArchivePostFilters,
   fetchArchivePage,
   getArchivePostPath,
-  groupPostsByLetter,
-  groupPostsByYear,
 } from "@/services/Archive";
+import { groupPostsByLetter, groupPostsByYear } from "@/services/Filters";
 import filterList from "@/mixins/filterList";
 
 export default {

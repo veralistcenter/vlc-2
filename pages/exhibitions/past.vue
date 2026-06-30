@@ -33,7 +33,7 @@
 
 <script>
 import { fetchPastExhibitionsPage } from "@/services/Exhibitions";
-import { groupPostsByYear } from "@/services/Archive";
+import { groupPostsByYear } from "@/services/Filters";
 import filterList from "@/mixins/filterList";
 
 export default {
