@@ -133,9 +133,9 @@ export default {
     filterTypes() {
       return [
         {
-          name: "postTypes",
+          name: "types",
           title: "Type",
-          list: this.postTypes,
+          list: this.types,
         },
         {
           name: "tags",

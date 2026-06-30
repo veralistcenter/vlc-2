@@ -4,7 +4,7 @@
 
     <nav class="section_inset mb--2">
       <ul class="ul--inline">
-        <li v-for="(y, i) in allExhibitions" :key="'yearnav_' + y.year">
+        <li v-for="y in exhibitionsByYear" :key="'yearnav_' + y.year">
           <button
             class="jump_to_link btn--grey mr--1_2 pr--1_2 pl--1_2 pb--1_8 pt--1_8"
             @click="jumpTo('#year_' + y.year)"
@@ -14,8 +14,14 @@
       </ul>
     </nav>
 
+    <Filters
+      :filterTypes="filterTypes"
+      :count="filteredItems.length"
+      @newFilters="setNewFilters"
+    />
+
     <section
-      v-for="(y, i) in allExhibitions"
+      v-for="y in exhibitionsByYear"
       :key="'year_' + y.year"
       :id="'year_' + y.year"
     >
@@ -26,39 +32,43 @@
 </template>
 
 <script>
-import { Exhibitions } from "@/services/Exhibitions.js";
+import { fetchPastExhibitionsPage } from "@/services/Exhibitions";
+import { groupPostsByYear } from "@/services/Archive";
+import filterList from "@/mixins/filterList";
 
 export default {
+  mixins: [filterList],
   head() {
     return this.$metatags({ title: "Past Exhibitions" });
   },
-
   computed: {
-    allExhibitions() {
-      let exhibitions = [].concat(this.exhibitions);
-
-      let byYears = [];
-
-      exhibitions.forEach((e) => {
-        const year = this.$moment(e.pageInfo.date).format("YYYY");
-        const iO = byYears.map((y) => y.year).indexOf(year);
-        if (iO >= 0) {
-          byYears[iO].exhibitions.push(e);
-        } else {
-          byYears.push({
-            year,
-            exhibitions: [e],
-          });
-        }
-      });
-
-      byYears = [].concat(byYears).sort((a, b) => {
-        const bDate = this.$Check(b) && b.year !== null ? b.year : "1900";
-        const aDate = this.$Check(a) && a.year !== null ? a.year : "1900";
-        return bDate.valueOf() - aDate.valueOf();
-      });
-
-      return byYears;
+    filterableItems() {
+      return this.exhibitions;
+    },
+    filterTypes() {
+      return [
+        {
+          name: "types",
+          title: "Type",
+          list: this.exhibitionTypes,
+        },
+        {
+          name: "tags",
+          title: "Tag",
+          list: this.sitewideTags,
+        },
+        {
+          name: "focus",
+          title: "Focus Theme",
+          list: this.biennialTaxonomies,
+        },
+      ];
+    },
+    exhibitionsByYear() {
+      return groupPostsByYear(this.filteredItems).map(({ year, posts }) => ({
+        year: year === "Unsorted" ? "—" : year,
+        exhibitions: posts,
+      }));
     },
   },
   methods: {
@@ -66,45 +76,11 @@ export default {
       this.$scrollToTarget({ t: target });
     },
   },
-  async asyncData({ $axios, $Req, store, $moment }) {
-    const query = Exhibitions;
-
+  async asyncData(ctx) {
     try {
-      const res = await $axios($Req(query));
-
-      store.commit("updatePath", [
-        { title: "Home", route: "/" },
-        { title: "Exhibitions", route: "/exhibitions" },
-        { title: "Past", route: "/exhibitions/past" },
-      ]);
-
-      let pages = [
-        { title: "Current", path: "/exhibitions" },
-        { title: "Past", path: "/exhibitions/past" },
-      ];
-
-      const exhibitions = res.data.data.exhibitions.edges
-        .map((e) => e.node)
-        .filter(
-          (e) =>
-            $moment().isAfter($moment(e.pageInfo.date)) &&
-            (e.pageInfo.endDate === null ||
-              $moment().isAfter($moment(e.pageInfo.endDate)))
-        )
-        .sort((a, b) => {
-          const bDate =
-            b.pageInfo.date !== null ? b.pageInfo.date : "2000-01-01";
-          const aDate =
-            a.pageInfo.date !== null ? a.pageInfo.date : "2000-01-01";
-          return bDate.localeCompare(aDate);
-        });
-
-      return {
-        pages,
-        exhibitions,
-      };
+      return await fetchPastExhibitionsPage(ctx);
     } catch (e) {
-      return { test: e };
+      return { error: e };
     }
   },
 };

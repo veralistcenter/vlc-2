@@ -5,11 +5,6 @@ import {
   PublicationQuery,
 } from "@/services/Thumbs";
 
-export {
-  filterByGroups,
-  filterByGroups as filterArchivePosts,
-} from "@/services/Filters";
-
 export const Archive = `exhibitions(first: 150, where: {orderby: {order: ASC, field: DATE}}){
     edges {
       node {
@@ -42,27 +37,28 @@ export const Archive = `exhibitions(first: 150, where: {orderby: {order: ASC, fi
       }
     }
   }
-  biennialTaxonomies: biennialTaxonomies{
-    edges{
-      node{
-        ...on BiennialTaxonomy{
-          slug
-          name
-        }
-      }
-    }
-  }
-  sitewideTags: sitewideTags(first: 400){
-    edges{
-      node{
-        ... on SitewideTag{
-          name
-          slug
-        }
-      }
-    }
-  }
 `;
+
+export const ArchiveFilters = `biennialTaxonomies: biennialTaxonomies{
+  edges{
+    node{
+      ...on BiennialTaxonomy{
+        slug
+        name
+      }
+    }
+  }
+}
+sitewideTags: sitewideTags(first: 400){
+  edges{
+    node{
+      ... on SitewideTag{
+        name
+        slug
+      }
+    }
+  }
+}`;
 
 export const ArchiveMoreEvents = (
   cursor
@@ -191,7 +187,7 @@ export const groupPostsByLetter = (posts) => {
 };
 
 export const fetchArchivePage = async ({ $axios, $Req, store }) => {
-  const res = await $axios($Req(Archive));
+  const res = await $axios($Req(`${Archive} ${ArchiveFilters}`));
   const data = res.data.data;
 
   store.commit("updatePath", [
@@ -209,6 +205,6 @@ export const fetchArchivePage = async ({ $axios, $Req, store }) => {
     announcements: withFilters(data.announcements.edges),
     biennialTaxonomies: mapEdges(data.biennialTaxonomies.edges),
     sitewideTags: mapEdges(data.sitewideTags.edges),
-    postTypes: ARCHIVE_POST_TYPES,
+    types: ARCHIVE_POST_TYPES,
   };
 };

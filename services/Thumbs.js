@@ -117,7 +117,22 @@ export const ExhibitionQuery = `__typename
       }
     }
   }
+  exhibitionTypes{
+    edges{
+      node{
+        name
+        slug
+      }
+    }
+  }
   sitewideTags{
+    edges{
+      node{
+        slug
+      }
+    }
+  }
+  biennialTaxonomies{
     edges{
       node{
         slug
@@ -171,7 +186,6 @@ featImage {
     }
   }
 }
-
 sitewideTags{
   edges{
     node{
@@ -179,7 +193,13 @@ sitewideTags{
     }
   }
 }
-
+biennialTaxonomies{
+  edges{
+    node{
+      slug
+    }
+  }
+}
 announcementTypes{
   edges{
     node{
@@ -188,18 +208,14 @@ announcementTypes{
     }
   }
 }
-
 `;
 
 export const PublicationQuery = `__typename
 title
 slug
-
 featImage {
-
   imageCaption
   subtitle
-
   featuredImage {
     ... on MediaItem {
       srcSet
@@ -231,11 +247,9 @@ featImage {
     }
   }
 }
-
 archiveSelectionPublication{
   selectedArchivePublication
 }
-
 networkRelation{
   associatedNetwork{
     ...on Network{
@@ -247,7 +261,6 @@ networkRelation{
     }
   }
 }
-
 pageInfo: publicationInfo{
   date
   previewInfo{
@@ -255,7 +268,6 @@ pageInfo: publicationInfo{
     primaryDescription
   }
 }
-
 publicationTypes{
   edges{
     node{
@@ -264,7 +276,6 @@ publicationTypes{
     }
   }
 }
-
 publicationFormats{
   edges{
     node{
@@ -273,7 +284,6 @@ publicationFormats{
     }
   }
 }
-
 sitewideTags{
   edges{
     node{
@@ -282,7 +292,6 @@ sitewideTags{
     }
   }
 }
-
 biennialTaxonomies{
   edges{
     node{
@@ -291,7 +300,6 @@ biennialTaxonomies{
     }
   }
 }
-
 `;
 
 export const AnnouncementThumb = `... on Announcement {

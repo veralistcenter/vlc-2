@@ -33,11 +33,12 @@
 
 <script>
 import {
+  attachEventsPostFilters,
   fetchPastEventsPage,
   isPastEvent,
   PastEventsNextQuery,
 } from "@/services/Events";
-import { attachArchivePostFilters, groupPostsByYear } from "@/services/Archive";
+import { groupPostsByYear } from "@/services/Archive";
 import filterList from "@/mixins/filterList";
 
 export default {
@@ -101,7 +102,7 @@ export default {
         const newEvents = pastEvents.edges
           .map((e) => e.node)
           .filter((event) => isPastEvent(event, this.$moment))
-          .map(attachArchivePostFilters);
+          .map(attachEventsPostFilters);
 
         this.additionalEvents = this.additionalEvents.concat(newEvents);
 
