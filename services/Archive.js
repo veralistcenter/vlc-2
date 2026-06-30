@@ -5,6 +5,8 @@ import {
   PublicationQuery,
 } from "@/services/Thumbs";
 
+export { filterByGroups, filterByGroups as filterArchivePosts } from "@/services/Filters";
+
 export const Archive = `exhibitions(first: 150, where: {orderby: {order: ASC, field: DATE}}){
     edges {
       node {
@@ -129,44 +131,6 @@ export const attachArchivePostFilters = (post) => {
   ].filter(Boolean);
 
   return post;
-};
-
-export const filterPostsBySlugs = (posts, filterSlugs = []) => {
-  if (!filterSlugs.length) {
-    return posts;
-  }
-
-  return posts.filter((post) =>
-    post.filters?.some((slug) => filterSlugs.includes(slug))
-  );
-};
-
-export const filterArchivePosts = (
-  posts,
-  activeFilters = [],
-  filterTypes = []
-) => {
-  if (!activeFilters.length) {
-    return posts;
-  }
-
-  const activeByGroup = filterTypes
-    .map((type) => ({
-      slugs: activeFilters
-        .filter((filter) => type.list.some((item) => item.slug === filter.slug))
-        .map((filter) => filter.slug),
-    }))
-    .filter((group) => group.slugs.length);
-
-  if (!activeByGroup.length) {
-    return posts;
-  }
-
-  return posts.filter((post) =>
-    activeByGroup.every((group) =>
-      group.slugs.some((slug) => post.filters?.includes(slug))
-    )
-  );
 };
 
 export const getArchivePostDate = (post) =>

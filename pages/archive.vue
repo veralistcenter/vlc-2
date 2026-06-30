@@ -34,7 +34,7 @@
 
     <Filters
       :filterTypes="filterTypes"
-      :count="filteredPosts.length"
+      :count="filteredItems.length"
       @newFilters="setNewFilters"
     />
 
@@ -93,14 +93,15 @@
 import {
   ArchiveMoreEvents,
   attachArchivePostFilters,
-  filterArchivePosts,
   fetchArchivePage,
   getArchivePostPath,
   groupPostsByLetter,
   groupPostsByYear,
 } from "@/services/Archive";
+import filterList from "@/mixins/filterList";
 
 export default {
+  mixins: [filterList],
   head() {
     return this.$metatags({ title: "Archive" });
   },
@@ -108,11 +109,10 @@ export default {
     return {
       sortByYear: true,
       additionalEvents: [],
-      filters: [],
     };
   },
   computed: {
-    allPosts() {
+    filterableItems() {
       return [
         ...this.events,
         ...this.additionalEvents,
@@ -121,17 +121,14 @@ export default {
         ...this.announcements,
       ];
     },
-    filteredPosts() {
-      return filterArchivePosts(this.allPosts, this.filters, this.filterTypes);
-    },
     byYear() {
-      return groupPostsByYear(this.filteredPosts);
+      return groupPostsByYear(this.filteredItems);
     },
     yearNav() {
       return this.byYear.filter((group) => group.year !== "Unsorted");
     },
     byLetter() {
-      return groupPostsByLetter(this.filteredPosts);
+      return groupPostsByLetter(this.filteredItems);
     },
     filterTypes() {
       return [
@@ -164,9 +161,6 @@ export default {
     },
     jumpTo(target) {
       this.$scrollToTarget({ t: target });
-    },
-    setNewFilters(filters) {
-      this.filters = filters;
     },
     async fetchMoreEvents(cursor) {
       try {
