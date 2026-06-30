@@ -103,7 +103,6 @@ export const Publication = (
     relatedPagesSize
     relatedPagesTitle
   }
-
   networkRelation{
     associatedNetwork{
       ...on Network{
@@ -115,10 +114,8 @@ export const Publication = (
       }
     }
   }
-
   pageInfo: publicationInfo{
     date
-
     showFeatured: hideFeatured
     featuredMedia{
       featIssuuIframe
@@ -129,9 +126,7 @@ export const Publication = (
         caption
       }
       featVideoFile
-
       featuredSlides20220816{
-
         slideImage{
           sourceUrl
           srcSet
@@ -144,11 +139,8 @@ export const Publication = (
             }
           }
         }
-
       }
-
     }
-
     previewInfo{
       primaryDescription
       secondaryDescription
@@ -157,26 +149,20 @@ export const Publication = (
         buttonLink
         buttonName
       }
-
       associatedBiennial{
         ...on Biennial{
           title
           slug
         }
       }
-
       associatedProject{
         ...on Project{
           title
           slug
         }
       }
-
     }
-
-
   }
-
   publicationTypes{
     edges{
       node{
@@ -185,7 +171,6 @@ export const Publication = (
       }
     }
   }
-
   publicationFormats{
     edges{
       node{
@@ -194,7 +179,6 @@ export const Publication = (
       }
     }
   }
-
   sitewideTags{
     edges{
       node{
@@ -203,7 +187,6 @@ export const Publication = (
       }
     }
   }
-
   biennialTaxonomies{
     edges{
       node{
@@ -212,11 +195,8 @@ export const Publication = (
       }
     }
   }
-
   ${Body("Publication")}
 }`;
-
-const mapEdges = (edges) => edges.map((e) => e.node);
 
 export const fetchPublicationOverviewPage = async (
   { $axios, $Req, store, $Check, $CheckA, $moment },
@@ -245,7 +225,8 @@ export const fetchPublicationOverviewPage = async (
 
   let publications = data.publications.edges.map((e) => {
     const pub = attachPublicationFilters(e.node, { $Check, $CheckA, $moment });
-    pub.types = pub.publicationTypes?.edges?.map((edge) => edge.node.slug) || [];
+    pub.types =
+      pub.publicationTypes?.edges?.map((edge) => edge.node.slug) || [];
     return pub;
   });
 

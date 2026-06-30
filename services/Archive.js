@@ -5,7 +5,10 @@ import {
   PublicationQuery,
 } from "@/services/Thumbs";
 
-export { filterByGroups, filterByGroups as filterArchivePosts } from "@/services/Filters";
+export {
+  filterByGroups,
+  filterByGroups as filterArchivePosts,
+} from "@/services/Filters";
 
 export const Archive = `exhibitions(first: 150, where: {orderby: {order: ASC, field: DATE}}){
     edges {

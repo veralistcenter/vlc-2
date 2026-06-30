@@ -1,37 +1,34 @@
 export const featImage = `featImage {
-    subtitle
-
-    featuredImage {
-      srcSet
-      sizes
-      sourceUrl
-      altText
-      title
-      caption
-      mediaDetails{
-        sizes{
-          name
-          sourceUrl
-        }
+  subtitle
+  featuredImage {
+    srcSet
+    sizes
+    sourceUrl
+    altText
+    title
+    caption
+    mediaDetails{
+      sizes{
+        name
+        sourceUrl
       }
     }
-
-    slideshowImage{
-      srcSet
-      sourceUrl
-      altText
-      title
-      caption
-      mediaDetails{
-        sizes{
-          name
-          sourceUrl
-        }
+  }
+  slideshowImage{
+    srcSet
+    sourceUrl
+    altText
+    title
+    caption
+    mediaDetails{
+      sizes{
+        name
+        sourceUrl
       }
     }
-
-    imageCaption
-  }`;
+  }
+  imageCaption
+}`;
 
 export const EventQuery = `
 __typename
@@ -42,18 +39,25 @@ pageInfo{
   endDate
   timeOverride
 }
+archiveSelection {
+  selectedArchiveEvent
+}
 eventTypes{
   edges{
     node{
       name
+      slug
     }
   }
 }
-
-archiveSelection {
-  selectedArchiveEvent
+series: eventSeries{
+  edges{
+    node{
+      name
+      slug
+    }
+  }
 }
-
 sitewideTags{
   edges{
     node{
@@ -61,63 +65,65 @@ sitewideTags{
     }
   }
 }
-
+biennialTaxonomies{
+  edges{
+    node{
+      slug
+    }
+  }
+}
 ${featImage}`;
 
 export const ExhibitionQuery = `__typename
-title
-slug
-pageInfo{
-  date
-  endDate
-  timeOverride
-}
-
-exhibitionArchiveSelection{
-  selectedArchiveExhibition
-}
-
-featImage {
-  featuredImage {
-    ... on MediaItem {
-      srcSet
-      sizes
-      sourceUrl
-      altText
-      title
-      mediaDetails{
-        sizes{
-          name
-          sourceUrl
+  title
+  slug
+  pageInfo{
+    date
+    endDate
+    timeOverride
+  }
+  exhibitionArchiveSelection{
+    selectedArchiveExhibition
+  }
+  featImage {
+    featuredImage {
+      ... on MediaItem {
+        srcSet
+        sizes
+        sourceUrl
+        altText
+        title
+        mediaDetails{
+          sizes{
+            name
+            sourceUrl
+          }
+        }
+      }
+    }
+    slideshowImage {
+      ... on MediaItem {
+        srcSet
+        sizes
+        sourceUrl
+        altText
+        title
+        mediaDetails{
+          sizes{
+            name
+            sourceUrl
+          }
         }
       }
     }
   }
-  slideshowImage {
-    ... on MediaItem {
-      srcSet
-      sizes
-      sourceUrl
-      altText
-      title
-      mediaDetails{
-        sizes{
-          name
-          sourceUrl
-        }
+  sitewideTags{
+    edges{
+      node{
+        slug
       }
     }
   }
-}
-
-sitewideTags{
-  edges{
-    node{
-      slug
-    }
-  }
-}
-
 `;
 
 export const AnnouncementQuery = `__typename

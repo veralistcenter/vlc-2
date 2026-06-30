@@ -4,7 +4,7 @@
 
     <nav class="section_inset mb--2">
       <ul class="ul--inline">
-        <li v-for="(y, i) in allEvents" :key="'yearnav_' + y.year">
+        <li v-for="y in eventsByYear" :key="'yearnav_' + y.year">
           <button
             class="jump_to_link btn--grey mb--1_2 mr--1_2 pr--1_2 pl--1_2 pb--1_8 pt--1_8"
             @click="jumpTo('#year_' + y.year)"
@@ -14,8 +14,14 @@
       </ul>
     </nav>
 
+    <Filters
+      :filterTypes="filterTypes"
+      :count="filteredItems.length"
+      @newFilters="setNewFilters"
+    />
+
     <section
-      v-for="(y, i) in allEvents"
+      v-for="y in eventsByYear"
       :key="'year_' + y.year"
       :id="'year_' + y.year"
     >
@@ -27,54 +33,60 @@
 
 <script>
 import {
-  PastEvents,
+  fetchPastEventsPage,
+  isPastEvent,
   PastEventsNextQuery,
-  EventTabs,
-} from "@/services/Events.js";
+} from "@/services/Events";
+import { attachArchivePostFilters, groupPostsByYear } from "@/services/Archive";
+import filterList from "@/mixins/filterList";
 
 export default {
+  mixins: [filterList],
   head() {
     return this.$metatags({ title: "Past Events" });
   },
-
   data() {
     return {
       additionalEvents: [],
     };
   },
   computed: {
-    allEvents() {
-      let events = []
-        .concat(this.events)
-        .concat(this.additionalEvents)
-        .sort((a, b) => {
-          const bDate =
-            b.pageInfo.date !== null ? b.pageInfo.date : "2000-01-01";
-          const aDate =
-            a.pageInfo.date !== null ? a.pageInfo.date : "2000-01-01";
-          return bDate.localeCompare(aDate);
-        });
-
-      let byYears = [];
-
-      events.forEach((e) => {
-        const year = this.$moment(e.pageInfo.date).format("YYYY");
-        const iO = byYears.map((y) => y.year).indexOf(year);
-        if (iO >= 0) {
-          byYears[iO].events.push(e);
-        } else {
-          byYears.push({
-            year,
-            events: [e],
-          });
-        }
-      });
-
-      return byYears;
+    filterableItems() {
+      return [...this.events, ...this.additionalEvents];
+    },
+    filterTypes() {
+      return [
+        {
+          name: "types",
+          title: "Type",
+          list: this.eventTypes,
+        },
+        {
+          name: "series",
+          title: "Series",
+          list: this.series,
+        },
+        {
+          name: "tags",
+          title: "Tag",
+          list: this.sitewideTags,
+        },
+        {
+          name: "focus",
+          title: "Focus Theme",
+          list: this.biennialTaxonomies,
+        },
+      ];
+    },
+    eventsByYear() {
+      return groupPostsByYear(this.filteredItems).map(({ year, posts }) => ({
+        year: year === "Unsorted" ? "—" : year,
+        events: posts,
+      }));
     },
   },
   mounted() {
-    if (this.pageInfo.hasNextPage) {
+    if (this.pageInfo?.hasNextPage) {
       this.fetchMoreEvents(this.pageInfo.endCursor);
     }
   },
@@ -85,67 +97,27 @@ export default {
     async fetchMoreEvents(cursor) {
       try {
         const res = await this.$axios(this.$Req(PastEventsNextQuery(cursor)));
+        const { pastEvents } = res.data.data;
+        const newEvents = pastEvents.edges
+          .map((e) => e.node)
+          .filter((event) => isPastEvent(event, this.$moment))
+          .map(attachArchivePostFilters);
 
-        const newEvents = res.data.data.pastEvents.edges.map((e) => e.node);
-        this.additionalEvents = []
-          .concat(this.additionalEvents)
-          .concat(newEvents);
+        this.additionalEvents = this.additionalEvents.concat(newEvents);
 
-        if (res.data.data.pastEvents.pageInfo.hasNextPage) {
-          this.fetchMoreEvents(res.data.data.pastEvents.pageInfo.endCursor);
-        } else {
-          console.log("no more events");
+        if (pastEvents.pageInfo?.hasNextPage) {
+          this.fetchMoreEvents(pastEvents.pageInfo.endCursor);
         }
       } catch (e) {
         console.log(e);
       }
     },
   },
-  async asyncData({ $axios, $Req, store, $moment }) {
-    const query = PastEvents + " " + EventTabs;
-
+  async asyncData(ctx) {
     try {
-      const res = await $axios($Req(query));
-
-      store.commit("updatePath", [
-        { title: "Home", route: "/" },
-        { title: "Events", route: "/events" },
-        { title: "Past", route: "/events/past" },
-      ]);
-
-      let pages = [
-        { title: "Current", path: "/events" },
-        { title: "Past", path: "/events/past" },
-      ];
-
-      const tabs = res.data.data.eventTabs.edges.map((e) => {
-        return {
-          title: e.node.title,
-          path: `/events/tab/${e.node.slug}`,
-        };
-      });
-
-      pages = pages.concat(tabs);
-
-      const events = res.data.data.pastEvents.edges
-        .map((e) => e.node)
-        .filter(
-          (e) =>
-            $moment().isAfter($moment(e.pageInfo.date)) &&
-            (e.pageInfo.endDate === null ||
-              $moment().isAfter($moment(e.pageInfo.endDate)))
-        )
-        .sort(
-          (a, b) => a.valueOf(a.pageInfo.date) - b.valueOf(a.pageInfo.date)
-        );
-
-      return {
-        pages,
-        events,
-        pageInfo: res.data.data.pastEvents.pageInfo,
-      };
+      return await fetchPastEventsPage(ctx);
     } catch (e) {
-      return { test: e };
+      return { error: e };
     }
   },
 };
