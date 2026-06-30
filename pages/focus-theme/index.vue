@@ -2,14 +2,7 @@
   <main class="page pt--8">
     <SiteSubnav :pages="[]" />
 
-    <BiennialFilters
-      :prizes="prizes"
-      :tags="tags"
-      @newFilters="setNewFilters"
-      :count="filteredBiennials.length"
-    />
-
-    <BiennialList :biennials="filteredBiennials" />
+    <BiennialList :biennials="biennials" />
   </main>
 </template>
 
@@ -30,34 +23,19 @@ export default {
       this.filters = filters;
     },
   },
-  // computed: {
-  //   biennials() {
-  //     return []
-  //       .concat(this.focus.biennials.edges.map((e) => e.node))
-  //       .sort((a, b) => {
-  //         const aY = a.biennialInfo.dateRange.startingYear;
-  //         const bY = b.biennialInfo.dateRange.startingYear;
-
-  //         return parseInt(bY) - parseInt(aY);
-  //       });
-  //   },
-  // },
   computed: {
-    filteredBiennials() {
-      if (this.$CheckA(this.filters)) {
-        const filters = this.filters;
-        return [].concat(this.biennials).filter((p) => {
-          const contains = filters.some((f) => {
-            return p.filters.includes(f.slug);
-          });
-          return contains;
+    biennials() {
+      return []
+        .concat(this.focus.biennials.edges.map((e) => e.node))
+        .sort((a, b) => {
+          const aY = a.biennialInfo.dateRange.startingYear;
+          const bY = b.biennialInfo.dateRange.startingYear;
+
+          return parseInt(bY) - parseInt(aY);
         });
-      } else {
-        return this.biennials;
-      }
     },
   },
-  async asyncData({ $axios, $Req, store, $CheckA }) {
+  async asyncData({ $axios, $Req, store }) {
     const query = Biennials;
 
     try {
@@ -71,42 +49,11 @@ export default {
       let biennials = res.data.data.biennials.edges.map((e) => {
         let biennial = e.node;
 
-        const prizes = biennial.prizeTaxonomies.edges.map((ee) => ee.node.slug);
-
-        const tags = $CheckA(biennial.sitewideTags.edges)
-          ? biennial.sitewideTags.edges.map((ee) => ee.node.slug)
-          : [];
-
-        biennial.filters = [].concat(prizes).concat(tags);
         return biennial;
       });
 
-      let prizes = [],
-        tags = [];
-
-      const constructArray = (biennials, focus) => {
-        let filters = [];
-        biennials.forEach((biennial) => {
-          const f = $CheckA(biennial[focus].edges)
-            ? biennial[focus].edges.map((e) => e.node)
-            : [];
-          filters = [].concat(filters).concat(f);
-        });
-        const ids = filters.map((o) => o.slug);
-        const filtered = filters.filter(
-          ({ slug }, index) => ids.indexOf(slug) === index
-        );
-
-        return filtered;
-      };
-
-      prizes = constructArray(biennials, "prizeTaxonomies");
-      tags = constructArray(biennials, "sitewideTags");
-
       return {
         biennials,
-        prizes,
-        tags,
       };
     } catch (e) {
       console.error("error", e);
