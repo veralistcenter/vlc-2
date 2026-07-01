@@ -29,7 +29,7 @@
           v-for="(node, j) in l.nodes"
           :key="l.letter + i + node.slug + j"
           :node="node"
-          class="fs--regular col col--1_4 mcol--1_2 mcol--tile col--tile mb--1_2"
+          class="fs--regular col col--1_5 mcol--1_2 mcol--tile col--tile mb--1_2"
         />
       </section>
     </section>
