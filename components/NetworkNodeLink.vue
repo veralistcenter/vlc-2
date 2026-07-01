@@ -13,26 +13,37 @@ export default {
     },
   },
   computed: {
+    isDisabled() {
+      return this.node.networkInformation?.externalLink?.disableLink === true;
+    },
     isExternal() {
       return (
         this.node.networkInformation?.externalLink?.makeExternalLink === true
       );
     },
     linkComponent() {
-      return this.isExternal ? "a" : "nuxt-link";
+      if (this.isDisabled) {
+        return "span";
+      } else if (this.isExternal) {
+        return "a";
+      } else {
+        return "nuxt-link";
+      }
     },
     linkProps() {
-      if (this.isExternal) {
+      if (this.isDisabled) {
+        return {};
+      } else if (this.isExternal) {
         return {
           href: this.node.networkInformation.externalLink.externalLinkUrl,
           target: "_blank",
           rel: "noopener",
         };
+      } else {
+        return {
+          to: "/network/" + this.node.slug,
+        };
       }
-
-      return {
-        to: "/network/" + this.node.slug,
-      };
     },
   },
 };

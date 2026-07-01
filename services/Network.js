@@ -16,6 +16,7 @@ export const Network100 = `networks: networks(where: {orderby: {field: MODIFIED,
         externalLink{
           makeExternalLink
           externalLinkUrl
+          disableLink
         }
       }
     }
@@ -37,6 +38,7 @@ export const Network = `networks(first: 200, where: {orderby: {order: ASC, field
           externalLink{
             makeExternalLink
             externalLinkUrl
+            disableLink
           }
         }
         networkTypes{
@@ -89,6 +91,7 @@ export const AdditionalNetwork = (
         externalLink{
           makeExternalLink
           externalLinkUrl
+          disableLink
         }
       }
       networkTypes{
@@ -125,6 +128,7 @@ export const Item = (slug) => `network (id: "${slug}", idType: SLUG) {
       networkRelatedPages
       makeExternalLink
       externalLinkUrl
+      disableLink
     }
   }
   networkPreview{
