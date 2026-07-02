@@ -117,7 +117,7 @@
   flex-basis: calc(20% - (4 * var(--margin) / 5));
 }
 
-.grid .col.col--1_5.col--tile:nth-of-type(5n) {
+.grid .col.col--1_5.col--tile:nth-child(5n) {
   margin-right: 0;
 }
 
