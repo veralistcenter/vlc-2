@@ -84,7 +84,7 @@
   flex-basis: calc(50% - var(--margin) / 2);
 }
 
-.grid .col.col--1_2.col--tile:nth-of-type(2n) {
+.grid .col.col--1_2.col--tile:nth-child(2n) {
   margin-right: 0;
 }
 
@@ -103,7 +103,7 @@
   flex-basis: calc(25% - (3 * var(--margin) / 4));
 }
 
-.grid .col.col--1_4.col--tile:nth-of-type(4n) {
+.grid .col.col--1_4.col--tile:nth-child(4n) {
   margin-right: 0;
 }
 
@@ -141,7 +141,7 @@
   flex-basis: calc(16.66% - (5 * var(--margin) / 6));
 }
 
-.grid .col.col--1_6.col--tile:nth-of-type(6n) {
+.grid .col.col--1_6.col--tile:nth-child(6n) {
   margin-right: 0;
 }
 
@@ -187,7 +187,7 @@
     margin-right: 0 !important;
   }
 
-  .grid .col.mcol--1_2.mcol--tile:nth-of-type(2n) {
+  .grid .col.mcol--1_2.mcol--tile:nth-child(2n) {
     margin-right: 0 !important;
   }
 
