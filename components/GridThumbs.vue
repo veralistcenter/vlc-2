@@ -1,24 +1,23 @@
 <template>
   <section class="mt--1">
-    <div
-      class="grid stagger-items"
-      :class="{ 'stagger-items--visible': visible }"
-    >
+    <div class="stagger-items" :class="{ 'stagger-items--visible': visible }">
       <div ref="observeTarget" class="stagger-sentinel" aria-hidden="true" />
-      <component
-        v-for="(post, i) in posts"
-        v-if="$Check(post) && ((!showAll && i < 8) || showAll)"
-        :key="post.__typename + '__' + i"
-        class="stagger-item col col--tile mb--2"
-        :class="colWidth"
-        :style="{ '--stagger': i * 0.06 + 's' }"
-        :is="postType(post.__typename)"
-        :event="post"
-        :exhibition="post"
-        :announcement="post"
-        :network="post"
-        :pub="post"
-      />
+      <div class="grid">
+        <component
+          v-for="(post, i) in posts"
+          v-if="$Check(post) && ((!showAll && i < 8) || showAll)"
+          :key="post.__typename + '__' + i"
+          class="stagger-item col col--tile mb--2"
+          :class="colWidth"
+          :style="{ '--stagger': i * 0.06 + 's' }"
+          :is="postType(post.__typename)"
+          :event="post"
+          :exhibition="post"
+          :announcement="post"
+          :network="post"
+          :pub="post"
+        />
+      </div>
     </div>
 
     <div
