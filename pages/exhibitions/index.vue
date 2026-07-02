@@ -18,6 +18,12 @@
         :posts="recent"
         :size="$CheckA(upcoming) || $CheckA(current) ? 'Quarter' : 'Half'"
       />
+
+      <div class="section_inset mb--2 mt--1 fs--regular caps">
+        <NuxtLink to="/exhibitions/past" aria-label="More" class="btn--full">
+          View More
+        </NuxtLink>
+      </div>
     </template>
   </main>
 </template>
@@ -29,7 +35,6 @@ export default {
   head() {
     return this.$metatags({ title: "Exhibitions" });
   },
-
   computed: {
     current() {
       return this.exhibitions.filter((e) => {
@@ -61,7 +66,6 @@ export default {
       return remaining;
     },
   },
-
   async asyncData({ $axios, $Req, store }) {
     const query = RecentExhibitions;
 
