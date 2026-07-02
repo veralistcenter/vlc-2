@@ -27,7 +27,6 @@ fellowships{
               }
             }
           }
-
           ... on Fellowship_Bodyfield_Body_Richtext{
             text
             title

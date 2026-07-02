@@ -9,25 +9,20 @@ import {
 export const Project = (slug) => `project (id: "${slug}", idType: SLUG) {
 	title
   slug
-
   ${featImage}
   projectInfo{
     fullDescription
-
     dateRange{
       startingYear
       endingYear
     }
-
     correspondingProjectTag{
       slug
       name
       id
     }
   }
-
 }
-
 projectTaxonomy(id: "${slug}", idType: SLUG) {
   networks{
     edges{
@@ -37,7 +32,6 @@ projectTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-  
   events(
     where: {orderby: {order: ASC, field: DATE}}
   ){
@@ -47,7 +41,6 @@ projectTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   exhibitions(
     where: {orderby: {order: ASC, field: DATE}}
   ){
@@ -57,7 +50,6 @@ projectTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-  
   announcements(
     where: {orderby: {order: ASC, field: DATE}}
   ){
@@ -67,7 +59,6 @@ projectTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   publications(
     where: {orderby: {order: ASC, field: TITLE}}
   ){
@@ -77,5 +68,4 @@ projectTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-  
 }`;

@@ -22,26 +22,21 @@ export const Announcement = (
 	      buttonLink
 	      buttonName
 	    }
-
       associatedBiennial{
         ...on Biennial{
           title
           slug
         }
       }
-
       associatedProject{
         ...on Project{
           title
           slug
         }
       }
-	    
 	  }
 	}
-
   ${featImage}
-
   networkRelation{
     associatedNetwork{
       __typename
@@ -51,7 +46,6 @@ export const Announcement = (
       }
     }
   }
-
   announcementTypes{
     edges{
       node{
@@ -60,7 +54,6 @@ export const Announcement = (
       }
     }
   }
-
   related{
     relatedPagesSize
     relatedPagesTitle
@@ -83,7 +76,6 @@ export const Announcement = (
       }
     }
   }
-
   pageFormat{
   	shortBody
   	pageLength
@@ -96,7 +88,6 @@ export const Announcement = (
         buttonLink
         buttonName
       }
-      
       ...on Announcement_Pageformat_Body_Gallery{
         title
         slide{
@@ -114,12 +105,10 @@ export const Announcement = (
           }
         }
       }
-      
       ...on Announcement_Pageformat_Body_Richtext{
         title
         text
       }
-      
       ...on Announcement_Pageformat_Body_Accordian{
         title
         section{
@@ -132,21 +121,18 @@ export const Announcement = (
           }
           sectionTitle
           sectionSubtitle
-        }  
+        }
       }
-      
       ...on Announcement_Pageformat_Body_AudioPlayer{
         audioFile{
           sourceUrl
         }
       }
-      
       ...on Announcement_Pageformat_Body_VideoPlayer{
         title
         caption
         vimeoUrl
       }
-      
       ...on Announcement_Pageformat_Body_RelatedPages{
         title
         relatedPagesTitle
@@ -166,5 +152,4 @@ export const Announcement = (
       }
     }
   }
-
 }`;

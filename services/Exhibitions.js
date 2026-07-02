@@ -7,6 +7,16 @@ import {
   AnnouncementQuery,
 } from "@/services/Thumbs";
 
+// export const ExhibitionsPages = `exhibitionsPages: pages{
+//   edges{
+//     node{
+//       title
+//       exhibitionPageCurrentSubsections{
+//       }
+//     }
+//   }
+// }`;
+
 export const RecentExhibitions = `recentExhibitions: exhibitions(
   first: 150
   where: {orderby: {order: DESC, field: DATE}}

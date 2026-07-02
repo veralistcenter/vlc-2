@@ -29,7 +29,6 @@ export const PublicationOverview = `types: publicationTypes(first: 50){
       }
     }
   }
-
   formats: publicationFormats(first: 50){
     edges{
       node{
@@ -40,7 +39,6 @@ export const PublicationOverview = `types: publicationTypes(first: 50){
       }
     }
   }
-
   taxonomy: sitewideTags(first: 400){
 	  edges{
 	    node{
@@ -51,7 +49,6 @@ export const PublicationOverview = `types: publicationTypes(first: 50){
 	    }
 	  }
 	}
-
 	focus: biennialTaxonomies{
     edges{
       node{
@@ -62,7 +59,6 @@ export const PublicationOverview = `types: publicationTypes(first: 50){
       }
     }
   }
-
   publications: publications (
     first: 400
   ){
@@ -81,9 +77,7 @@ export const Publication = (
 ) => `publication (id: "${slug}", idType: SLUG) {
   title
   slug
-
   ${featImage}
-
   related{
     relatedPages{
       __typename

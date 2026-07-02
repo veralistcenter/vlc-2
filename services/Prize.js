@@ -9,26 +9,21 @@ import {
 export const Prize = (slug) => `prize (id: "${slug}", idType: SLUG) {
 	title
   slug
-
   ${featImage}
   prizeInfo{
     title
     fullDescription
-
     dateRange{
       startingYear
       endingYear
     }
-
     correspondingPrizeTag{
       slug
       name
       id
     }
   }
-
 }
-
 prizeTaxonomy(id: "${slug}", idType: SLUG) {
   networks(
     first: 50
@@ -40,7 +35,6 @@ prizeTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   events(
     first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
@@ -50,7 +44,6 @@ prizeTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   exhibitions(
     first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
@@ -60,7 +53,6 @@ prizeTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   announcements(
     first: 50 where: { orderby: {order: ASC, field: DATE}}
   ){
@@ -70,7 +62,6 @@ prizeTaxonomy(id: "${slug}", idType: SLUG) {
       }
     }
   }
-
   publications(
     first: 50 where: { orderby: {order: ASC, field: TITLE}}
   ){
