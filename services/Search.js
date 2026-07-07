@@ -6,7 +6,6 @@ import {
 } from "@/services/Thumbs";
 
 export const Search = (term) => `
-
 	events(where: {search: "${term}"}){
 		edges{
 			node{
@@ -14,7 +13,6 @@ export const Search = (term) => `
 			}
 		}
 	}
-
 	publications(where: {search: "${term}"}){
 		edges{
 			node{
@@ -22,7 +20,6 @@ export const Search = (term) => `
 			}
 		}
 	}
-
 	exhibitions(where: {search: "${term}"}){
 		edges{
 			node{
@@ -30,7 +27,6 @@ export const Search = (term) => `
 			}
 		}
 	}
-
 	announcements(where: {search: "${term}"}){
 		edges{
 			node{
@@ -38,7 +34,6 @@ export const Search = (term) => `
 			}
 		}
 	}
-
 	networks(where: {search: "${term}"}){
 		edges{
 			node{
@@ -47,7 +42,6 @@ export const Search = (term) => `
 			}
 		}
 	}
-
 	biennials(where: {search: "${term}"}){
 		edges{
 			node{
@@ -56,11 +50,9 @@ export const Search = (term) => `
 			}
 		}
 	}
-
 `;
 
 export const SearchIds = (ids) => `
-
 	networks(first: 100 where: {in: [${ids}]}){
 		edges{
 			node{
@@ -72,8 +64,6 @@ export const SearchIds = (ids) => `
 			}
 		}
 	}
-	
-
 	events(first: 200 where: {in: [${ids}]}){
 		edges{
 			node{
@@ -81,7 +71,6 @@ export const SearchIds = (ids) => `
 			}
 		}
 	}
-
 	publications(first: 40 where: {in: [${ids}]}){
 		edges{
 			node{
@@ -89,7 +78,6 @@ export const SearchIds = (ids) => `
 			}
 		}
 	}
-
 	exhibitions(first: 40 where: {in: [${ids}]}){
 		edges{
 			node{
@@ -97,7 +85,6 @@ export const SearchIds = (ids) => `
 			}
 		}
 	}
-
 	announcements(first: 40 where: {in: [${ids}]}){
 		edges{
 			node{
