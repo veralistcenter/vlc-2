@@ -354,11 +354,9 @@ export const AllPages = `pages(first: 20) {
     node {
       title
       slug
-
       pageIntroduction{
         introductionText
       }
-
       gradient{
         gradientPicker{
           ...on Gradient{
@@ -371,9 +369,7 @@ export const AllPages = `pages(first: 20) {
           }
         }
       }
-
       ${Body("Page")}
-
       fellows {
         currentFellows {
           title
