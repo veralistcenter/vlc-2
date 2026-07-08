@@ -2,7 +2,7 @@
   <main class="page pt--7">
     <div
       v-if="$Check(event) && event.livestreamIframe.displayLivestreamIframe"
-      class="iframe_wrapper mb--1"
+      class="iframe_wrapper mb--1 no-print"
       v-html="event.livestreamIframe.iframeCode"
     ></div>
 
@@ -12,7 +12,7 @@
       :matrix="event.bodyField.body"
     />
 
-    <section class="mt--4" v-if="$CheckA(event.related.relatedPages)">
+    <section class="mt--4 no-print" v-if="$CheckA(event.related.relatedPages)">
       <h2
         class="fs--large section_heading"
         v-html="event.related.relatedPagesTitle"

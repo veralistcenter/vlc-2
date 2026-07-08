@@ -74,7 +74,7 @@
         </ul>
 
         <section
-          class="fs--regular mb--1"
+          class="fs--regular mb--1 no-print"
           v-if="
             $Check(post.pageInfo.previewInfo.button) &&
             $Check(post.pageInfo.previewInfo.button.buttonLink)
@@ -95,12 +95,13 @@
         ></section>
 
         <BiennialLink
-          class="mt--2"
+          class="mt--2 no-print"
           v-if="$CheckA(post.pageInfo.previewInfo.associatedBiennial)"
           :biennials="post.pageInfo.previewInfo.associatedBiennial"
         />
 
         <ProjectLink
+          class="no-print"
           :class="
             $CheckA(post.pageInfo.previewInfo.associatedBiennial)
               ? 'mt--1'

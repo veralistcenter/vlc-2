@@ -1,5 +1,5 @@
 <template>
-  <header class="site_header">
+  <header class="site_header no-print">
     <nav class="menu_header grid grid--sans">
       <button
         @click="showMenu = !showMenu"

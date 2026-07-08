@@ -51,6 +51,12 @@ export default {
   border: dashed 2px black;
 }
 
+@media print {
+  .matrix_donations {
+    max-width: 100%;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .matrix_donations {
     margin-left: var(--edge);

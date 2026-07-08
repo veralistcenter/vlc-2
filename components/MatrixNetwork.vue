@@ -1,5 +1,5 @@
 <template>
-  <section class="matrix_block section_inset mt--2 mb--2">
+  <section class="matrix_block section_inset mt--2 mb--2 no-print">
     <h2
       v-if="$Check(block.title)"
       class="fs--large mb--1"

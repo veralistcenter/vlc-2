@@ -1,5 +1,5 @@
 <template>
-  <div class="site_popup_donate" :class="{ active: showDonate }">
+  <div class="site_popup_donate no-print" :class="{ active: showDonate }">
     <div class="site_popup_donate_content pt--1 pl--1 pr--1">
       <h2 class="caps fs--large">
         {{ donationPopup?.title || "Donate to the site" }}

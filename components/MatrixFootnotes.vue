@@ -19,6 +19,12 @@ export default {
   max-width: var(--max_width);
 }
 
+@media print {
+  .footnotes {
+    max-width: 100%;
+  }
+}
+
 .footnotes ol {
   box-sizing: border-box;
   display: block;

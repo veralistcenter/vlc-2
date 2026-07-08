@@ -1,6 +1,6 @@
 <template>
   <section class="matrix_body">
-    <nav class="section_inset mb--4 mt--2">
+    <nav class="section_inset mb--4 mt--2 no-print">
       <ul class="ul--inline">
         <li v-for="(b, i) in matrix" :key="'nav_' + i" v-if="b.title">
           <button
@@ -76,3 +76,11 @@ export default {
   },
 };
 </script>
+
+<style>
+@media print {
+  .matrix_body {
+    margin-top: var(--margin_x2);
+  }
+}
+</style>

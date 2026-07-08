@@ -70,4 +70,10 @@ export default {
   width: calc(100% - (2 * var(--edge)));
   max-width: var(--max_width);
 }
+
+@media print {
+  .matrix_image.img--small {
+    max-width: 100%;
+  }
+}
 </style>

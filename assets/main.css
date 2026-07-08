@@ -266,3 +266,30 @@ span.node_name {
     transition: none;
   }
 }
+
+/* print */
+
+@page {
+  size: A4 portrait;
+  margin: 3rem 0 7.86rem 0;
+
+  @top-left {
+    content: "";
+  }
+  @top-center {
+    content: "";
+  }
+  @top-right {
+    content: "";
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .page.pt--7 {
+    padding-top: var(--edge);
+  }
+}

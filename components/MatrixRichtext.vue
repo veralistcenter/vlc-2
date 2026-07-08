@@ -24,6 +24,12 @@ export default {
   max-width: var(--max_width);
 }
 
+@media print {
+  .richtext {
+    max-width: 100%;
+  }
+}
+
 .richtext u,
 .richtext a {
   text-decoration: underline;

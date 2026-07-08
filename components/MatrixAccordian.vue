@@ -22,4 +22,10 @@ export default {
   margin-right: auto;
   max-width: var(--max_width);
 }
+
+@media print {
+  .matrix_accordian {
+    max-width: 100%;
+  }
+}
 </style>

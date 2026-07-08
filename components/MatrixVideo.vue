@@ -60,6 +60,12 @@ export default {
   max-width: var(--max_width);
 }
 
+@media print {
+  .matrix_video figure {
+    max-width: 100%;
+  }
+}
+
 .matrix_video figure div,
 .matrix_video figure iframe {
   position: relative;

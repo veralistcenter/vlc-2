@@ -1,5 +1,5 @@
 <template>
-  <section class="matrix_block mt--4 mb--4 matrix_button">
+  <section class="matrix_block mt--4 mb--4 matrix_button no-print">
     <p class="fs--regular center caps">
       <a
         class="btn--full"
