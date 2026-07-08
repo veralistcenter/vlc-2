@@ -3,17 +3,28 @@
     <SiteSubnav :pages="pages" />
 
     <template v-if="$CheckA(current)">
-      <h1 class="section_heading genath title mb--1">Ongoing</h1>
+      <h1 class="section_heading genath title mb--1">
+        {{
+          page.exhibitionPageCurrentSubsections.ongoingExhibitions || "Ongoing"
+        }}
+      </h1>
       <GridThumbs :posts="current" :size="'Half'" />
     </template>
 
     <template v-if="$CheckA(upcoming)">
-      <h1 class="section_heading genath title mb--1">Upcoming</h1>
+      <h1 class="section_heading genath title mb--1">
+        {{
+          page.exhibitionPageCurrentSubsections.upcomingExhibitions ||
+          "Upcoming"
+        }}
+      </h1>
       <GridThumbs :posts="upcoming" :size="'Half'" />
     </template>
 
     <template v-if="$CheckA(recent)">
-      <h1 class="section_heading genath title mb--1">Recent</h1>
+      <h1 class="section_heading genath title mb--1">
+        {{ page.exhibitionPageCurrentSubsections.recently || "Recent" }}
+      </h1>
       <GridThumbs
         :posts="recent"
         :size="$CheckA(upcoming) || $CheckA(current) ? 'Quarter' : 'Half'"
