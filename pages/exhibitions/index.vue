@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { RecentExhibitions } from "@/services/Exhibitions.js";
+import { ExhibitionsPages, RecentExhibitions } from "@/services/Exhibitions.js";
 
 export default {
   head() {
@@ -66,11 +66,18 @@ export default {
       return remaining;
     },
   },
-  async asyncData({ $axios, $Req, store }) {
-    const query = RecentExhibitions;
+  async asyncData({ $axios, $Req, store, redirect }) {
+    const query = ExhibitionsPages + RecentExhibitions;
 
     try {
       const res = await $axios($Req(query));
+
+      const pageList = res.data.data.exhibitionsPages.edges.map((e) => e.node);
+      const page = pageList?.find((p) => p.slug === "exhibitions");
+
+      if (page?.exhibitionPageCurrentSubsections?.disableCurrent) {
+        return redirect("/exhibitions/past");
+      }
 
       store.commit("updatePath", [
         { title: "Home", route: "/" },
@@ -78,10 +85,12 @@ export default {
         { title: "Current", route: "/exhibitions" },
       ]);
 
-      let pages = [
-        { title: "Current", path: "/exhibitions" },
-        { title: "Past", path: "/exhibitions/past" },
-      ];
+      const pages = page?.exhibitionPageCurrentSubsections?.disableCurrent
+        ? []
+        : [
+            { title: "Current", path: "/exhibitions" },
+            { title: "Past", path: "/exhibitions/past" },
+          ];
 
       const exhibitions = res.data.data.recentExhibitions.edges
         .map((e) => e.node)
@@ -94,11 +103,12 @@ export default {
         });
 
       return {
+        page,
         pages,
         exhibitions,
       };
     } catch (e) {
-      return { test: e };
+      return { error: e };
     }
   },
 };

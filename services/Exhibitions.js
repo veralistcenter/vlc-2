@@ -7,17 +7,24 @@ import {
   AnnouncementQuery,
 } from "@/services/Thumbs";
 
-// export const ExhibitionsPages = `exhibitionsPages: pages{
-//   edges{
-//     node{
-//       title
-//       exhibitionPageCurrentSubsections{
-//       }
-//     }
-//   }
-// }`;
+export const ExhibitionsPages = `
+exhibitionsPages: pages{
+  edges{
+    node{
+      title
+      slug
+      exhibitionPageCurrentSubsections {
+        disableCurrent
+        ongoingExhibitions
+        recently
+        upcomingExhibitions
+      }
+    }
+  }
+}`;
 
-export const RecentExhibitions = `recentExhibitions: exhibitions(
+export const RecentExhibitions = `
+recentExhibitions: exhibitions(
   first: 150
   where: {orderby: {order: DESC, field: DATE}}
 ){
@@ -167,8 +174,12 @@ export const fetchPastExhibitionsPage = async ({
   store,
   $moment,
 }) => {
-  const res = await $axios($Req(`${Exhibitions} ${PastExhibitionsFilters}`));
+  const res = await $axios(
+    $Req(`${Exhibitions} ${PastExhibitionsFilters} ${ExhibitionsPages}`)
+  );
   const data = res.data.data;
+  const pageList = data.exhibitionsPages?.edges?.map((e) => e.node) || [];
+  const page = pageList.find((p) => p.slug === "exhibitions");
 
   store.commit("updatePath", [
     { title: "Home", route: "/" },
@@ -176,10 +187,12 @@ export const fetchPastExhibitionsPage = async ({
     { title: "Past", route: "/exhibitions/past" },
   ]);
 
-  const pages = [
-    { title: "Current", path: "/exhibitions" },
-    { title: "Past", path: "/exhibitions/past" },
-  ];
+  const pages = page?.exhibitionPageCurrentSubsections?.disableCurrent
+    ? []
+    : [
+        { title: "Current", path: "/exhibitions" },
+        { title: "Past", path: "/exhibitions/past" },
+      ];
 
   const exhibitions = mapEdges(data.exhibitions.edges)
     .filter((exhibition) => isPastExhibition(exhibition, $moment))
