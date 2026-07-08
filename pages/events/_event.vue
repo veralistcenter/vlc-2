@@ -30,9 +30,7 @@
 import { Event } from "@/services/Events";
 
 export default {
-  async asyncData({ $axios, $Req, $Check, store, params, query }) {
-    // const preview = $Check(query.preview) ? ', isPreview: true' : ''
-
+  async asyncData({ $axios, $Req, store, params }) {
     const q = Event(params.event, "");
 
     try {
