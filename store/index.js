@@ -64,7 +64,7 @@ export const actions = {
 
     try {
       const res = await $axios($Req(query));
-      // console.log(res)
+
       commit("updateSettings", res.data.data);
     } catch (e) {
       console.log(e);

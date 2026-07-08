@@ -15,9 +15,11 @@ export default {
   },
   async asyncData({ $axios, $Req, $CheckA, store, params }) {
     try {
-      const query = FellowPages;
+      const fellowshipsPage = store.state.settings?.pages?.edges
+        ?.map((e) => e.node)
+        ?.find((p) => p.slug === "fellowships");
 
-      const res = await $axios($Req(query));
+      const res = await $axios($Req(FellowPages));
 
       const fpages = res.data.data.fellowships.edges.map((e) => {
         return { title: e.node.title, path: `/fellowships/${e.node.slug}` };
@@ -36,10 +38,12 @@ export default {
         { title: thispagetitle, route: `/fellowships/${params.fellowship}` },
       ]);
 
-      let pages = [
-        { title: "Current", path: "/fellowships" },
-        { title: "Past", path: "/fellowships/past" },
-      ];
+      const pages = fellowshipsPage?.fellows?.currentFellows?.disableCurrent
+        ? [{ title: "Past", path: "/fellowships/past" }]
+        : [
+            { title: "Current", path: "/fellowships" },
+            { title: "Past", path: "/fellowships/past" },
+          ];
 
       return {
         pages: [].concat(pages).concat(fpages),

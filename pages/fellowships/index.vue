@@ -23,7 +23,6 @@ export default {
   head() {
     return this.$metatags({ title: "Fellowships" });
   },
-
   computed: {
     fellowship() {
       return this.settings.pages.edges
@@ -34,18 +33,22 @@ export default {
       settings: "getSettings",
     }),
   },
-
   methods: {
     scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     },
   },
-
-  async asyncData({ $axios, $Req, store }) {
+  async asyncData({ $axios, $Req, store, redirect }) {
     try {
-      const query = FellowPages;
+      const fellowshipsPage = store.state.settings?.pages?.edges
+        ?.map((e) => e.node)
+        ?.find((p) => p.slug === "fellowships");
 
-      const res = await $axios($Req(query));
+      if (fellowshipsPage?.fellows?.currentFellows?.disableCurrent) {
+        return redirect("/fellowships/about");
+      }
+
+      const res = await $axios($Req(FellowPages));
 
       store.commit("updatePath", [
         { title: "Home", route: "/" },
@@ -53,10 +56,12 @@ export default {
         { title: "Current", route: "/fellowships" },
       ]);
 
-      let pages = [
-        { title: "Current", path: "/fellowships" },
-        { title: "Past", path: "/fellowships/past" },
-      ];
+      const pages = fellowshipsPage?.fellows?.currentFellows?.disableCurrent
+        ? [{ title: "Past", path: "/fellowships/past" }]
+        : [
+            { title: "Current", path: "/fellowships" },
+            { title: "Past", path: "/fellowships/past" },
+          ];
 
       const fpages = res.data.data.fellowships.edges.map((e) => {
         return { title: e.node.title, path: `/fellowships/${e.node.slug}` };
