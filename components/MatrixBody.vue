@@ -1,6 +1,6 @@
 <template>
   <section class="matrix_body">
-    <nav class="section_inset mb--4">
+    <nav class="section_inset mb--4 mt--1_2">
       <ul class="ul--inline">
         <li v-for="(b, i) in matrix" :key="'nav_' + i" v-if="b.title">
           <button
