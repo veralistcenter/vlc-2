@@ -101,7 +101,8 @@ export default {
   .thumb h1,
   .thumb h2,
   .thumb h3,
-  .thumb h4 {
+  .thumb h4,
+  .thumb h5 {
     transition: color 0.1s ease-in-out;
   }
 
@@ -109,7 +110,8 @@ export default {
   .thumb:hover h1,
   .thumb:hover h2,
   .thumb:hover h3,
-  .thumb:hover h4:not(.thumb_time) {
+  .thumb:hover h4:not(.thumb_time),
+  .thumb:hover h5 {
     color: var(--lg_text);
   }
 }

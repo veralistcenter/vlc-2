@@ -17,6 +17,11 @@
     />
 
     <h2 class="fs--regular mt--1_4" v-html="exhibition.title"></h2>
+    <h5
+      v-if="$Check(exhibition.featImage.subtitle)"
+      class="fs--small mt--1_8"
+      v-html="exhibition.featImage.subtitle"
+    ></h5>
     <h3
       class="grey_text fs--small mt--1_4"
       v-html="

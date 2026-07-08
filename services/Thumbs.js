@@ -86,6 +86,7 @@ export const ExhibitionQuery = `__typename
     selectedArchiveExhibition
   }
   featImage {
+    subtitle
     featuredImage {
       ... on MediaItem {
         srcSet

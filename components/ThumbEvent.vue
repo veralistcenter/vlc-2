@@ -4,7 +4,14 @@
     :to="'/events/' + event.slug"
   >
     <h2 class="fs--small caps" v-html="eventTypes"></h2>
-    <h3 class="fs--regular mb--1_2" v-html="event.title"></h3>
+    <div class="mb--1_2">
+      <h3 class="fs--regular" v-html="event.title"></h3>
+      <h5
+        v-if="$Check(event.featImage.subtitle)"
+        class="fs--small mt--1_8"
+        v-html="event.featImage.subtitle"
+      ></h5>
+    </div>
     <img
       v-if="$Check(event.featImage) && $Check(event.featImage.featuredImage)"
       :src="$SourceUrl(event.featImage.featuredImage)"
