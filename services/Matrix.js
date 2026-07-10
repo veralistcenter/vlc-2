@@ -137,5 +137,11 @@ export const Body = (page) => `bodyField{
       text
       title
     }
+    ...on ${page}_Bodyfield_Body_List{
+      title
+      item{
+        text
+      }
+    }
   }
 }`;

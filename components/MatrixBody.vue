@@ -2,7 +2,11 @@
   <section class="matrix_body">
     <nav class="section_inset mb--4 mt--2 no-print">
       <ul class="ul--inline">
-        <li v-for="(b, i) in matrix" :key="'nav_' + i" v-if="b.title">
+        <li
+          v-if="b.title && !b.__typename.includes('_Bodyfield_Body_List')"
+          v-for="(b, i) in matrix"
+          :key="'nav_' + i"
+        >
           <button
             class="btn--grey mr--1_2 pr--1_2 pl--1_2 pb--1_8 pt--1_8 mb--1_2"
             @click="jumpTo('#block_' + i)"
@@ -66,6 +70,8 @@ export default {
         return "MatrixAudioPlayer";
       } else if (t.includes("Body_Donations")) {
         return "MatrixDonations";
+      } else if (t.includes("Body_List")) {
+        return "MatrixList";
       } else {
         return "MatrixPre";
       }

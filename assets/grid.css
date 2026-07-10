@@ -93,6 +93,10 @@
   flex-basis: calc(33.33% - (2 * var(--margin) / 3));
 }
 
+.grid .col.col--1_3.col--tile:nth-child(3n) {
+  margin-right: 0;
+}
+
 .grid .col.col--2_3 {
   width: calc(66.66% - (1 * var(--margin) / 3));
   flex-basis: calc(66.66% - (1 * var(--margin) / 3));
@@ -337,6 +341,9 @@
 .mb--2 {
   margin-bottom: var(--margin_x2);
 }
+.mb--2_2 {
+  margin-bottom: calc(var(--margin) * 1.5);
+}
 .pt--2 {
   padding-top: var(--margin_x2);
 }
@@ -349,6 +356,9 @@
 }
 .mb--3 {
   margin-bottom: var(--margin_x3);
+}
+.mb--3_2 {
+  margin-bottom: calc(var(--margin) * 2.5);
 }
 .pt--3 {
   padding-top: var(--margin_x3);
