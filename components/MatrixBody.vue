@@ -1,6 +1,6 @@
 <template>
   <section class="matrix_body">
-    <nav class="section_inset mb--4 mt--2 no-print">
+    <nav class="section_inset mb--4 no-print">
       <ul class="ul--inline">
         <li
           v-if="b.title && !b.__typename.includes('_Bodyfield_Body_List')"
