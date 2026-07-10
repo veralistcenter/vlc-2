@@ -374,6 +374,7 @@ export const AllPages = `pages(first: 20) {
         currentFellows {
           title
           titleSlug
+          description
           disableCurrent
           cfellows {
             ... on Network {

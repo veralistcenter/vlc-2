@@ -2,6 +2,15 @@
   <main class="page pt--8">
     <SiteSubnav :statement="'Statement String'" :pages="pages" />
 
+    <section
+      v-if="$CheckA(page.currentFellows?.description)"
+      class="section_inset grid mt--1_2 mb--2"
+    >
+      <div class="col col--1_2 mcol--full">
+        <div v-html="page.currentFellows.description"></div>
+      </div>
+    </section>
+
     <GridThumbs
       size="Half"
       :posts="fellowship.fellows.currentFellows.cfellows"
@@ -67,7 +76,10 @@ export default {
         return { title: e.node.title, path: `/fellowships/${e.node.slug}` };
       });
 
+      const page = fellowshipsPage?.fellows;
+
       return {
+        page,
         pages: [].concat(pages).concat(fpages),
       };
     } catch (e) {
