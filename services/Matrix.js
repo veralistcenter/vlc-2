@@ -143,5 +143,8 @@ export const Body = (page) => `bodyField{
         text
       }
     }
+    ...on ${page}_Bodyfield_Body_ViewMore{
+      title
+    }
   }
 }`;
