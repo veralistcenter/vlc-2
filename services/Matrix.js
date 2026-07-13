@@ -146,5 +146,8 @@ export const Body = (page) => `bodyField{
     ...on ${page}_Bodyfield_Body_ViewMore{
       title
     }
+    ...on ${page}_Bodyfield_Body_Iframe{
+      embedCode
+    }
   }
 }`;

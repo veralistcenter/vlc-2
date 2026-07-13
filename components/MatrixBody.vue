@@ -109,12 +109,11 @@ export default {
         return "MatrixList";
       } else if (t.includes("Body_ViewMore")) {
         return "MatrixViewMore";
+      } else if (t.includes("Body_Iframe")) {
+        return "MatrixIframe";
       } else {
         return "MatrixPre";
       }
-
-      // still need video embed
-      // still need audio embed
     },
   },
 };
