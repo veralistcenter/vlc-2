@@ -34,6 +34,6 @@
     "video.js": "^7.19.2"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   }
 }
