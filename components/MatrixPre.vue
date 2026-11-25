@@ -1,17 +1,13 @@
 <template>
-	<section>
-		
-		<pre>{{block}}</pre>
-
-	</section>
+  <section>
+    <pre>{{ block }}</pre>
+  </section>
 </template>
 
 <script>
-	
-	export default{
-		props: {
-			block: Object
-		}
-	}
-
+export default {
+  props: {
+    block: Object,
+  },
+};
 </script>

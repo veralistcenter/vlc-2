@@ -1,9 +1,14 @@
-import { EventQuery, ExhibitionQuery, PublicationQuery, AnnouncementQuery } from '@/services/Thumbs'
+import {
+  EventQuery,
+  ExhibitionQuery,
+  PublicationQuery,
+  AnnouncementQuery,
+} from "@/services/Thumbs";
 
-export const Body = page => `bodyField{
+export const Body = (page) => `bodyField{
   body{
     __typename
-    
+
     ...on ${page}_Bodyfield_Body_Richtext{
       text
       title
@@ -25,17 +30,17 @@ export const Body = page => `bodyField{
         }
       }
     }
-    
+
     ... on ${page}_Bodyfield_Body_Pullquote{
       quoteTitle
       quoteText
       quotePosition
     }
-    
+
     ...on ${page}_Bodyfield_Body_Footnotes{
       text
     }
-    
+
     ...on ${page}_Bodyfield_Body_Button{
       title
       buttonName
@@ -59,7 +64,7 @@ export const Body = page => `bodyField{
         sectionSubtitle
       }
     }
-    
+
     ...on ${page}_Bodyfield_Body_SingleImage{
       imageSize
       image{
@@ -69,7 +74,7 @@ export const Body = page => `bodyField{
         caption
       }
     }
-    
+
     ...on ${page}_Bodyfield_Body_Gallery{
       title
       slide{
@@ -87,20 +92,20 @@ export const Body = page => `bodyField{
         }
       }
     }
-    
+
     ... on ${page}_Bodyfield_Body_AudioPlayer{
       audioFile{
         title
         mediaItemUrl
       }
     }
-    
+
     ...on ${page}_Bodyfield_Body_VideoPlayer{
       vimeoUrl
       title
       caption
     }
-    
+
     ...on ${page}_Bodyfield_Body_RelatedAnnouncements{
       title
       relatedPagesSize
@@ -112,7 +117,7 @@ export const Body = page => `bodyField{
         }
       }
     }
-    
+
     ...on ${page}_Bodyfield_Body_RelatedPages{
       title
       relatedPagesTitle
@@ -131,7 +136,7 @@ export const Body = page => `bodyField{
 
       }
     }
-    
+
     ...on ${page}_Bodyfield_Body_RelatedNetwork{
       title
       network{
@@ -141,5 +146,10 @@ export const Body = page => `bodyField{
         }
       }
     }
+
+    ...on ${page}_Bodyfield_Body_Donations{
+      text
+      title
+    }
   }
-}`
+}`;

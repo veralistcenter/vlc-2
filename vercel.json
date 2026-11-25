@@ -1,10 +1,17 @@
 {
   "version": 2,
+  "build": {
+    "env": {
+      "VERCEL_ANALYTICS_ID": ""
+    }
+  },
   "builds": [
     {
       "src": "nuxt.config.js",
-      "use": "@nuxtjs/vercel-builder@0.23.0",
-      "config": { "serverFiles": [".nuxt/dist/sitemap-routes.json"] }
+      "use": "@nuxtjs/vercel-builder@0.25.0",
+      "config": {
+        "serverFiles": [".nuxt/dist/sitemap-routes.json"]
+      }
     }
   ]
 }

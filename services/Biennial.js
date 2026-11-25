@@ -1,6 +1,12 @@
-import {featImage, EventQuery, ExhibitionQuery, AnnouncementQuery, PublicationQuery } from '@/services/Thumbs'
+import {
+  featImage,
+  EventQuery,
+  ExhibitionQuery,
+  AnnouncementQuery,
+  PublicationQuery,
+} from "@/services/Thumbs";
 
-export const Biennial = slug => `biennial (id: "${slug}", idType: SLUG) {
+export const Biennial = (slug) => `biennial (id: "${slug}", idType: SLUG) {
 	title
   slug
 
@@ -81,4 +87,4 @@ biennialTaxonomy(id: "${slug}", idType: SLUG) {
     }
   }
   
-}`
+}`;

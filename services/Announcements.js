@@ -1,15 +1,16 @@
-import { Body } from '@/services/Matrix'
+import { Body } from "@/services/Matrix";
 
-
-import { 
-  EventQuery, 
+import {
+  EventQuery,
   ExhibitionQuery,
   PublicationQuery,
   AnnouncementQuery,
-  featImage
-} from '@/services/Thumbs'
+  featImage,
+} from "@/services/Thumbs";
 
-export const Announcement = slug => `announcement (id: "${slug}", idType: SLUG) {
+export const Announcement = (
+  slug
+) => `announcement (id: "${slug}", idType: SLUG) {
 	__typename
 	title
 	slug
@@ -166,4 +167,4 @@ export const Announcement = slug => `announcement (id: "${slug}", idType: SLUG) 
     }
   }
 
-}`
+}`;

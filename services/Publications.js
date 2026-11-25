@@ -1,6 +1,12 @@
-import {featImage, PublicationQuery, EventQuery, ExhibitionQuery, AnnouncementQuery } from '@/services/Thumbs'
+import {
+  featImage,
+  PublicationQuery,
+  EventQuery,
+  ExhibitionQuery,
+  AnnouncementQuery,
+} from "@/services/Thumbs";
 
-import { Body } from '@/services/Matrix'
+import { Body } from "@/services/Matrix";
 
 export const PublicationOverview = `types: publicationTypes(first: 50){
     edges{
@@ -56,10 +62,11 @@ export const PublicationOverview = `types: publicationTypes(first: 50){
     }
   }
 
-  `
+  `;
 
-
-export const Publication = slug => `publication (id: "${slug}", idType: SLUG) {
+export const Publication = (
+  slug
+) => `publication (id: "${slug}", idType: SLUG) {
   title
   slug
 
@@ -197,5 +204,5 @@ export const Publication = slug => `publication (id: "${slug}", idType: SLUG) {
   }
   
 
-  ${ Body('Publication') }
-}`
+  ${Body("Publication")}
+}`;

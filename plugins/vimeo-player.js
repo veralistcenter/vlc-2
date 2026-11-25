@@ -1,4 +1,4 @@
-import Vue from 'vue'
-import vueVimeoPlayer from 'vue-vimeo-player'
+import Vue from "vue";
+import vueVimeoPlayer from "vue-vimeo-player";
 
-Vue.use(vueVimeoPlayer)
+Vue.use(vueVimeoPlayer);

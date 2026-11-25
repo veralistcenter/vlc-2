@@ -32,7 +32,7 @@ export const featImage = `featImage {
     }
 
     imageCaption
-  }`
+  }`;
 
 export const EventQuery = `
 __typename
@@ -63,7 +63,7 @@ sitewideTags{
   }
 }
 
-${featImage}`
+${featImage}`;
 
 export const ExhibitionQuery = `__typename
 title
@@ -119,7 +119,7 @@ sitewideTags{
   }
 }
 
-`
+`;
 
 export const AnnouncementQuery = `__typename
 title
@@ -185,7 +185,7 @@ announcementTypes{
   }
 }
 
-`
+`;
 
 export const PublicationQuery = `__typename
 title
@@ -290,22 +290,20 @@ biennialTaxonomies{
   }
 }
 
-`
+`;
 
 export const AnnouncementThumb = `... on Announcement {
   ${AnnouncementQuery}
-}`
+}`;
 
 export const EventThumb = `... on Event {
   ${EventQuery}
-}`
-
+}`;
 
 export const ExhibitionThumb = `... on Exhibition {
   ${ExhibitionQuery}
-}`
-
+}`;
 
 export const PublicationThumb = `...on Publication{
   ${PublicationQuery}
-}`
+}`;

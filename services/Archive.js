@@ -1,9 +1,9 @@
-import { 
+import {
   AnnouncementQuery,
-	EventQuery,
-	ExhibitionQuery,
-	PublicationQuery
-} from '@/services/Thumbs'
+  EventQuery,
+  ExhibitionQuery,
+  PublicationQuery,
+} from "@/services/Thumbs";
 
 export const Archive = `exhibitions(first: 150, where: {orderby: {order: ASC, field: DATE}}){
   edges {
@@ -53,9 +53,11 @@ taxonomy: sitewideTags(first: 150){
     }
   }
 }
-`
+`;
 
-export const ArchiveMoreEvents = cursor => `events(first: 400, after: "${cursor}", where: {orderby: {order: DESC, field: DATE}}){
+export const ArchiveMoreEvents = (
+  cursor
+) => `events(first: 400, after: "${cursor}", where: {orderby: {order: DESC, field: DATE}}){
   pageInfo {
     hasNextPage
     endCursor
@@ -65,7 +67,7 @@ export const ArchiveMoreEvents = cursor => `events(first: 400, after: "${cursor}
       ${EventQuery}
     }
   }
-}`
+}`;
 
 export const FeaturedArchive = `
 
@@ -91,4 +93,4 @@ export const FeaturedArchive = `
         ${ExhibitionQuery}
       }
     }
-  }`
+  }`;

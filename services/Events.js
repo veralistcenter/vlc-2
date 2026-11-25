@@ -1,13 +1,12 @@
-import { Body } from '@/services/Matrix'
+import { Body } from "@/services/Matrix";
 
-
-import { 
-  EventQuery, 
+import {
+  EventQuery,
   ExhibitionQuery,
   PublicationQuery,
   AnnouncementQuery,
-  featImage
-} from '@/services/Thumbs'
+  featImage,
+} from "@/services/Thumbs";
 
 export const Events = `currentEvents: events(
   first: 40
@@ -38,8 +37,7 @@ series: eventSeries{
       
     }
   }
-}`
-
+}`;
 
 export const PastEvents = `pastEvents: events(first: 200, where: {orderby: {order: DESC, field: DATE}}){
   pageInfo {
@@ -51,9 +49,11 @@ export const PastEvents = `pastEvents: events(first: 200, where: {orderby: {orde
       ${EventQuery}
     }
   }
-}`
+}`;
 
-export const PastEventsNextQuery = cursor => `pastEvents: events(first: 250, after: "${cursor}", where: {orderby: {order: DESC, field: DATE}}){
+export const PastEventsNextQuery = (
+  cursor
+) => `pastEvents: events(first: 250, after: "${cursor}", where: {orderby: {order: DESC, field: DATE}}){
   pageInfo {
     hasNextPage
     endCursor
@@ -63,19 +63,22 @@ export const PastEventsNextQuery = cursor => `pastEvents: events(first: 250, aft
       ${EventQuery}
     }
   }
-}`
+}`;
 
 export const EventTabs = `eventTabs: eventsubs{
   edges{
     node{
       title
       slug
-      ${ Body('Eventsub') }
+      ${Body("Eventsub")}
     }
   }
-}`
+}`;
 
-export const Event = (slug, preview ) => `event (id: "${slug}", idType: SLUG ${preview}) {
+export const Event = (
+  slug,
+  preview
+) => `event (id: "${slug}", idType: SLUG ${preview}) {
 	title
   slug
 
@@ -165,5 +168,5 @@ export const Event = (slug, preview ) => `event (id: "${slug}", idType: SLUG ${p
     
   }
 
-  ${ Body('Event') }
-}`
+  ${Body("Event")}
+}`;
